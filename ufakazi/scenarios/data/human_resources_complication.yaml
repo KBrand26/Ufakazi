@@ -1,0 +1,21 @@
+scenario_id: human_resources_complication
+domain: human_resources
+question: >-
+  Two employees at a financial firm witnessed their manager hugging a female colleague. Their accounts disagree as to whether the physical contact was appropriate. Assess the testimonies below. 
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: human
+        text: >-
+          When I walked out of the bathroom, I saw my manager hugging my colleague for an extended period of time. It seemed very intimate and had some familiarity to it. 
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: human
+        text: >-
+          When I was walking towards the kitchen, I overheard my manager consoling 
+          my colleague about the loss of her dog. He then proceeded to give her a hug.
