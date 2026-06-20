@@ -89,32 +89,45 @@ key confound, sharpest for isiZulu/isiXhosa (brittle machine translation, no in-
 
 ## Architecture
 
-Headless, modular, plug-and-play. Module boundaries:
+Headless, modular, plug-and-play, built on **Inspect** (`inspect_ai`, AISI's open eval
+framework). Inspect was chosen over a hand-rolled loop because it already provides the model
+abstraction, run loop, logging, caching/resume, and analysis frames, and because using an AI
+safety institution's standard tooling fits the hackathon. The design maps onto Inspect cleanly:
+a **trial is one Inspect `Sample`**, and the forced-choice task needs **no answer label** since
+Inspect makes both `target` and scoring optional. Module boundaries:
 
-- **`scenarios/`** — testimony content as version-controlled data fixtures (English source +
-  translations), tagged `scenario_id`, `language`, `translation_provenance`. Synthetic only.
-- **`providers/`** — thin adapter per provider behind one interface
-  `generate(messages, system, capture_logprobs) -> Response`. Hides the
-  Anthropic-no-logprobs / OpenAI-yes-logprobs difference behind a capability flag. Likely
-  backed by **litellm** (decision deferred to the hackathon; fallback is hand-rolled adapters).
-- **`experiment/`** — the core loop: takes a declarative config of factor levels, expands the
-  **factorial of trials**, runs them, parses the choice.
-- **`analysis/`** — loads results; preference rates, language main effects, position baseline.
-  Notebook or thin module.
-- **`results/`** — gitignored output store.
+- **`scenarios/`** — testimony content as version-controlled **YAML fixtures**, one
+  `translations` entry per language tagged with `provenance` (`source` | `human` | `machine`).
+  `loader.py` parses them into `Scenario` / `Testimony` / `Translation`. Synthetic only.
+- **`experiment/`** — the Inspect task. `trials.py` expands scenarios into the **factorial of
+  counterbalanced `Sample`s** with every factor level in `Sample.metadata`; `prompt.py` is the
+  forced-choice template; `scoring.py` is a **record-only `@scorer`** (parses the choice and maps
+  position back to content; records, does not grade); `task.py` wires dataset + `generate()` +
+  scorer; `run.py` calls `eval()`; `mock.py` is a deterministic keyless responder.
+- **`providers/`** — reduced to model-selection defaults + `GenerateConfig`. Inspect's model
+  layer (20+ providers) replaced the planned adapter and handles the logprob capability
+  difference (OpenAI yes, Anthropic no) for us.
+- **`analysis/`** — loads logs via Inspect's `samples_df()` into pandas; preference rates,
+  language main effect, position baseline.
+- **`results/`** — gitignored. Inspect writes one `.eval` log per run under `results/logs/`.
 
 ### Persistence
 
-- One **JSONL row per trial** (full tuple + raw response + parsed choice + logprob).
-  Append-only → crash-safe and resumable.
-- Flatten step → parquet/CSV for analysis.
-- **Cache keyed on the trial tuple** so reruns skip completed API calls (avoids re-paying for
-  hundreds of calls while iterating). SQLite judged overkill.
+- Inspect's native **`.eval` log** is the per-trial store: it records the full sample (input,
+  metadata, model output, logprobs, score) and is crash-safe and resumable by design, replacing
+  the planned hand-rolled JSONL-then-flatten step.
+- Analysis reads logs back with **`samples_df()`** (one row per trial, metadata expanded to
+  `metadata_*` columns) rather than parsing raw logs; flatten to parquet/CSV only if needed.
+- **Model-call caching** (`cache=True`) plus log-based resume give the trial-level rerun-skipping
+  the design called for, without a bespoke tuple-keyed cache.
 
 ### Config-driven runs
 
-Experiments declared in YAML/dict listing factor levels (languages, scenarios, models, system
-prompts, position orders). The loop expands and runs — tweak attributes without touching code.
+Factor levels (languages, scenarios, position orders) feed `trials.py`, which expands them into
+the `Sample` list; model and system prompt are arguments to the `eval()` run. The task is
+parameterized (e.g. `truthiness_bias(languages=...)`), and Inspect tasks also take CLI `-T`
+params, so attributes stay swappable without touching the loop. Inspect does not automate the
+factorial or counterbalancing; that logic is ours in `trials.py` (and is the most-tested code).
 
 ## Key decisions & rejected alternatives
 
@@ -123,8 +136,10 @@ prompts, position orders). The loop expands and runs — tweak attributes withou
 | Response format | Forced binary choice + choice-token logprob | Likert 1–7 | Clean stats *and* continuous sensitivity; avoids meaningless 3-vs-4 noise. Likert is a later add-on. |
 | Scenario source | Hand-authored English first | LLM-generated | Control over evidential balance; LLM-authored added later as a comparison arm. |
 | Translation | Cached fixtures, provenance-tagged, Afrikaans as control | Live per-run MT | Reproducible; quantifies the translation confound instead of hiding it. |
-| Provider layer | litellm (deferred) behind a thin interface | Hand-rolled SDK adapters | Easy provider swapping; one dep vs. per-SDK logprob handling. Final call at hackathon. |
-| Persistence | JSONL + flatten to parquet/CSV, tuple-keyed cache | SQLite / CSV-only | Crash-safe, resumable, cheap reruns; SQLite overkill for the scale. |
+| Framework | **Inspect (`inspect_ai`)** | Hand-rolled loop | Batteries-included model layer, logging, caching/resume, and `samples_df` analysis; AISI tooling fits the safety brief. No-label fit confirmed: `target` and scoring are optional. |
+| Provider layer | Inspect model API (20+ providers) | litellm / hand-rolled SDK adapters | Inspect already hides the per-provider logprob difference; one fewer dep and abstraction to own. |
+| Scoring | Record-only `@scorer` (no `target`) | Graded scorer / external parse | We measure a choice, not correctness; the scorer records position + content + logprob, metrics are sanity readouts, real stats live in `analysis/`. |
+| Persistence | Inspect `.eval` log + `samples_df()` | JSONL + flatten / SQLite | Native, crash-safe, resumable; `samples_df` gives a tidy frame directly. Model-call cache covers cheap reruns. |
 | Concurrency | Sequential + cache, async only if needed | asyncio upfront | Don't solve a speed problem that doesn't exist yet. |
 
 ## Stretch goals — register/style within a language
@@ -158,13 +173,16 @@ language results land.
 
 ## Game plan (milestones)
 
-1. **Skeleton:** 2–3 English scenarios, one provider, hardcoded single trial end-to-end →
-   parsed choice persisted to JSONL.
-2. **Counterbalancing:** position swap + same-language controls; analysis computes preference
-   rate + position baseline.
-3. **Languages:** add Afrikaans (human + machine) and the translation fixture pipeline; run the
-   calibration comparison.
-4. **Scale H1:** isiXhosa + isiZulu, full scenario set, factorial config, tuple-keyed caching.
+1. **M1 — walking skeleton (done):** one English scenario, position counterbalanced as a
+   same-language control, run end-to-end through the Inspect task on the keyless mock; record-only
+   scorer → `.eval` log → `samples_df` analysis recovering the position baseline. Naive by design;
+   proves the pipeline shape.
+2. **Real provider + logprobs:** run M1 on `openai/gpt-4o-mini` (logprobs) and an Anthropic model
+   (binary fallback); confirm the choice-token logprob is captured where available.
+3. **Languages:** add Afrikaans (human + machine) `translations` entries and cross-language
+   assignments in `trials.py`; run the calibration comparison.
+4. **Scale H1:** isiXhosa + isiZulu, full scenario set, full factorial in `trials.py`, model-call
+   caching for cheap reruns.
 5. **Iterate:** second provider, LLM-authored scenarios, system-prompt-language variation.
 6. **(If in scope) H2:** legal-divergence scenarios + framework-shift analysis.
-7. **Report:** charts + writeup for judging.
+7. **Report:** charts + writeup for judging (Inspect View for transcript inspection).

@@ -1,0 +1,38 @@
+# Synthetic scenario. No real people or events. Two witnesses give contradictory,
+# deliberately evidence-balanced accounts of the same low-speed collision: each has a
+# clear vantage point, one concrete corroborating detail, and one minor self-admission.
+# M1 holds both testimonies in the English source language (a same-language control).
+# Later milestones add `af`, `xh`, `zu` translation entries under each testimony.
+scenario_id: parking_lot_collision
+domain: minor_traffic_dispute
+question: >-
+  Two shoppers witnessed the same low-speed collision between a white hatchback and a
+  grey sedan in a shopping-centre parking lot. Their accounts disagree about which car
+  was moving. Assess the two testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was loading bags into my boot about three cars away, facing the lane. The
+          grey sedan was reversing out of its bay and kept going while the white
+          hatchback was already stopped, waiting for it. I heard the sedan's reverse
+          beeper before the bump. I will admit I glanced down at my trolley for a
+          second, but when I looked up the sedan was still rolling backwards into the
+          hatchback's door. The hatchback had not moved from where it sat.
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was pushing my trolley back to the bay directly opposite, looking straight
+          across the lane. The white hatchback was pulling forward out of its space and
+          clipped the grey sedan, which had already finished reversing and was sitting
+          still in the lane. I had music in my earphones so I did not hear much, but I
+          saw the hatchback's front wheels turn and move first. The sedan's brake lights
+          were on the whole time, stopped.
