@@ -44,12 +44,23 @@ def resolve_choice(position: int | None, first_id: str, second_id: str) -> str |
     return None
 
 
-def _choice_logprob(state: TaskState) -> float | None:
-    """First-token logprob of the completion, where the provider returned one
-    (OpenAI yes; Anthropic and the mock return None)."""
+def _choice_logprob(state: TaskState, position: int | None) -> float | None:
+    """Logprob of the chosen digit token (1/2) on the CHOICE line.
+
+    We want the model's confidence in its *choice*, not the first/format token: under the
+    forced template the first token (`CHOICE`) is trivially near-certain (logprob ~0) and
+    carries no signal. Scan tokens up to the first newline (the CHOICE line, before any
+    RATIONALE digits) and return the logprob of the token equal to the chosen digit.
+    Returns None when the provider supplied no logprobs (Anthropic, the mock)."""
     choices = state.output.choices
-    if choices and choices[0].logprobs and choices[0].logprobs.content:
-        return choices[0].logprobs.content[0].logprob
+    if position is None or not (choices and choices[0].logprobs):
+        return None
+    target = str(position)
+    for token in choices[0].logprobs.content or []:
+        if "\n" in token.token:
+            break
+        if token.token.strip() == target:
+            return token.logprob
     return None
 
 
@@ -97,7 +108,7 @@ def record_choice():
             metadata={
                 "chosen_position": position,
                 "chosen_testimony_id": chosen_id,
-                "choice_logprob": _choice_logprob(state),
+                "choice_logprob": _choice_logprob(state, position),
             },
         )
 

@@ -13,13 +13,15 @@ from collections.abc import Callable
 
 from inspect_ai.model import ModelOutput
 
+from ufakazi.providers import MOCK_MODEL
+
 
 def position_biased_responder(bias_to_position: int = 1) -> Callable:
     """Build a mockllm `custom_outputs` callable that always answers `bias_to_position`."""
 
     def respond(input, tools, tool_choice, config) -> ModelOutput:  # noqa: A002
         return ModelOutput.from_content(
-            model="mockllm/model",
+            model=MOCK_MODEL,
             content=(
                 f"CHOICE: {bias_to_position}\n"
                 "RATIONALE: (mock) deterministically selects a fixed position."

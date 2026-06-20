@@ -6,8 +6,10 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "inspect-ai>=0.3.240",
+    "openai>=2.43.0",
     "pandas>=3.0.3",
     "pyarrow>=24.0.0",
+    "python-dotenv>=1.2.2",
     "pyyaml>=6.0.3",
 ]
 
