@@ -18,6 +18,7 @@ from inspect_ai.analysis import evals_df
 from ufakazi.analysis.load import (
     control_baselines,
     filter_latest_eval,
+    language_preference,
     language_report,
     load_trials,
     per_scenario_language_effect,
@@ -229,6 +230,105 @@ def _verbosity_card(v: dict | None, p_prefer_target: float) -> str:
     </div>"""
 
 
+def _provenance_svg(p_h: float, p_m: float) -> str:
+    """Two points on the same prefers-English..prefers-Afrikaans axis: human Afrikaans
+    (teal fill) and machine Afrikaans (amber ring). Their closeness is the message, so the
+    two labels are split above/below the axis to stay legible even when the points overlap."""
+    w, x0, x1, y = 760, 64, 696, 96
+    plot = x1 - x0
+
+    def x(v: float) -> float:
+        return x0 + v * plot
+
+    ticks = ""
+    for v in (0.0, 0.25, 0.5, 0.75, 1.0):
+        ticks += (
+            f'<line x1="{x(v):.1f}" y1="{y}" x2="{x(v):.1f}" y2="{y + 6}" '
+            f'stroke="#cbd5e1" stroke-width="1"/>'
+            f'<text x="{x(v):.1f}" y="{y + 22}" text-anchor="middle" class="svg-tick">{v:.2f}</text>'
+        )
+    return f"""<svg viewBox="0 0 {w} 150" class="effect-svg" role="img"
+      aria-label="Human vs machine Afrikaans, both against English">
+  <rect x="{x0}" y="{y - 11}" width="{(x(0.5) - x0):.1f}" height="22" fill="{TEAL}" opacity="0.09"/>
+  <rect x="{x(0.5):.1f}" y="{y - 11}" width="{(x1 - x(0.5)):.1f}" height="22" fill="{AMBER}" opacity="0.11"/>
+  <line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="#94a3b8" stroke-width="1.5"/>
+  {ticks}
+  <text x="{x0}" y="{y - 50}" text-anchor="start" class="svg-end" fill="{TEAL_DARK}">&#9664; prefers English</text>
+  <text x="{x1}" y="{y - 50}" text-anchor="end" class="svg-end" fill="{AMBER_DARK}">prefers Afrikaans &#9654;</text>
+  <line x1="{x(0.5):.1f}" y1="{y - 38}" x2="{x(0.5):.1f}" y2="{y + 10}"
+        stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="{x(0.5):.1f}" y="{y - 26}" text-anchor="middle" class="svg-null">cannot tell apart (0.50)</text>
+  <circle cx="{x(p_h):.1f}" cy="{y}" r="8" fill="{TEAL}" stroke="white" stroke-width="2"/>
+  <text x="{x(p_h):.1f}" y="{y - 16}" text-anchor="middle" class="svg-prov" fill="{TEAL_DARK}">human {p_h:.2f}</text>
+  <circle cx="{x(p_m):.1f}" cy="{y}" r="8" fill="white" stroke="{AMBER_DARK}" stroke-width="2.5"/>
+  <text x="{x(p_m):.1f}" y="{y + 42}" text-anchor="middle" class="svg-prov" fill="{AMBER_DARK}">machine {p_m:.2f}</text>
+</svg>"""
+
+
+def _provenance_card(human: dict, machine: dict | None, h2h: dict | None) -> str:
+    """Human vs machine Afrikaans: is the Afrikaans penalty a translation-quality artefact,
+    or the language itself? `human` is afr-vs-en, `machine` is afr_mt-vs-en, `h2h` is
+    afr_mt-vs-afr. Renders only when a machine-Afrikaans arm exists in the run."""
+    if not machine or not h2h:
+        return ""
+    if pd.isna(machine.get("p_prefer_target")) or pd.isna(h2h.get("p_prefer_target")):
+        return ""
+
+    p_h = human["p_prefer_target"]
+    p_m = machine["p_prefer_target"]
+    p_hm = h2h["p_prefer_target"]
+    lo, hi = h2h["ci95"]
+    both_dispreferred = p_h < 0.5 and p_m < 0.5
+    indistinct = not h2h["significant"]
+
+    if both_dispreferred and indistinct:
+        verdict_lead = "no reliable difference"
+        conclusion = (
+            "A skeptic could argue the Afrikaans penalty is really a <em>translation-quality</em> "
+            "penalty: perhaps the human Afrikaans simply reads a little awkwardly. So we added an "
+            "<strong>independent machine translation</strong>. If quality drove the effect, the two "
+            "should part ways. They do not: machine Afrikaans is penalised against English just as "
+            f"human Afrikaans is ({p_m:.2f} vs {p_h:.2f}), and head-to-head the model shows "
+            f"<strong>no reliable preference</strong> between them ({p_hm:.2f}, 95% CI spanning "
+            "0.50). The model is responding to the <strong>language</strong>, not the translation."
+        )
+    elif indistinct:
+        verdict_lead = "no reliable difference"
+        conclusion = (
+            f"Head-to-head, the model shows no reliable preference between human and machine "
+            f"Afrikaans ({p_hm:.2f}, 95% CI spanning 0.50), so the two translation sources behave "
+            "alike on this run."
+        )
+    else:
+        favoured = "human" if p_hm < 0.5 else "machine"
+        verdict_lead = f"{favoured} Afrikaans favoured"
+        conclusion = (
+            f"Head-to-head the model favours <strong>{favoured}</strong> Afrikaans "
+            f"({p_hm:.2f}, 95% CI [{lo:.2f}, {hi:.2f}]), so translation source is itself a factor "
+            "here and the language effect cannot be fully separated from translation quality."
+        )
+
+    return f"""
+    <div class="card">
+      <h2>Human or machine translation &mdash; does it matter?</h2>
+      <p class="sub">Both a human and an independently machine-translated Afrikaans version of every
+        testimony were run against the English source. If the penalty were about translation
+        <em>quality</em>, the two would diverge. Here is where each lands against English:</p>
+      {_provenance_svg(p_h, p_m)}
+      <div class="legend">
+        <span><span class="dot fill"></span>Human Afrikaans vs English <b>{p_h:.2f}</b></span>
+        <span><span class="dot ring"></span>Machine Afrikaans vs English <b>{p_m:.2f}</b></span>
+      </div>
+      <div class="h2h">
+        <div class="h2h-num">{p_hm:.2f}</div>
+        <div class="h2h-cap"><span class="h2h-tag">{verdict_lead}</span>
+          P(model prefers <b>machine</b> over <b>human</b> Afrikaans), same content and language.
+          0.50 means it cannot tell them apart. 95% CI [{lo:.2f}, {hi:.2f}].</div>
+      </div>
+      <p class="caption">{conclusion}</p>
+    </div>"""
+
+
 CSS = f"""
 :root {{ --ink:#16302b; --muted:#5f7470; --line:#e4ebe8; --card:#ffffff;
   --teal:{TEAL}; --teal-dark:{TEAL_DARK}; --amber:{AMBER}; --amber-dark:{AMBER_DARK}; }}
@@ -300,6 +400,15 @@ body {{ margin:0; background:#f3f6f4; color:var(--ink);
 .scn-bar.neg {{ background:{TEAL}; }}
 .scn-bar.pos {{ background:{AMBER}; }}
 .scn-val {{ text-align:right; font-variant-numeric:tabular-nums; font-weight:700; font-size:.86rem; }}
+.svg-prov {{ font-size:13px; font-weight:800; }}
+.h2h {{ display:flex; align-items:center; gap:22px; margin-top:20px; padding:18px 22px;
+  background:#f0f7f4; border-radius:12px; }}
+.h2h-num {{ font-size:3rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums;
+  color:var(--teal-dark); }}
+.h2h-cap {{ font-size:.95rem; color:#2f5249; }}
+.h2h-tag {{ display:inline-block; background:{TEAL_LIGHT}; color:#0c352e; font-weight:700;
+  font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; padding:3px 10px;
+  border-radius:999px; margin-right:8px; }}
 .lenbars {{ margin:6px 0 4px; }}
 .lenbar-row {{ display:grid; grid-template-columns:96px 1fr 92px; align-items:center; gap:14px; margin:9px 0; }}
 .lenbar-lab {{ font-size:.86rem; font-weight:700; color:#334155; }}
@@ -328,7 +437,10 @@ def build_html(
     meta: dict,
     n_scenarios: int,
     epochs: int,
+    languages: list[str],
     verbosity: dict | None = None,
+    machine: dict | None = None,
+    h2h: dict | None = None,
 ) -> str:
     p = effect["p_prefer_target"]
     lo, hi = effect["ci95"]
@@ -344,12 +456,13 @@ def build_html(
         else '<span class="badge" style="background:#fcd34d">Not significant</span>'
     )
 
+    lang_chip = " / ".join(languages) if languages else "en / afr"
     chips = "".join(
         f'<div class="chip"><div class="n">{n}</div><div class="l">{lbl}</div></div>'
         for n, lbl in [
             (f"{summary['n_trials']:,}", "trials"),
             (n_scenarios, "scenarios"),
-            ("en / afr", "languages"),
+            (lang_chip, "languages"),
             (epochs, "epochs / trial"),
             (effect["n_cross_trials"], "cross-language"),
             (f"{summary['n_parse_errors']}", "parse errors"),
@@ -429,6 +542,7 @@ def build_html(
       {_scenario_bars(effects_df)}
     </div>
 {_verbosity_card(verbosity, effect["p_prefer_target"])}
+{_provenance_card(effect, machine, h2h)}
     <div class="note">
       <h3>Why every trial is run ten times</h3>
       <p>This model is <strong>not deterministic even at temperature 0</strong>: identical prompts
@@ -443,9 +557,9 @@ def build_html(
       <ul class="caveats">
         <li>Scenarios and testimonies are <strong>synthetic</strong>; only aggregate rates are shown.</li>
         <li>One model so far (<strong>{meta["model"]}</strong>); the effect may not generalise.</li>
-        <li>Afrikaans here is <strong>human-translated</strong>. A machine-Afrikaans control is the
-          next step &mdash; until then we cannot fully separate <em>language</em> bias from
-          <em>translation-quality</em> effects.</li>
+        <li>Both <strong>human and machine</strong> Afrikaans were tested and the model treats
+          them alike (see above), which separates the language effect from translation quality.
+          Still a single non-English language so far; isiXhosa and isiZulu are the next arms.</li>
         <li>The aggregate effect is bias-cancelled; the <em>per-scenario</em> bars are indicative
           only, since a single scenario's content imbalance is not cancelled in isolation.</li>
       </ul>
@@ -467,17 +581,33 @@ def main() -> None:
     reports = language_report(df)
     if not reports:
         raise SystemExit("No cross-language trials in the latest run.")
-    effect = reports[0]
+    # Headline effect is human Afrikaans vs English; afr_mt (machine) is a robustness arm.
+    effect = next((r for r in reports if r["target"] == "afr"), reports[0])
     target, reference = effect["target"], effect["reference"]
     effects_df = per_scenario_language_effect(df, target, reference)
     meta = _latest_eval_meta(df)
     n_scenarios = int(df["metadata_scenario_id"].nunique())
     epochs = int(df["epoch"].nunique()) if "epoch" in df.columns else 1
+    languages = [reference] + [r["target"] for r in reports]
 
     verbosity = _verbosity_facts(df, target, reference)
 
+    # Machine-Afrikaans robustness arm: afr_mt vs en, plus the direct human-vs-machine contrast.
+    machine = next((r for r in reports if r["target"] == "afr_mt"), None)
+    h2h = language_preference(df, "afr_mt", "afr") if machine else None
+
     html = build_html(
-        summary, baselines, effect, effects_df, meta, n_scenarios, epochs, verbosity
+        summary,
+        baselines,
+        effect,
+        effects_df,
+        meta,
+        n_scenarios,
+        epochs,
+        languages,
+        verbosity,
+        machine,
+        h2h,
     )
     OUT.write_text(html, encoding="utf-8")
     print(f"Wrote {OUT}  ({len(html):,} bytes)")

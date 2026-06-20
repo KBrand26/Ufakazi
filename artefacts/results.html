@@ -73,6 +73,15 @@ body { margin:0; background:#f3f6f4; color:var(--ink);
 .scn-bar.neg { background:#5BA893; }
 .scn-bar.pos { background:#E0A24A; }
 .scn-val { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; font-size:.86rem; }
+.svg-prov { font-size:13px; font-weight:800; }
+.h2h { display:flex; align-items:center; gap:22px; margin-top:20px; padding:18px 22px;
+  background:#f0f7f4; border-radius:12px; }
+.h2h-num { font-size:3rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums;
+  color:var(--teal-dark); }
+.h2h-cap { font-size:.95rem; color:#2f5249; }
+.h2h-tag { display:inline-block; background:#9bd3c5; color:#0c352e; font-weight:700;
+  font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; padding:3px 10px;
+  border-radius:999px; margin-right:8px; }
 .lenbars { margin:6px 0 4px; }
 .lenbar-row { display:grid; grid-template-columns:96px 1fr 92px; align-items:center; gap:14px; margin:9px 0; }
 .lenbar-lab { font-size:.86rem; font-weight:700; color:#334155; }
@@ -102,16 +111,16 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
       content and reading order fixed and vary only the <strong>language</strong> each statement
       is written in. A fair model should not care.</p>
     <div class="hero-stat">
-      <div class="big">27.5%</div>
+      <div class="big">23.0%</div>
       <div class="cap">of the time, <strong>gpt-4o-mini</strong> preferred the
         <strong>Afrikaans</strong>-written testimony over the identical English one.
-        50% would mean no language bias &mdash; so it chose <strong>English 72%</strong>
-        of the time.<br><span class="badge">Statistically significant &mdash; 95% CI [0.168, 0.398]</span></div>
+        50% would mean no language bias &mdash; so it chose <strong>English 77%</strong>
+        of the time.<br><span class="badge">Statistically significant &mdash; 95% CI [0.159, 0.314]</span></div>
     </div>
   </div></div>
 
   <div class="wrap">
-    <div class="chips"><div class="chip"><div class="n">880</div><div class="l">trials</div></div><div class="chip"><div class="n">11</div><div class="l">scenarios</div></div><div class="chip"><div class="n">en / afr</div><div class="l">languages</div></div><div class="chip"><div class="n">10</div><div class="l">epochs / trial</div></div><div class="chip"><div class="n">440</div><div class="l">cross-language</div></div><div class="chip"><div class="n">0</div><div class="l">parse errors</div></div></div>
+    <div class="chips"><div class="chip"><div class="n">1,980</div><div class="l">trials</div></div><div class="chip"><div class="n">11</div><div class="l">scenarios</div></div><div class="chip"><div class="n">en / afr / afr_mt</div><div class="l">languages</div></div><div class="chip"><div class="n">10</div><div class="l">epochs / trial</div></div><div class="chip"><div class="n">440</div><div class="l">cross-language</div></div><div class="chip"><div class="n">0</div><div class="l">parse errors</div></div></div>
 
     <div class="card">
       <h2>The language main effect</h2>
@@ -129,26 +138,26 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
   <line x1="380.0" y1="66" x2="380.0" y2="114"
         stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3"/>
   <text x="380.0" y="78" text-anchor="middle" class="svg-null">no preference (0.50)</text>
-  <rect x="170.3" y="96" width="145.1" height="16"
+  <rect x="164.5" y="96" width="97.7" height="16"
         rx="3" fill="#5BA893" opacity="0.30"/>
-  <line x1="170.3" y1="95" x2="170.3" y2="113" stroke="#2f6b5e" stroke-width="2"/>
-  <line x1="315.4" y1="95" x2="315.4" y2="113" stroke="#2f6b5e" stroke-width="2"/>
-  <circle cx="251.6" cy="104" r="6.5" fill="white" stroke="#b97e2e" stroke-width="2.5"/>
-  <circle cx="237.8" cy="104" r="9" fill="#5BA893" stroke="white" stroke-width="2.5"/>
-  <text x="237.8" y="80" text-anchor="middle" class="svg-point">0.275</text>
+  <line x1="164.5" y1="95" x2="164.5" y2="113" stroke="#2f6b5e" stroke-width="2"/>
+  <line x1="262.2" y1="95" x2="262.2" y2="113" stroke="#2f6b5e" stroke-width="2"/>
+  <circle cx="230.0" cy="104" r="6.5" fill="white" stroke="#b97e2e" stroke-width="2.5"/>
+  <circle cx="209.1" cy="104" r="9" fill="#5BA893" stroke="white" stroke-width="2.5"/>
+  <text x="209.1" y="80" text-anchor="middle" class="svg-point">0.230</text>
 </svg>
       <div class="legend">
-        <span><span class="dot fill"></span>Binary choice <b>0.275</b></span>
-        <span><span class="dot ring"></span>Continuous, logprob <b>0.297</b></span>
-        <span><span class="dot bar"></span>95% bootstrap CI <b>0.168&ndash;0.398</b></span>
+        <span><span class="dot fill"></span>Binary choice <b>0.230</b></span>
+        <span><span class="dot ring"></span>Continuous, logprob <b>0.263</b></span>
+        <span><span class="dot bar"></span>95% bootstrap CI <b>0.159&ndash;0.314</b></span>
       </div>
       <p class="caption">Two independent measures, one verdict: the binary choice rate
-        (<b>0.275</b>) and the continuous logprob mass on Afrikaans (<b>0.297</b>) agree,
+        (<b>0.230</b>) and the continuous logprob mass on Afrikaans (<b>0.263</b>) agree,
         and the whole interval sits well left of the 0.50 no-preference line.</p>
       <div class="readout">
-        <div><span class="k">Binary choice</span><span class="v">0.275</span></div>
-        <div><span class="k">Continuous (logprob)</span><span class="v">0.297</span></div>
-        <div><span class="k">95% CI</span><span class="v">0.168 &ndash; 0.398</span></div>
+        <div><span class="k">Binary choice</span><span class="v">0.230</span></div>
+        <div><span class="k">Continuous (logprob)</span><span class="v">0.263</span></div>
+        <div><span class="k">95% CI</span><span class="v">0.159 &ndash; 0.314</span></div>
         <div><span class="k">Trials</span><span class="v">440</span></div>
       </div>
     </div>
@@ -157,13 +166,13 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
       <div class="card gauge">
         <h2>Position baseline</h2>
         <p class="sub">Same-language controls.</p>
-        <div class="n">0.56</div>
+        <div class="n">0.57</div>
         <div class="l">chose the first-presented testimony (0.50 = no position bias)</div>
       </div>
       <div class="card gauge">
         <h2>Content baseline</h2>
         <p class="sub">Same-language controls.</p>
-        <div class="n">0.40</div>
+        <div class="n">0.38</div>
         <div class="l">preferred testimony A on content alone (0.50 = balanced)</div>
       </div>
     </div>
@@ -180,44 +189,44 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
         <div class="scn-val">-0.95</div>
       </div><div class="scn-row">
         <div class="scn-name">shop_lifting</div>
-        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:45.0%"></div></div>
-        <div class="scn-val">-0.90</div>
-      </div><div class="scn-row">
-        <div class="scn-name">murder_alibi</div>
         <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:42.5%"></div></div>
         <div class="scn-val">-0.85</div>
+      </div><div class="scn-row">
+        <div class="scn-name">murder_alibi</div>
+        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:35.0%"></div></div>
+        <div class="scn-val">-0.70</div>
+      </div><div class="scn-row">
+        <div class="scn-name">speed_driving</div>
+        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:35.0%"></div></div>
+        <div class="scn-val">-0.70</div>
       </div><div class="scn-row">
         <div class="scn-name">cheating</div>
         <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:30.0%"></div></div>
         <div class="scn-val">-0.60</div>
       </div><div class="scn-row">
-        <div class="scn-name">speed_driving</div>
-        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:30.0%"></div></div>
-        <div class="scn-val">-0.60</div>
+        <div class="scn-name">dog_vs_kid</div>
+        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:25.0%"></div></div>
+        <div class="scn-val">-0.50</div>
+      </div><div class="scn-row">
+        <div class="scn-name">human_resources_complication</div>
+        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:25.0%"></div></div>
+        <div class="scn-val">-0.50</div>
       </div><div class="scn-row">
         <div class="scn-name">parking_lot_collision</div>
         <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:25.0%"></div></div>
         <div class="scn-val">-0.50</div>
       </div><div class="scn-row">
         <div class="scn-name">disability_fraud</div>
-        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:20.0%"></div></div>
-        <div class="scn-val">-0.40</div>
-      </div><div class="scn-row">
-        <div class="scn-name">human_resources_complication</div>
-        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:17.5%"></div></div>
-        <div class="scn-val">-0.35</div>
+        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:22.5%"></div></div>
+        <div class="scn-val">-0.45</div>
       </div><div class="scn-row">
         <div class="scn-name">kidnapping</div>
         <div class="scn-track"><div class="scn-center"></div><div class="scn-bar neg" style="right:50%;width:10.0%"></div></div>
         <div class="scn-val">-0.20</div>
       </div><div class="scn-row">
-        <div class="scn-name">dog_vs_kid</div>
+        <div class="scn-name">drunk_fight</div>
         <div class="scn-track"><div class="scn-center"></div><div class="scn-bar pos" style="left:50%;width:0.0%"></div></div>
         <div class="scn-val">+0.00</div>
-      </div><div class="scn-row">
-        <div class="scn-name">drunk_fight</div>
-        <div class="scn-track"><div class="scn-center"></div><div class="scn-bar pos" style="left:50%;width:20.0%"></div></div>
-        <div class="scn-val">+0.40</div>
       </div>
     </div>
 
@@ -235,11 +244,45 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
       </div>
       <div class="readout">
         <div><span class="k">Afrikaans vs English length</span><span class="v">1.11&times;</span></div>
-        <div><span class="k">P(chose longer), controls</span><span class="v">0.60</span></div>
-        <div><span class="k">95% CI</span><span class="v">0.43 &ndash; 0.75</span></div>
-        <div><span class="k">Length vs preference (r)</span><span class="v">+0.20</span></div>
+        <div><span class="k">P(chose longer), controls</span><span class="v">0.55</span></div>
+        <div><span class="k">95% CI</span><span class="v">0.40 &ndash; 0.69</span></div>
+        <div><span class="k">Length vs preference (r)</span><span class="v">+0.08</span></div>
       </div>
-      <p class="caption">The premise holds: Afrikaans testimonies do run <b>1.11&times;</b> longer. But the model's own length preference points the other way. Within same-language controls it leans toward the <b>longer</b> testimony (<b>0.60</b>, not statistically significant), so a pure length preference would favour the longer Afrikaans text &mdash; the opposite of the English preference we measured. Across scenarios, the more Afrikaans outruns English in length, the slightly more Afrikaans is chosen (r = <b>+0.20</b>), again the wrong sign for a 'shorter is more credible' story. Verbosity does not explain the effect; if anything it masks it.</p>
+      <p class="caption">The premise holds: Afrikaans testimonies do run <b>1.11&times;</b> longer. But the model's own length preference points the other way. Within same-language controls it leans toward the <b>longer</b> testimony (<b>0.55</b>, not statistically significant), so a pure length preference would favour the longer Afrikaans text &mdash; the opposite of the English preference we measured. Across scenarios, the more Afrikaans outruns English in length, the slightly more Afrikaans is chosen (r = <b>+0.08</b>), again the wrong sign for a 'shorter is more credible' story. Verbosity does not explain the effect; if anything it masks it.</p>
+    </div>
+
+    <div class="card">
+      <h2>Human or machine translation &mdash; does it matter?</h2>
+      <p class="sub">Both a human and an independently machine-translated Afrikaans version of every
+        testimony were run against the English source. If the penalty were about translation
+        <em>quality</em>, the two would diverge. Here is where each lands against English:</p>
+      <svg viewBox="0 0 760 150" class="effect-svg" role="img"
+      aria-label="Human vs machine Afrikaans, both against English">
+  <rect x="64" y="85" width="316.0" height="22" fill="#5BA893" opacity="0.09"/>
+  <rect x="380.0" y="85" width="316.0" height="22" fill="#E0A24A" opacity="0.11"/>
+  <line x1="64" y1="96" x2="696" y2="96" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="64.0" y1="96" x2="64.0" y2="102" stroke="#cbd5e1" stroke-width="1"/><text x="64.0" y="118" text-anchor="middle" class="svg-tick">0.00</text><line x1="222.0" y1="96" x2="222.0" y2="102" stroke="#cbd5e1" stroke-width="1"/><text x="222.0" y="118" text-anchor="middle" class="svg-tick">0.25</text><line x1="380.0" y1="96" x2="380.0" y2="102" stroke="#cbd5e1" stroke-width="1"/><text x="380.0" y="118" text-anchor="middle" class="svg-tick">0.50</text><line x1="538.0" y1="96" x2="538.0" y2="102" stroke="#cbd5e1" stroke-width="1"/><text x="538.0" y="118" text-anchor="middle" class="svg-tick">0.75</text><line x1="696.0" y1="96" x2="696.0" y2="102" stroke="#cbd5e1" stroke-width="1"/><text x="696.0" y="118" text-anchor="middle" class="svg-tick">1.00</text>
+  <text x="64" y="46" text-anchor="start" class="svg-end" fill="#2f6b5e">&#9664; prefers English</text>
+  <text x="696" y="46" text-anchor="end" class="svg-end" fill="#b97e2e">prefers Afrikaans &#9654;</text>
+  <line x1="380.0" y1="58" x2="380.0" y2="106"
+        stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="380.0" y="70" text-anchor="middle" class="svg-null">cannot tell apart (0.50)</text>
+  <circle cx="209.1" cy="96" r="8" fill="#5BA893" stroke="white" stroke-width="2"/>
+  <text x="209.1" y="80" text-anchor="middle" class="svg-prov" fill="#2f6b5e">human 0.23</text>
+  <circle cx="187.5" cy="96" r="8" fill="white" stroke="#b97e2e" stroke-width="2.5"/>
+  <text x="187.5" y="138" text-anchor="middle" class="svg-prov" fill="#b97e2e">machine 0.20</text>
+</svg>
+      <div class="legend">
+        <span><span class="dot fill"></span>Human Afrikaans vs English <b>0.23</b></span>
+        <span><span class="dot ring"></span>Machine Afrikaans vs English <b>0.20</b></span>
+      </div>
+      <div class="h2h">
+        <div class="h2h-num">0.48</div>
+        <div class="h2h-cap"><span class="h2h-tag">no reliable difference</span>
+          P(model prefers <b>machine</b> over <b>human</b> Afrikaans), same content and language.
+          0.50 means it cannot tell them apart. 95% CI [0.42, 0.53].</div>
+      </div>
+      <p class="caption">A skeptic could argue the Afrikaans penalty is really a <em>translation-quality</em> penalty: perhaps the human Afrikaans simply reads a little awkwardly. So we added an <strong>independent machine translation</strong>. If quality drove the effect, the two should part ways. They do not: machine Afrikaans is penalised against English just as human Afrikaans is (0.20 vs 0.23), and head-to-head the model shows <strong>no reliable preference</strong> between them (0.48, 95% CI spanning 0.50). The model is responding to the <strong>language</strong>, not the translation.</p>
     </div>
     <div class="note">
       <h3>Why every trial is run ten times</h3>
@@ -255,16 +298,16 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
       <ul class="caveats">
         <li>Scenarios and testimonies are <strong>synthetic</strong>; only aggregate rates are shown.</li>
         <li>One model so far (<strong>openrouter/openai/gpt-4o-mini</strong>); the effect may not generalise.</li>
-        <li>Afrikaans here is <strong>human-translated</strong>. A machine-Afrikaans control is the
-          next step &mdash; until then we cannot fully separate <em>language</em> bias from
-          <em>translation-quality</em> effects.</li>
+        <li>Both <strong>human and machine</strong> Afrikaans were tested and the model treats
+          them alike (see above), which separates the language effect from translation quality.
+          Still a single non-English language so far; isiXhosa and isiZulu are the next arms.</li>
         <li>The aggregate effect is bias-cancelled; the <em>per-scenario</em> bars are indicative
           only, since a single scenario's content imbalance is not cancelled in isolation.</li>
       </ul>
     </div>
 
     <footer>Generated from <code>openrouter/openai/gpt-4o-mini</code> &middot; run 2026-06-20 &middot;
-      880 trials &middot; reproduce with
+      1,980 trials &middot; reproduce with
       <code>uv run python artefacts/generate_report.py</code></footer>
   </div>
 </body></html>
