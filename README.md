@@ -24,23 +24,31 @@ Built on [Inspect](https://inspect.aisi.org.uk/) (`inspect_ai`, AISI's eval fram
 trial is an Inspect `Sample`, and a record-only scorer captures the model's forced choice rather
 than grading it (there is no correct answer).
 
+Real models go through [OpenRouter](https://openrouter.ai/) by default (one API key for many
+providers); native `openai/` / `anthropic/` strings also work.
+
 ## Layout
 
+- `ufakazi/cli.py` — the `ufakazi` command (Typer): `run`, `probe`, `analyze`.
 - `ufakazi/scenarios/` — synthetic testimony YAML fixtures (English source + translations) and loader.
-- `ufakazi/experiment/` — Inspect task: counterbalanced trial expansion, forced-choice prompt, record-only scorer, runner, keyless mock.
-- `ufakazi/providers/` — model-selection defaults and `GenerateConfig` (Inspect handles the provider layer).
+- `ufakazi/experiment/` — Inspect task: counterbalanced trial expansion, forced-choice prompt, record-only scorer, runner, model resolver, keyless mock, probe.
+- `ufakazi/providers/` — model registry, defaults, and `GenerateConfig` (Inspect handles the provider layer).
 - `ufakazi/analysis/` — `samples_df`-based preference rates, language main effect, position baseline.
 - `results/` — gitignored experiment output (Inspect `.eval` logs).
 
 ## Develop
 
 ```sh
-uv run python -m ufakazi.experiment.run    # run the eval end-to-end (keyless mock, no API key)
-uv run python -m ufakazi.analysis.load     # summarize the latest run
+uv run ufakazi run                  # run end-to-end (keyless mock, no API key)
+uv run ufakazi run --model default  # real default: openrouter/openai/gpt-4o-mini
+uv run ufakazi run --interactive    # pick a model from a menu
+uv run ufakazi probe default        # does a model parse + return logprobs?
+uv run ufakazi analyze              # summarize logged trials
 uv run pytest          # tests
 uv run ruff check      # lint
 uv run ruff format     # format
 ```
 
-The default run needs no API key: it uses Inspect's `mockllm` with a deterministic responder, so
-the pipeline runs end-to-end offline. Pass `--model openai/gpt-4o-mini` once keys are configured.
+`ufakazi run` with no `--model` needs no API key: it uses Inspect's `mockllm` with a
+deterministic responder, so the pipeline runs end-to-end offline. For real models, copy
+`.env.example` to `.env` and set `OPENROUTER_API_KEY`.
