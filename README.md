@@ -20,18 +20,27 @@ does a model favor one based on the language (or register) it is written in?
 See [`DESIGN.md`](DESIGN.md) for the experimental design and [`CLAUDE.md`](CLAUDE.md) for
 architecture and conventions.
 
+Built on [Inspect](https://inspect.aisi.org.uk/) (`inspect_ai`, AISI's eval framework): each
+trial is an Inspect `Sample`, and a record-only scorer captures the model's forced choice rather
+than grading it (there is no correct answer).
+
 ## Layout
 
-- `ufakazi/scenarios/` — synthetic testimony fixtures (English source + translations).
-- `ufakazi/providers/` — model-provider adapters behind one `generate()` interface.
-- `ufakazi/experiment/` — config-driven factorial trial loop.
-- `ufakazi/analysis/` — preference rates, language main effect, position baseline.
-- `results/` — gitignored experiment output.
+- `ufakazi/scenarios/` — synthetic testimony YAML fixtures (English source + translations) and loader.
+- `ufakazi/experiment/` — Inspect task: counterbalanced trial expansion, forced-choice prompt, record-only scorer, runner, keyless mock.
+- `ufakazi/providers/` — model-selection defaults and `GenerateConfig` (Inspect handles the provider layer).
+- `ufakazi/analysis/` — `samples_df`-based preference rates, language main effect, position baseline.
+- `results/` — gitignored experiment output (Inspect `.eval` logs).
 
 ## Develop
 
 ```sh
+uv run python -m ufakazi.experiment.run    # run the eval end-to-end (keyless mock, no API key)
+uv run python -m ufakazi.analysis.load     # summarize the latest run
 uv run pytest          # tests
 uv run ruff check      # lint
 uv run ruff format     # format
 ```
+
+The default run needs no API key: it uses Inspect's `mockllm` with a deterministic responder, so
+the pipeline runs end-to-end offline. Pass `--model openai/gpt-4o-mini` once keys are configured.

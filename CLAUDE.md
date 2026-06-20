@@ -17,24 +17,33 @@ rejected alternatives, and milestone plan. `/new-project` consumes `DESIGN.md` i
 
 ## Architecture
 
-Headless, config-driven experiment harness. Module boundaries:
+Headless harness built on **Inspect** (`inspect_ai`, AISI's eval framework). Inspect provides
+the model layer, run loop, logging, and analysis frames; we supply the scenarios, the
+counterbalanced trial expansion, the record-only scorer, and the bias analysis. A **trial** is
+one Inspect `Sample`. Module boundaries:
 
-- **`scenarios/`** — testimony content as version-controlled data fixtures (English source +
-  cached translations), tagged `scenario_id`, `language`, `translation_provenance`. Synthetic
-  only.
-- **`providers/`** — thin adapter per provider behind one interface
-  `generate(messages, system, capture_logprobs) -> Response`. Hides the per-provider logprob
-  capability difference (OpenAI yes, Anthropic no). Likely litellm-backed (decision deferred).
-- **`experiment/`** — core loop: takes a declarative factor-level config, expands the factorial
-  of trials, runs them, parses the forced-choice result.
-- **`analysis/`** — preference rates, language main effect, position-bias baseline.
-- **`results/`** — gitignored output store (JSONL per trial → flattened parquet/CSV).
+- **`scenarios/`** — testimony content as version-controlled YAML fixtures, one `translations`
+  entry per language tagged with `provenance` (`source` | `human` | `machine`). `loader.py`
+  parses them into `Scenario` / `Testimony` / `Translation`. Synthetic only.
+- **`experiment/`** — the Inspect task. `trials.py` expands scenarios into counterbalanced
+  `Sample`s (factor levels go into `Sample.metadata`); `prompt.py` is the forced-choice
+  template; `scoring.py` is a **record-only `@scorer`** that parses the choice and maps position
+  back to content (no target, no correctness); `task.py` wires dataset + `generate()` + scorer;
+  `run.py` calls `eval()`; `mock.py` is a deterministic keyless responder for flow tests.
+- **`providers/`** — now just model-selection defaults + `GenerateConfig`. Inspect's own model
+  layer supersedes the planned per-provider adapter, including logprob capability handling
+  (OpenAI yes, Anthropic no); `generation_config()` requests logprobs, ignored where unsupported.
+- **`analysis/`** — `load.py` reads logs via Inspect's `samples_df()` into pandas; preference
+  rates, position-bias baseline, language main effect.
+- **`results/`** — gitignored. Inspect writes one `.eval` log per run under `results/logs/`.
 
-A **trial** = `(scenario, language_assignment, position_order, model, system_prompt)`.
-Measure = forced binary choice (primary) + choice-token logprob (continuous, where available).
-Counterbalancing isolates the language main effect: randomize position, permute language
-assignment, and include same-language controls. Results are cached keyed on the trial tuple so
-reruns skip completed API calls.
+A **trial** = `(scenario, language_assignment, position_order, model, system_prompt)`: model and
+system prompt are fixed per `eval()` run; scenario, language assignment, and position order are
+encoded per `Sample` (the last two in `metadata`). Measure = forced binary choice (primary) +
+choice-token logprob (continuous, where the provider supplies it). Counterbalancing isolates the
+language main effect: randomize position, permute language assignment, include same-language
+controls. Inspect caches model calls (`cache=True`) and resumes from its logs, covering the
+trial-level rerun-skipping the design called for.
 
 ## Domain context
 
@@ -53,7 +62,12 @@ reruns skip completed API calls.
 
 - **Python via uv only:** `uv run` to execute, `uv add` for deps. Never bare `python`/`pip`.
   Test with pytest; lint/format with ruff. Type-hint function signatures (pragmatic).
-- **Ask before adding dependencies** (litellm is the one assumed-but-deferred exception).
+- **Ask before adding dependencies.** Current stack: `inspect-ai` (eval framework), plus
+  `pandas` + `pyarrow` (required by Inspect's `samples_df`) and `pyyaml` (fixtures). litellm is
+  no longer used; Inspect's model layer replaced it.
+- **Inspect idioms:** trials are `Sample`s; factor levels live in `Sample.metadata`; the scorer
+  records rather than grades (no `target`); read results back with `samples_df()`, not by parsing
+  raw logs. Keep the metadata key contract (`trials.py`) in sync with the scorer and `analysis/`.
 - **Data discipline:** all scenario/testimony content is synthetic. No real client or personal
   data anywhere. `results/` and data-file extensions are gitignored.
 - **Test for signal, not coverage:** prioritize parsing/normalization, counterbalancing logic,
@@ -64,10 +78,18 @@ reruns skip completed API calls.
 ## Run / test
 
 ```sh
+uv run python -m ufakazi.experiment.run        # run the eval (keyless mock by default)
+uv run python -m ufakazi.experiment.run --model openai/gpt-4o-mini   # a real provider
+uv run python -m ufakazi.analysis.load         # summarize the latest logs
 uv run pytest          # tests
 uv run ruff check      # lint
 uv run ruff format     # format
 ```
 
-Package is a flat root-level layout (`ufakazi/`, no `src/`), uv build backend. Deferred:
-provider API keys via `.env` (gitignored); no GCP deploy target for the hackathon.
+The default run uses Inspect's keyless `mockllm` with a deterministic position-biased responder
+(`experiment/mock.py`), so the whole pipeline runs end-to-end with no API key or spend; the
+analysis should recover ~100% first-position rate and ~50/50 content split (pure position bias,
+no content effect). A benign `Unable to convert value to float: a/b` warning appears on each run:
+Inspect's epoch reducer tries to average our categorical A/B score, which we never use (analysis
+reads from `samples_df`). Package is flat-root layout (`ufakazi/`, no `src/`), uv build backend.
+Deferred: provider API keys via `.env` (gitignored); no GCP deploy target for the hackathon.
