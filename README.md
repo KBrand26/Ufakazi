@@ -44,6 +44,7 @@ uv run ufakazi run --model default  # real default: openrouter/openai/gpt-4o-min
 uv run ufakazi run --interactive    # pick a model from a menu
 uv run ufakazi probe default        # does a model parse + return logprobs?
 uv run ufakazi analyze              # summarize logged trials
+uv run inspect view --log-dir results/logs   # browse run outputs in the log viewer
 uv run pytest          # tests
 uv run ruff check      # lint
 uv run ruff format     # format
