@@ -1,9 +1,10 @@
 """Load synthetic scenario fixtures from disk.
 
 Scenarios are version-controlled YAML data, never live generation. Each testimony
-carries one entry per language under `translations`, tagged with
-`translation_provenance` (`source` | `human` | `machine`) so the central translation
-confound stays first-class. M1 ships English source only.
+carries one entry per language under `translations`, tagged with `provenance`
+(`source` | `human` | `machine`) so the central translation confound stays first-class.
+Machine translations are just another inline language entry: code `afr_mt`, provenance
+`machine`, added alongside `en` and `afr`. No special handling, the loader parses any code.
 """
 
 from __future__ import annotations

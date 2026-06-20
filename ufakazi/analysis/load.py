@@ -30,7 +30,7 @@ DEFAULT_REFERENCE = "en"
 
 
 def _column_spec() -> list:
-    """Default sample columns plus the scorer's choice logprob from score metadata."""
+    """Default sample columns plus the scorer's logprob, rationale, and raw completion."""
     return list(SampleSummary) + [
         SampleColumn(
             "choice_logprob", path="scores.record_choice.metadata.choice_logprob"
@@ -38,6 +38,8 @@ def _column_spec() -> list:
         SampleColumn(
             "chosen_position", path="scores.record_choice.metadata.chosen_position"
         ),
+        SampleColumn("rationale", path="scores.record_choice.explanation"),
+        SampleColumn("completion", path="scores.record_choice.answer"),
     ]
 
 

@@ -1,9 +1,10 @@
 """The `ufakazi` command line: a thin Typer layer over the experiment functions.
 
 Subcommands:
-  run      - run the truthiness-bias eval (keyless mock by default)
-  probe    - check whether a model parses the choice and returns logprobs
-  analyze  - summarize logged trials (parse health, position baseline, content pref)
+  run         - run the truthiness-bias eval (keyless mock by default)
+  probe       - check whether a model parses the choice and returns logprobs
+  analyze     - summarize logged trials (baselines, language effect, verbosity confound)
+  rationales  - print the model's rationales for inspecting why it chose a language
 
 Model selection has three modes, by design: no `--model` runs the keyless mock; `--model`
 takes a registry key / `default` / a raw Inspect string for scripted, reproducible runs;
@@ -19,10 +20,16 @@ from rich.table import Table
 
 from ufakazi.analysis.load import (
     filter_latest_eval,
+    language_preference,
     language_report,
     load_trials,
     per_scenario_language_effect,
     summarize,
+)
+from ufakazi.analysis.verbosity import (
+    effect_vs_length,
+    length_bias_controls,
+    length_summary,
 )
 from ufakazi.experiment.probe import probe as probe_model
 from ufakazi.experiment.run import run as run_eval
@@ -176,14 +183,109 @@ def analyze(
                 f"{r['p_prefer_target_continuous']:.3f}"
             )
 
-    effects = per_scenario_language_effect(df, reports[0]["target"])
+    langs_present = set(df["lang_A"].dropna()) | set(df["lang_B"].dropna())
+    if {"afr", "afr_mt"} <= langs_present:
+        hm = language_preference(df, target="afr_mt", reference="afr")
+        lo, hi = hm["ci95"]
+        verdict = (
+            "[green]significant[/green]"
+            if hm["significant"]
+            else "[dim]not significant[/dim]"
+        )
+        console.print(
+            "\n[bold]Human vs machine Afrikaans[/bold] "
+            "(same content & language, only translation source differs):"
+        )
+        console.print(
+            f"  P(prefer machine over human afr): {hm['p_prefer_target']:.3f}  "
+            f"95% CI [{lo:.3f}, {hi:.3f}]  {verdict}  [dim](n={hm['n_cross_trials']})[/dim]"
+        )
+
+    target, reference = reports[0]["target"], reports[0]["reference"]
+    effects = per_scenario_language_effect(df, target)
     if not effects.empty:
         console.print(
             f"\n[bold]Per-scenario shift[/bold] "
-            f"(P(chose A | A={reports[0]['target']}) - P(chose A | A={reports[0]['reference']})):"
+            f"(P(chose A | A={target}) - P(chose A | A={reference})):"
         )
         for _, row in effects.iterrows():
             console.print(f"  {row['scenario_id']:34} {row['language_effect']:+.3f}")
+
+    _print_verbosity(df, target, reference)
+
+
+def _print_verbosity(df, target: str, reference: str) -> None:
+    """Verbosity confound check: is the language effect just a length preference?"""
+    lens = length_summary(target, reference)
+    if not lens:
+        return
+    bias = length_bias_controls(df)
+    corr = effect_vs_length(df, target, reference)
+    console.print(
+        "\n[bold]Verbosity confound[/bold] (could length, not language, drive it?):"
+    )
+    console.print(
+        f"  {target} testimonies run [bold]{lens['mean_ratio_target_over_reference']:.2f}x[/bold] "
+        f"the length of {reference} "
+        f"[dim]({lens[f'mean_len_{target}']:.0f} vs {lens[f'mean_len_{reference}']:.0f} chars, "
+        f"{lens['target_longer_fraction']:.0%} longer)[/dim]"
+    )
+    lo, hi = bias["ci95"]
+    verdict = (
+        "[green]significant[/green]"
+        if bias["significant"]
+        else "[dim]not significant[/dim]"
+    )
+    console.print(
+        f"  length bias (controls): P(chose longer) = [bold]{bias['p_chose_longer']:.3f}[/bold]  "
+        f"95% CI [{lo:.3f}, {hi:.3f}]  {verdict}  [dim](n={bias['n']})[/dim]"
+    )
+    console.print(
+        f"  per-scenario corr(length advantage, {target} preference): "
+        f"r = {corr['pearson_r']:+.2f}  [dim](n={corr['n_scenarios']} scenarios)[/dim]"
+    )
+
+
+@app.command()
+def rationales(
+    language: str = typer.Option(
+        "afr",
+        "--language",
+        "-l",
+        help="Show rationales where the model chose this language.",
+    ),
+    scenario: str = typer.Option(
+        None, "--scenario", "-s", help="Filter to a single scenario id."
+    ),
+    limit: int = typer.Option(25, "--limit", "-n", help="Max rationales to print."),
+    log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
+    all_runs: bool = typer.Option(
+        False, "--all", help="Use every run, not just the latest."
+    ),
+) -> None:
+    """Print the model's own rationales for trials where it chose a given language.
+
+    For reading *why* the model favoured the (usually dispreferred) Afrikaans testimony,
+    especially in scenarios that buck the overall pattern."""
+    df = load_trials(log_dir)
+    if not all_runs:
+        df = filter_latest_eval(df)
+    sub = df[df["valid"] & (df["lang_chosen"] == language)]
+    if scenario:
+        sub = sub[sub["metadata_scenario_id"] == scenario]
+    if "rationale" in sub.columns:
+        sub = sub[sub["rationale"].notna()]
+    console.print(
+        f"[bold]{len(sub)} trials[/bold] where the model chose the [bold]{language}[/bold] "
+        f"testimony{f' in {scenario}' if scenario else ''}. Showing up to {limit}:\n"
+    )
+    for _, row in sub.head(limit).iterrows():
+        console.print(
+            f"[dim]{row['metadata_scenario_id']} · "
+            f"{row['metadata_lang_first']}/{row['metadata_lang_second']} · "
+            f"order {row['metadata_position_order']}[/dim]"
+        )
+        console.print(f"  {row['rationale']}\n")
 
 
 if __name__ == "__main__":
