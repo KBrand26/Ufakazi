@@ -39,21 +39,3 @@ def summarize(df: pd.DataFrame) -> dict:
         if n_valid
         else float("nan"),
     }
-
-
-def main() -> None:
-    df = load_trials()
-    summary = summarize(df)
-    print(
-        f"Loaded {summary['n_trials']} trials ({summary['n_parse_errors']} parse errors)"
-    )
-    print(
-        f"  position bias (chose first-presented): {summary['position_first_rate']:.2f}"
-    )
-    print(
-        f"  content preference for testimony A:    {summary['content_pref_A_rate']:.2f}"
-    )
-
-
-if __name__ == "__main__":
-    main()

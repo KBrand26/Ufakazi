@@ -5,13 +5,12 @@ parses and whether choice-token logprobs come back. Use it to vet a model before
 run, in particular to confirm logprob passthrough via OpenRouter, which varies by the
 backend a request is routed to under unpinned routing.
 
-    uv run python -m ufakazi.experiment.probe default
-    uv run python -m ufakazi.experiment.probe openrouter/anthropic/claude-3.5-haiku
+    uv run ufakazi probe default
+    uv run ufakazi probe openrouter/anthropic/claude-3.5-haiku
 """
 
 from __future__ import annotations
 
-import argparse
 import asyncio
 
 from inspect_ai.model import ChatMessageSystem, ChatMessageUser, Model
@@ -57,25 +56,3 @@ def probe(spec: str) -> dict:
         "serving_provider": _serving_provider(output),
         "completion": (output.completion or "").strip(),
     }
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Probe a model's capabilities.")
-    parser.add_argument(
-        "model",
-        help="Registry key (e.g. gpt-4o-mini), 'default', or a raw Inspect model string.",
-    )
-    result = parser.parse_args().model
-    report = probe(result)
-
-    parsed = report["parsed_choice"]
-    print(f"model:           {report['model']}")
-    print(f"parses CHOICE:   {'yes (' + str(parsed) + ')' if parsed else 'NO'}")
-    print(f"returns logprobs: {'yes' if report['has_logprobs'] else 'no'}")
-    if report["serving_provider"]:
-        print(f"served by:       {report['serving_provider']}")
-    print(f"completion:      {report['completion']!r}")
-
-
-if __name__ == "__main__":
-    main()

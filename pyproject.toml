@@ -11,7 +11,12 @@ dependencies = [
     "pyarrow>=24.0.0",
     "python-dotenv>=1.2.2",
     "pyyaml>=6.0.3",
+    "rich>=15.0.0",
+    "typer>=0.26.7",
 ]
+
+[project.scripts]
+ufakazi = "ufakazi.cli:app"
 
 [build-system]
 requires = ["uv_build>=0.11.20,<0.12.0"]

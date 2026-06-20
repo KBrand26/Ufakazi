@@ -62,9 +62,10 @@ trial-level rerun-skipping the design called for.
 
 - **Python via uv only:** `uv run` to execute, `uv add` for deps. Never bare `python`/`pip`.
   Test with pytest; lint/format with ruff. Type-hint function signatures (pragmatic).
-- **Ask before adding dependencies.** Current stack: `inspect-ai` (eval framework), plus
-  `pandas` + `pyarrow` (required by Inspect's `samples_df`) and `pyyaml` (fixtures). litellm is
-  no longer used; Inspect's model layer replaced it.
+- **Ask before adding dependencies.** Current stack: `inspect-ai` (eval framework); `openai`
+  (the client Inspect's OpenRouter/OpenAI providers use); `python-dotenv` (load `.env`);
+  `pandas` + `pyarrow` (Inspect's `samples_df`); `pyyaml` (fixtures); `typer` + `rich` (the
+  `ufakazi` CLI). litellm is not used; Inspect's model layer replaced it.
 - **Inspect idioms:** trials are `Sample`s; factor levels live in `Sample.metadata`; the scorer
   records rather than grades (no `target`); read results back with `samples_df()`, not by parsing
   raw logs. Keep the metadata key contract (`trials.py`) in sync with the scorer and `analysis/`.
@@ -78,18 +79,24 @@ trial-level rerun-skipping the design called for.
 ## Run / test
 
 ```sh
-uv run python -m ufakazi.experiment.run        # run the eval (keyless mock by default)
-uv run python -m ufakazi.experiment.run --model openai/gpt-4o-mini   # a real provider
-uv run python -m ufakazi.analysis.load         # summarize the latest logs
+uv run ufakazi run                  # run the eval (keyless mock by default)
+uv run ufakazi run --model default  # real default: openrouter/openai/gpt-4o-mini
+uv run ufakazi run --interactive    # pick a model from a Rich menu
+uv run ufakazi probe default        # check a model parses + returns logprobs (no persistence)
+uv run ufakazi analyze              # summarize logged trials
 uv run pytest          # tests
 uv run ruff check      # lint
 uv run ruff format     # format
 ```
 
-The default run uses Inspect's keyless `mockllm` with a deterministic position-biased responder
-(`experiment/mock.py`), so the whole pipeline runs end-to-end with no API key or spend; the
-analysis should recover ~100% first-position rate and ~50/50 content split (pure position bias,
-no content effect). A benign `Unable to convert value to float: a/b` warning appears on each run:
-Inspect's epoch reducer tries to average our categorical A/B score, which we never use (analysis
-reads from `samples_df`). Package is flat-root layout (`ufakazi/`, no `src/`), uv build backend.
-Deferred: provider API keys via `.env` (gitignored); no GCP deploy target for the hackathon.
+The `ufakazi` CLI (Typer, see `cli.py`) is the single entry point. Model selection has three
+modes: no `--model` runs the keyless `mockllm` mock (deterministic position-biased responder in
+`experiment/mock.py`) so the pipeline runs end-to-end with no API key or spend; `--model` takes a
+registry key (`providers.MODEL_REGISTRY`), `default`, or a raw Inspect string (the scriptable path
+for study runs); `--interactive` opens a picker. Real models go through **OpenRouter** by default
+(one key); put `OPENROUTER_API_KEY` in `.env` (gitignored, auto-loaded in `ufakazi/__init__.py`;
+see `.env.example`). Routing is currently unpinned, so logprob availability can vary by backend;
+`probe` a model before trusting its logprobs. A benign `Unable to convert value to float: a/b`
+warning appears each run (Inspect's epoch reducer averaging our categorical A/B score, which we
+never use; analysis reads `samples_df`). Package is flat-root layout (`ufakazi/`, no `src/`).
+No GCP deploy target for the hackathon.
