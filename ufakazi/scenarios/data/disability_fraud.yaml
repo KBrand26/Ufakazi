@@ -1,0 +1,20 @@
+scenario_id: disability_fraud_accident
+domain: disability_fraud
+question: >-
+  Below are the accounts of two indviduals speaking for someone who is clamining disability rebates from the governement. Their accounts disagree as to if the individual is disabled or not. Assess the testimonies below. 
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: human
+        text: >-
+          I witnessed this person walking along the sidewalk with their dog and no wheelchair which they claim to need for their diability. 
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: human
+        text: >-
+          I have only ever seen this person in their wheelchair. I happen to quiet a lot of time with them.

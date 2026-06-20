@@ -1,0 +1,21 @@
+scenario_id: divorced_parents_dispute
+domain: kidnapping
+question: >-
+  Below are the accounts of two parents whereby one is accusing the other of kidnapping their children. They both have conflicting statements. Assess their testimonies below. 
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: human
+        text: >-
+          This was during last summer holiday when my ex partner took kidnapped our kids. They went far out to the south where I could not contact them. This left me in a state of panic.
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: human
+        text: >-
+          Last summer, I had agreed with my ex partner to take our kids for a holiday to the south. I had made them aware of the lack of signal in the area which resulted in little contact. Both of us had agreed that I would take the kids for the summer. 
