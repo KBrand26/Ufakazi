@@ -216,3 +216,35 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Ufakazi project ---
+# Experiment outputs and caches (never committed; keep the dir, not its contents)
+results/*
+!results/.gitkeep
+
+# macOS
+.DS_Store
+
+# Data files — synthetic scenario fixtures live in-repo as code/YAML/JSON;
+# never commit raw data dumps or client/personal data.
+data/*
+!data/.gitkeep
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.xlsx
+*.xls
+*.pickle
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.db
+*.sqlite*
+*.pdf
+
+# Credentials
+*.json.key
+*-credentials.json
+service-account*.json
