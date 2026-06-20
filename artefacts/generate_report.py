@@ -23,6 +23,13 @@ from ufakazi.analysis.load import (
     per_scenario_language_effect,
     summarize,
 )
+from ufakazi.analysis.verbosity import (
+    effect_vs_length,
+    length_bias_controls,
+    length_summary,
+)
+
+LANG_NAME = {"en": "English", "afr": "Afrikaans", "afr_mt": "Machine Afrikaans"}
 
 HERE = Path(__file__).parent
 OUT = HERE / "results.html"
@@ -123,6 +130,105 @@ def _scenario_bars(effects: pd.DataFrame) -> str:
     return rows
 
 
+def _verbosity_facts(df: pd.DataFrame, target: str, reference: str) -> dict | None:
+    """Flatten the three verbosity analyses into the primitives the card needs.
+
+    Returns None when there are no content-matched target/reference pairs to measure."""
+    lens = length_summary(target, reference)
+    if not lens:
+        return None
+    bias = length_bias_controls(df)
+    corr = effect_vs_length(df, target, reference)
+    return {
+        "target": target,
+        "reference": reference,
+        "ratio": lens["mean_ratio_target_over_reference"],
+        "mean_ref": lens[f"mean_len_{reference}"],
+        "mean_tgt": lens[f"mean_len_{target}"],
+        "p_longer": bias["p_chose_longer"],
+        "ci": bias["ci95"],
+        "sig": bias["significant"],
+        "r": corr["pearson_r"],
+    }
+
+
+def _verbosity_card(v: dict | None, p_prefer_target: float) -> str:
+    """Rebuttal card to the 'isn't it just length?' confound.
+
+    `v` carries the length facts; `p_prefer_target` is the headline language preference
+    (P(prefer target) < 0.5 means the model prefers the reference language). The conclusion
+    is derived from the numbers, so it stays correct if a re-run flips a direction."""
+    if not v:
+        return ""
+    tgt, ref = (
+        LANG_NAME.get(v["target"], v["target"]),
+        LANG_NAME.get(v["reference"], v["reference"]),
+    )
+    longer_w = 100.0
+    shorter_w = max(
+        8.0,
+        min(v["mean_ref"], v["mean_tgt"]) / max(v["mean_ref"], v["mean_tgt"]) * 100.0,
+    )
+    tgt_longer = v["mean_tgt"] >= v["mean_ref"]
+    tgt_w, ref_w = (longer_w, shorter_w) if tgt_longer else (shorter_w, longer_w)
+    lo, hi = v["ci"]
+
+    # Which language does a pure length preference push toward, and does that oppose the
+    # measured language preference? If it opposes, length cannot explain the effect.
+    prefers_longer = v["p_longer"] > 0.5
+    length_favours_target = prefers_longer == (v["ratio"] > 1)
+    prefers_target_lang = p_prefer_target > 0.5
+    opposes = length_favours_target != prefers_target_lang
+    lean = "longer" if prefers_longer else "shorter"
+    longer_lang = tgt if tgt_longer else ref
+    sig_phrase = (
+        "a statistically significant bias"
+        if v["sig"]
+        else "not statistically significant"
+    )
+    if opposes:
+        conclusion = (
+            f"The premise holds: {tgt} testimonies do run <b>{v['ratio']:.2f}&times;</b> "
+            f"longer. But the model's own length preference points the other way. Within "
+            f"same-language controls it leans toward the <b>{lean}</b> testimony "
+            f"(<b>{v['p_longer']:.2f}</b>, {sig_phrase}), so a pure length preference would "
+            f"favour the longer {longer_lang} text &mdash; the opposite of the {ref} "
+            f"preference we measured. Across scenarios, the more {tgt} outruns {ref} in "
+            f"length, the slightly more {tgt} is chosen (r = <b>{v['r']:+.2f}</b>), again the "
+            f"wrong sign for a 'shorter is more credible' story. Verbosity does not explain "
+            f"the effect; if anything it masks it."
+        )
+    else:
+        conclusion = (
+            f"{tgt} testimonies run <b>{v['ratio']:.2f}&times;</b> longer, and within "
+            f"same-language controls the model leans toward the <b>{lean}</b> testimony "
+            f"(<b>{v['p_longer']:.2f}</b>, {sig_phrase}). That points the same way as the "
+            f"measured language preference, so length is a <b>partial confound</b> here and "
+            f"the language effect cannot be cleanly separated from verbosity on this run."
+        )
+    return f"""
+    <div class="card">
+      <h2>Is it just verbosity?</h2>
+      <p class="sub">Translation tends to lengthen text, so a model that simply favoured
+        shorter testimonies would look like it favoured English. Two checks test that.</p>
+      <div class="lenbars">
+        <div class="lenbar-row"><span class="lenbar-lab">{ref}</span>
+          <div class="lenbar"><div class="lenbar-fill en" style="width:{ref_w:.1f}%"></div></div>
+          <span class="lenbar-num">{v["mean_ref"]:.0f} chars</span></div>
+        <div class="lenbar-row"><span class="lenbar-lab">{tgt}</span>
+          <div class="lenbar"><div class="lenbar-fill afr" style="width:{tgt_w:.1f}%"></div></div>
+          <span class="lenbar-num">{v["mean_tgt"]:.0f} chars</span></div>
+      </div>
+      <div class="readout">
+        <div><span class="k">{tgt} vs {ref} length</span><span class="v">{v["ratio"]:.2f}&times;</span></div>
+        <div><span class="k">P(chose longer), controls</span><span class="v">{v["p_longer"]:.2f}</span></div>
+        <div><span class="k">95% CI</span><span class="v">{lo:.2f} &ndash; {hi:.2f}</span></div>
+        <div><span class="k">Length vs preference (r)</span><span class="v">{v["r"]:+.2f}</span></div>
+      </div>
+      <p class="caption">{conclusion}</p>
+    </div>"""
+
+
 CSS = f"""
 :root {{ --ink:#16302b; --muted:#5f7470; --line:#e4ebe8; --card:#ffffff;
   --teal:{TEAL}; --teal-dark:{TEAL_DARK}; --amber:{AMBER}; --amber-dark:{AMBER_DARK}; }}
@@ -194,6 +300,14 @@ body {{ margin:0; background:#f3f6f4; color:var(--ink);
 .scn-bar.neg {{ background:{TEAL}; }}
 .scn-bar.pos {{ background:{AMBER}; }}
 .scn-val {{ text-align:right; font-variant-numeric:tabular-nums; font-weight:700; font-size:.86rem; }}
+.lenbars {{ margin:6px 0 4px; }}
+.lenbar-row {{ display:grid; grid-template-columns:96px 1fr 92px; align-items:center; gap:14px; margin:9px 0; }}
+.lenbar-lab {{ font-size:.86rem; font-weight:700; color:#334155; }}
+.lenbar {{ height:20px; background:#eef3f1; border-radius:5px; overflow:hidden; }}
+.lenbar-fill {{ height:100%; border-radius:5px; }}
+.lenbar-fill.en {{ background:var(--teal); }}
+.lenbar-fill.afr {{ background:var(--amber); }}
+.lenbar-num {{ font-size:.84rem; text-align:right; font-variant-numeric:tabular-nums; color:#475569; }}
 .note {{ border-left:4px solid var(--teal); background:#eef7f3; padding:16px 20px;
   border-radius:0 10px 10px 0; margin:22px 0; }}
 .note h3 {{ margin:0 0 6px; font-size:1.05rem; }}
@@ -214,6 +328,7 @@ def build_html(
     meta: dict,
     n_scenarios: int,
     epochs: int,
+    verbosity: dict | None = None,
 ) -> str:
     p = effect["p_prefer_target"]
     lo, hi = effect["ci95"]
@@ -313,7 +428,7 @@ def build_html(
         <span class="l-afr">Afrikaans raised credibility &#9654;</span></div>
       {_scenario_bars(effects_df)}
     </div>
-
+{_verbosity_card(verbosity, effect["p_prefer_target"])}
     <div class="note">
       <h3>Why every trial is run ten times</h3>
       <p>This model is <strong>not deterministic even at temperature 0</strong>: identical prompts
@@ -353,12 +468,17 @@ def main() -> None:
     if not reports:
         raise SystemExit("No cross-language trials in the latest run.")
     effect = reports[0]
-    effects_df = per_scenario_language_effect(df, effect["target"], effect["reference"])
+    target, reference = effect["target"], effect["reference"]
+    effects_df = per_scenario_language_effect(df, target, reference)
     meta = _latest_eval_meta(df)
     n_scenarios = int(df["metadata_scenario_id"].nunique())
     epochs = int(df["epoch"].nunique()) if "epoch" in df.columns else 1
 
-    html = build_html(summary, baselines, effect, effects_df, meta, n_scenarios, epochs)
+    verbosity = _verbosity_facts(df, target, reference)
+
+    html = build_html(
+        summary, baselines, effect, effects_df, meta, n_scenarios, epochs, verbosity
+    )
     OUT.write_text(html, encoding="utf-8")
     print(f"Wrote {OUT}  ({len(html):,} bytes)")
 

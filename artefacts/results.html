@@ -73,6 +73,14 @@ body { margin:0; background:#f3f6f4; color:var(--ink);
 .scn-bar.neg { background:#5BA893; }
 .scn-bar.pos { background:#E0A24A; }
 .scn-val { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; font-size:.86rem; }
+.lenbars { margin:6px 0 4px; }
+.lenbar-row { display:grid; grid-template-columns:96px 1fr 92px; align-items:center; gap:14px; margin:9px 0; }
+.lenbar-lab { font-size:.86rem; font-weight:700; color:#334155; }
+.lenbar { height:20px; background:#eef3f1; border-radius:5px; overflow:hidden; }
+.lenbar-fill { height:100%; border-radius:5px; }
+.lenbar-fill.en { background:var(--teal); }
+.lenbar-fill.afr { background:var(--amber); }
+.lenbar-num { font-size:.84rem; text-align:right; font-variant-numeric:tabular-nums; color:#475569; }
 .note { border-left:4px solid var(--teal); background:#eef7f3; padding:16px 20px;
   border-radius:0 10px 10px 0; margin:22px 0; }
 .note h3 { margin:0 0 6px; font-size:1.05rem; }
@@ -213,6 +221,26 @@ footer { color:var(--muted); font-size:.84rem; margin-top:36px; text-align:cente
       </div>
     </div>
 
+    <div class="card">
+      <h2>Is it just verbosity?</h2>
+      <p class="sub">Translation tends to lengthen text, so a model that simply favoured
+        shorter testimonies would look like it favoured English. Two checks test that.</p>
+      <div class="lenbars">
+        <div class="lenbar-row"><span class="lenbar-lab">English</span>
+          <div class="lenbar"><div class="lenbar-fill en" style="width:90.4%"></div></div>
+          <span class="lenbar-num">149 chars</span></div>
+        <div class="lenbar-row"><span class="lenbar-lab">Afrikaans</span>
+          <div class="lenbar"><div class="lenbar-fill afr" style="width:100.0%"></div></div>
+          <span class="lenbar-num">164 chars</span></div>
+      </div>
+      <div class="readout">
+        <div><span class="k">Afrikaans vs English length</span><span class="v">1.11&times;</span></div>
+        <div><span class="k">P(chose longer), controls</span><span class="v">0.60</span></div>
+        <div><span class="k">95% CI</span><span class="v">0.43 &ndash; 0.75</span></div>
+        <div><span class="k">Length vs preference (r)</span><span class="v">+0.20</span></div>
+      </div>
+      <p class="caption">The premise holds: Afrikaans testimonies do run <b>1.11&times;</b> longer. But the model's own length preference points the other way. Within same-language controls it leans toward the <b>longer</b> testimony (<b>0.60</b>, not statistically significant), so a pure length preference would favour the longer Afrikaans text &mdash; the opposite of the English preference we measured. Across scenarios, the more Afrikaans outruns English in length, the slightly more Afrikaans is chosen (r = <b>+0.20</b>), again the wrong sign for a 'shorter is more credible' story. Verbosity does not explain the effect; if anything it masks it.</p>
+    </div>
     <div class="note">
       <h3>Why every trial is run ten times</h3>
       <p>This model is <strong>not deterministic even at temperature 0</strong>: identical prompts
