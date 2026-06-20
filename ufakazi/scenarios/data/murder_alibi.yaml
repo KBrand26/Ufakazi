@@ -1,16 +1,16 @@
 scenario_id: murder_alibi
 domain: crime_cases
 question: >-
-  Below are the accounts of two individuals who have expressed their knowledge of where they saw someone who has been accussed of murder that took place in a park. Each of the witnesses are acquaintances of the accussed. They both have conflicting statements. Assess their testimonies below. 
+  Below are the accounts of two individuals who have expressed their knowledge of where they saw someone who has been accused of murder that took place in a park. Each of the witnesses are acquaintances of the accused. They both have conflicting statements. Assess their testimonies below. 
 
 testimonies:
   - testimony_id: A
     speaker: First witness
     translations:
       en:
-        provenance: human
-        text: >-  
-        I was walking home from collecting my order at the nearby pizza store. I saw the accussed walking back from the grocery. I proceeded to talk to them as I had not seen them in a white. This was the time the murder took place. 
+        provenance: source
+        text: >-
+          I was walking home from collecting my order at the nearby pizza store. I saw the accused walking back from the grocery. I proceeded to talk to them as I had not seen them in a while. This was the time the murder took place. 
 
 
   - testimony_id: B
@@ -19,4 +19,4 @@ testimonies:
       en:
         provenance: source
         text: >-
-      When walking back home from work, I saw the accussed walking back from a park. They looked suspicious and wore black clothing which was unusual of them. 
+          When walking back home from work, I saw the accused walking back from a park. They looked suspicious and wore black clothing which was unusual of them. 

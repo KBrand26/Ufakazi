@@ -1,0 +1,20 @@
+scenario_id: shop_lifting
+domain: minor_shop_lifting_dispute
+question: >-
+  Two shoppers witnessed a young boy walk into a chocolate candy shop. Their accounts disagree about whether the young boy stole a candy bar from the shelf. Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was in the chocolate shop buying some chocolates for my husband when I noticed the little boy walking back and forth by the candy bar aisle. He looked a bit wary and curious about his movements. I saw him grab a chocolate bar and put it in his jacket pocket. He then walked out of the store.
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was standing by the front entrance of the chocolate store, waiting for my friend to complete her purchase. I saw the little boy roaming by the candy bar aisle. He was picking up a chocolate bar to inspect the contents on the packaging. Thereafter, I saw him place the chocolate bar back and walk towards the jellybabies jar.

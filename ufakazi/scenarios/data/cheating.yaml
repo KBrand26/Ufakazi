@@ -1,14 +1,14 @@
-scenario_id: test_cheating
+scenario_id: cheating
 domain: cheating
 question: >-
-  Below are the accounts of two students who sat close to a student who was accussed of cheating on a test. They both have conflicting statements. Assess their testimonies below. 
+  Below are the accounts of two students who sat close to a student who was accused of cheating on a test. They both have conflicting statements. Assess their testimonies below. 
 
 testimonies:
   - testimony_id: A
     speaker: First witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
           I sat two rows behind the student where I saw them reach into their bag for a tissue to blow their nose. Thereafter, they proceeded to write their test. 
 
@@ -18,4 +18,4 @@ testimonies:
       en:
         provenance: source
         text: >-
-        I sat two rows behind the student. They grabbed a piece of paper from their bag which they looked at- they then proceeded to write their test. 
+          I sat two rows behind the student. They grabbed a piece of paper from their bag which they looked at- they then proceeded to write their test. 

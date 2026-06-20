@@ -8,14 +8,14 @@ testimonies:
     speaker: First witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
           When I walked out of the bathroom, I saw my manager hugging my colleague for an extended period of time. It seemed very intimate and had some familiarity to it. 
   - testimony_id: B
     speaker: Second witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
           When I was walking towards the kitchen, I overheard my manager consoling 
           my colleague about the loss of her dog. He then proceeded to give her a hug.

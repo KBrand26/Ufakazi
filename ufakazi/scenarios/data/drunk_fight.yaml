@@ -1,20 +1,20 @@
 scenario_id: drunk_fight
 domain: minor_bar_brawl
 question: >-
-  Below are the accounts of two people who witnesses a fight between two individuals at the local bar. Their accounts are conflicting. We will refer to one indvidual as person B and the other as person C. Assess their testimonies below. 
+  Below are the accounts of two people who witnessed a fight between two individuals at the local bar. Their accounts are conflicting. We will refer to one individual as person B and the other as person C. Assess their testimonies below. 
 
 testimonies:
   - testimony_id: A
     speaker: First witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
-        I was sitting by the when I saw the person B walk up to person C and acuse them of keying their car and smashing in their window. Person B proceeded to punch person C. 
+          I was sitting by the bar when I saw person B walk up to person C and accuse them of keying their car and smashing in their window. Person B proceeded to punch person C. 
   - testimony_id: B
     speaker: Second witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
-        I was sitting a few tables away from person B and C. Person C was very rowdy. They kept slurring their words and threating person B. Person C then punched person B. 
+          I was sitting a few tables away from person B and C. Person C was very rowdy. They kept slurring their words and threatening person B. Person C then punched person B. 

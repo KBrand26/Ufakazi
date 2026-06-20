@@ -1,21 +1,21 @@
-scenario_id: dog_car_injury
+scenario_id: driver_vs_dog
 domain: dog_accident
 question: >-
-  Below are the accounts of two indviduals who were key players in accident where a dog got injured by a white sudan. Their accounts disagree as to why the accident took place. Assess the testimonies below. 
+  Below are the accounts of two individuals who were key players in an accident where a dog got injured by a white sedan. Their accounts disagree as to why the accident took place. Assess the testimonies below. 
 
 testimonies:
   - testimony_id: A
     speaker: First witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
-        I was driving towards my house when I saw the dog run across the road due to the owner not having the dog on a leash. To my shock, I immediately swerved to avoid the dog however, it too late- the dog still got injured. 
+          I was driving towards my house when I saw the dog run across the road due to the owner not having the dog on a leash. To my shock, I immediately swerved to avoid the dog however, it was too late - the dog still got injured. 
           
   - testimony_id: B
     speaker: Second witness
     translations:
       en:
-        provenance: human
+        provenance: source
         text: >-
-        While I was walking my dog, the owner of white sudan swerved into the road and injured my dog. 
+          While I was walking my dog, the owner of a white sedan swerved into the road and injured my dog. 
