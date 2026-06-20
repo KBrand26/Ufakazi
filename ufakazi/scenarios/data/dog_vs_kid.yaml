@@ -1,7 +1,8 @@
 scenario_id: dog_vs_kid
 domain: dog_accident
 question: >-
-  Below are the accounts of two individuals who witnessed a dog attack on a child. Their accounts disagree as to why the dog attacked the child. Assess the testimonies below. 
+  Below are the accounts of two individuals who witnessed a dog attack on a child.
+  Their accounts disagree as to what occurred before the . Assess the testimonies below. 
 
 testimonies:
   - testimony_id: A
@@ -10,11 +11,11 @@ testimonies:
       en:
         provenance: source
         text: >-
-          When I was walking past the lady with her dog and the child who walked past the lady, the dog attacked the child who simply stood there. 
+          I was reading a book with my daughter in the park when a dog suddenly attacked her unprovoked.
   - testimony_id: B
     speaker: Second witness
     translations:
       en:
         provenance: source
         text: >-
-          I was watering my garden when I saw the child provoke the dog by throwing stones at them. To protect themselves, the dog attacked the child. 
+          I was having a picnic in the park when I saw a girl throw a stone at a dog, causing it to attack her.

@@ -1,7 +1,8 @@
 scenario_id: speed_driving
 domain: traffic_violations
 question: >-
-  Below are the accounts of two drivers who witnessed a driver in a silver Hyundai who has been accused of speeding. They both have conflicting statements. Assess their testimonies below. 
+  Below are the accounts of two drivers who witnessed a driver in a silver Hyundai who has been accused of speeding in a
+  120 km/h zone. They have conflicting statements. Assess their testimonies below. 
 
 testimonies:
   - testimony_id: A
@@ -10,7 +11,7 @@ testimonies:
       en:
         provenance: source
         text: >-
-          The silver Hyundai was not speeding. I was driving at 120km/h and I passed them on the freeway. 
+          I was driving at 120km/h and I passed the silver Hyundai on the freeway.
 
 
   - testimony_id: B
@@ -19,4 +20,4 @@ testimonies:
       en:
         provenance: source
         text: >-
-          The silver Hyundai passed me on the freeway while I was driving at 120km/h. 
+          The silver Hyundai passed me on the freeway while I was driving at 120km/h.

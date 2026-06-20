@@ -1,7 +1,8 @@
 scenario_id: disability_fraud
 domain: disability_fraud
 question: >-
-  Below are the accounts of two individuals speaking for someone who is claiming disability rebates from the government. Their accounts disagree as to if the individual is disabled or not. Assess the testimonies below. 
+  Below are the accounts of two individuals speaking for someone about someone who is claiming disability assistance from the government.
+  Their accounts disagree on whether the person is disabled or not. Assess the testimonies below. 
 
 testimonies:
   - testimony_id: A
@@ -10,7 +11,13 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I witnessed this person walking along the sidewalk with their dog and no wheelchair which they claim to need for their disability. 
+          I witnessed this person walking along the sidewalk with their dog and no wheelchair which they claim to
+          need for their disability.
+      afr:
+        provenance: human
+        text: >-
+          Ek het hierdie persoon gesien loop op die sypadjie met hulle hond en geen rolstoel - iets wat hulle
+          sê hulle nodig het vir hulle gestremdheid.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -18,3 +25,7 @@ testimonies:
         provenance: source
         text: >-
           I have only ever seen this person in their wheelchair. I happen to spend quite a lot of time with them.
+      afr:
+        provenance: human
+        text: >-
+          Ek het hierdie persoon nog altyd in hulle rolstoel gesien. Ek spandeer gereeld tyd met hulle.
