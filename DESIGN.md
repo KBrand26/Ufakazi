@@ -66,12 +66,35 @@ A **trial** is fully specified by the tuple:
   choice token → smooth 0–1 sentiment, sensitive to subtle shifts without Likert noise.
   Logprobs are a per-provider capability (OpenAI yes, Anthropic no); binary choice is the
   universal fallback.
+- **Languages are a set.** For a language set L, each scenario expands to every assignment of
+  languages to its two *contents* (|L|^2) crossed with both position orders. Equal-language
+  assignments are same-language controls; differing ones are cross-language trials.
 - **Counterbalancing to isolate the language main effect:**
   - randomize **position** (which testimony appears first) — controls known LLM position bias;
-  - **permute language assignment** — same scenario run with A/B in swapped languages;
+  - **permute language assignment over content** — language tracks the testimony identity, not
+    the slot, so each content appears in each language equally across the cross trials;
   - **same-language controls** (both testimonies in one language, orders swapped) — the
     baseline that should show only content/position effects, no language effect. Without it
     language bias and content imbalance are not separable.
+  - Aggregating the cross trials symmetrically over which content is in which language **cancels
+    content bias**, leaving `P(prefer the target-written testimony)` vs 0.5 as the effect.
+- **Replication via `epochs` (default 10).** The provider is materially nondeterministic even
+  at temperature 0 (see below), so each trial is replayed N times to estimate a choice
+  distribution. Significance uses a **scenario-level (cluster) bootstrap**: scenarios are the
+  unit of independence, so we resample scenarios with replacement for CIs that respect the
+  nesting of epochs within trial within scenario.
+
+### Determinism is not available (measured)
+
+We tested whether `gpt-4o-mini` is reproducible at temperature 0 via OpenRouter. It is not:
+15 identical calls split ~60/40 across the two choices, with the choice-token confidence
+swinging between p=0.50 and p=0.90. Pinning the OpenRouter provider (`order: [openai]`,
+no fallbacks) and adding an OpenAI `seed` did **not** restore determinism — `gpt-4o-mini` is
+served by OpenAI either way, and the noise is OpenAI-side (batch-dependent floating-point
+reduction order, MoE routing); OpenAI's `seed` is best-effort and cannot override it.
+Consequence: we do **not** try to engineer the stochasticity away. We keep temperature at 0
+(the model's considered judgment, with variance for free), replicate with epochs, and report
+distributional CIs. Model-call caching is deliberately **off** — it would collapse the epochs.
 
 ### Translation validity (biggest risk)
 
@@ -100,15 +123,17 @@ Inspect makes both `target` and scoring optional. Module boundaries:
   `translations` entry per language tagged with `provenance` (`source` | `human` | `machine`).
   `loader.py` parses them into `Scenario` / `Testimony` / `Translation`. Synthetic only.
 - **`experiment/`** — the Inspect task. `trials.py` expands scenarios into the **factorial of
-  counterbalanced `Sample`s** with every factor level in `Sample.metadata`; `prompt.py` is the
-  forced-choice template; `scoring.py` is a **record-only `@scorer`** (parses the choice and maps
-  position back to content; records, does not grade); `task.py` wires dataset + `generate()` +
-  scorer; `run.py` calls `eval()`; `mock.py` is a deterministic keyless responder.
+  counterbalanced `Sample`s** (language set x position order) with every factor level in
+  `Sample.metadata`; `prompt.py` is the forced-choice template; `scoring.py` is a **record-only
+  `@scorer`** (parses the choice and maps position back to content; records, does not grade);
+  `task.py` wires dataset + `generate()` + scorer + `epochs`; `run.py` calls `eval()`; `mock.py`
+  is a deterministic keyless responder.
 - **`providers/`** — reduced to model-selection defaults + `GenerateConfig`. Inspect's model
   layer (20+ providers) replaced the planned adapter and handles the logprob capability
   difference (OpenAI yes, Anthropic no) for us.
-- **`analysis/`** — loads logs via Inspect's `samples_df()` into pandas; preference rates,
-  language main effect, position baseline.
+- **`analysis/`** — loads logs via Inspect's `samples_df()` (one row per trial-epoch) into
+  pandas: control baselines, the language main effect via symmetric cross-language aggregation,
+  per-scenario shift, and a continuous logprob measure, all with scenario-level bootstrap CIs.
 - **`results/`** — gitignored. Inspect writes one `.eval` log per run under `results/logs/`.
 
 ### Persistence
@@ -118,8 +143,10 @@ Inspect makes both `target` and scoring optional. Module boundaries:
   the planned hand-rolled JSONL-then-flatten step.
 - Analysis reads logs back with **`samples_df()`** (one row per trial, metadata expanded to
   `metadata_*` columns) rather than parsing raw logs; flatten to parquet/CSV only if needed.
-- **Model-call caching** (`cache=True`) plus log-based resume give the trial-level rerun-skipping
-  the design called for, without a bespoke tuple-keyed cache.
+- **Model-call caching is deliberately off.** It would collapse the epoch replications (identical
+  input + config) back to a single cached response, defeating the whole point of sampling the
+  provider's nondeterminism. Reruns are cheap on `gpt-4o-mini`; log-based resume still covers
+  interrupted runs.
 
 ### Config-driven runs
 
@@ -139,8 +166,10 @@ factorial or counterbalancing; that logic is ours in `trials.py` (and is the mos
 | Framework | **Inspect (`inspect_ai`)** | Hand-rolled loop | Batteries-included model layer, logging, caching/resume, and `samples_df` analysis; AISI tooling fits the safety brief. No-label fit confirmed: `target` and scoring are optional. |
 | Provider layer | Inspect model API (20+ providers) | litellm / hand-rolled SDK adapters | Inspect already hides the per-provider logprob difference; one fewer dep and abstraction to own. |
 | Scoring | Record-only `@scorer` (no `target`) | Graded scorer / external parse | We measure a choice, not correctness; the scorer records position + content + logprob, metrics are sanity readouts, real stats live in `analysis/`. |
-| Persistence | Inspect `.eval` log + `samples_df()` | JSONL + flatten / SQLite | Native, crash-safe, resumable; `samples_df` gives a tidy frame directly. Model-call cache covers cheap reruns. |
-| Concurrency | Sequential + cache, async only if needed | asyncio upfront | Don't solve a speed problem that doesn't exist yet. |
+| Persistence | Inspect `.eval` log + `samples_df()` | JSONL + flatten / SQLite | Native, crash-safe, resumable; `samples_df` gives a tidy frame directly. |
+| Replication | `epochs` (default 10) + scenario bootstrap | Single call; raise temperature | Temp-0 nondeterminism is real and unavoidable (measured); epochs sample it, bootstrap respects scenario clustering. Caching off so epochs don't collapse. |
+| Significance | Scenario-level (cluster) bootstrap | scipy / statsmodels | Respects the epoch-in-trial-in-scenario nesting with no new dependency; formal mixed-effects model deferred. |
+| Concurrency | Sequential, async only if needed | asyncio upfront | Don't solve a speed problem that doesn't exist yet. |
 
 ## Stretch goals — register/style within a language
 
@@ -177,12 +206,15 @@ language results land.
    same-language control, run end-to-end through the Inspect task on the keyless mock; record-only
    scorer → `.eval` log → `samples_df` analysis recovering the position baseline. Naive by design;
    proves the pipeline shape.
-2. **Real provider + logprobs:** run M1 on `openai/gpt-4o-mini` (logprobs) and an Anthropic model
-   (binary fallback); confirm the choice-token logprob is captured where available.
-3. **Languages:** add Afrikaans (human + machine) `translations` entries and cross-language
-   assignments in `trials.py`; run the calibration comparison.
-4. **Scale H1:** isiXhosa + isiZulu, full scenario set, full factorial in `trials.py`, model-call
-   caching for cheap reruns.
+2. **M2 — OpenRouter provider + CLI (done):** real runs on `openrouter/openai/gpt-4o-mini` with
+   choice-token logprobs captured; single `ufakazi` Typer CLI (`run` / `probe` / `analyze`).
+3. **M3 — languages: en/afr (done):** ~11 scenarios each with `en` (source) + `afr` (human)
+   testimonies; `trials.py` expands the language set into same-language controls + cross-language
+   trials; `epochs` replication; analysis reports the language main effect with bootstrap CIs.
+   Empirically established that temp-0 determinism is unavailable and pinning does not help, so
+   replication is mandatory. First read on `gpt-4o-mini`: a significant preference for English.
+   *Next within M3:* add the **machine-Afrikaans** arm (the calibration control vs human afr).
+4. **Scale H1:** isiXhosa + isiZulu translations, larger language set in the same expansion.
 5. **Iterate:** second provider, LLM-authored scenarios, system-prompt-language variation.
 6. **(If in scope) H2:** legal-divergence scenarios + framework-shift analysis.
 7. **Report:** charts + writeup for judging (Inspect View for transcript inspection).

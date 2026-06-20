@@ -31,19 +31,20 @@ providers); native `openai/` / `anthropic/` strings also work.
 
 - `ufakazi/cli.py` — the `ufakazi` command (Typer): `run`, `probe`, `analyze`.
 - `ufakazi/scenarios/` — synthetic testimony YAML fixtures (English source + translations) and loader.
-- `ufakazi/experiment/` — Inspect task: counterbalanced trial expansion, forced-choice prompt, record-only scorer, runner, model resolver, keyless mock, probe.
+- `ufakazi/experiment/` — Inspect task: counterbalanced trial expansion (language set x position, replicated over `epochs`), forced-choice prompt, record-only scorer, runner, model resolver, keyless mock, probe.
 - `ufakazi/providers/` — model registry, defaults, and `GenerateConfig` (Inspect handles the provider layer).
-- `ufakazi/analysis/` — `samples_df`-based preference rates, language main effect, position baseline.
+- `ufakazi/analysis/` — `samples_df`-based control baselines, the language main effect (cross-language aggregation), per-scenario shift, and a continuous logprob measure, with scenario-level bootstrap CIs.
 - `results/` — gitignored experiment output (Inspect `.eval` logs).
 
 ## Develop
 
 ```sh
-uv run ufakazi run                  # run end-to-end (keyless mock, no API key)
+uv run ufakazi run                  # end-to-end (keyless mock, en+afr, epochs 10)
 uv run ufakazi run --model default  # real default: openrouter/openai/gpt-4o-mini
+uv run ufakazi run --model default -l en,afr -e 10   # explicit language set + epochs
 uv run ufakazi run --interactive    # pick a model from a menu
 uv run ufakazi probe default        # does a model parse + return logprobs?
-uv run ufakazi analyze              # summarize logged trials
+uv run ufakazi analyze              # control baselines + language main effect (latest run)
 uv run inspect view --log-dir results/logs   # browse run outputs in the log viewer
 uv run pytest          # tests
 uv run ruff check      # lint
@@ -53,3 +54,7 @@ uv run ruff format     # format
 `ufakazi run` with no `--model` needs no API key: it uses Inspect's `mockllm` with a
 deterministic responder, so the pipeline runs end-to-end offline. For real models, copy
 `.env.example` to `.env` and set `OPENROUTER_API_KEY`.
+
+Each trial is replayed `--epochs` times: the provider is materially nondeterministic even at
+temperature 0, so the analysis samples the choice distribution and reports scenario-level
+bootstrap confidence intervals rather than a single number.

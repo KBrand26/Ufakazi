@@ -4,9 +4,13 @@ Defaults to the keyless deterministic mock so the pipeline runs end-to-end with 
 key. `--model` takes a registry key (`gpt-4o-mini`), the `default` alias, or any raw
 Inspect model string. Needs `OPENROUTER_API_KEY` in `.env` for the OpenRouter models.
 
+Languages default to the `en`/`afr` calibration set (expanded into same-language controls
+plus cross-language trials), replicated `epochs` times to sample the provider's residual
+nondeterminism.
+
     uv run ufakazi run                      # mock, keyless
-    uv run ufakazi run --model default      # openrouter/openai/gpt-4o-mini
-    uv run ufakazi run --model openrouter/anthropic/claude-3.5-haiku
+    uv run ufakazi run --model default      # openrouter/openai/gpt-4o-mini, en+afr
+    uv run ufakazi run --model default --languages en,afr --epochs 10
 """
 
 from __future__ import annotations
@@ -22,10 +26,11 @@ DEFAULT_LOG_DIR = "results/logs"
 def run(
     model: str | None = None,
     log_dir: str = DEFAULT_LOG_DIR,
-    languages: tuple[str, ...] = ("en",),
+    languages: tuple[str, ...] = ("en", "afr"),
+    epochs: int = 10,
 ):
     return inspect_eval(
-        truthiness_bias(languages=languages),
+        truthiness_bias(languages=tuple(languages), epochs=epochs),
         model=resolve_model(model),
         log_dir=log_dir,
     )

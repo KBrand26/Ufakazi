@@ -17,7 +17,13 @@ from rich.console import Console
 from rich.prompt import Prompt
 from rich.table import Table
 
-from ufakazi.analysis.load import load_trials, summarize
+from ufakazi.analysis.load import (
+    filter_latest_eval,
+    language_report,
+    load_trials,
+    per_scenario_language_effect,
+    summarize,
+)
 from ufakazi.experiment.probe import probe as probe_model
 from ufakazi.experiment.run import run as run_eval
 from ufakazi.providers import DEFAULT_KEY, MODEL_REGISTRY
@@ -69,6 +75,18 @@ def run(
     interactive: bool = typer.Option(
         False, "--interactive", "-i", help="Pick a model from a menu."
     ),
+    languages: str = typer.Option(
+        "en,afr",
+        "--languages",
+        "-l",
+        help="Comma-separated language set, expanded into controls + cross-language trials.",
+    ),
+    epochs: int = typer.Option(
+        10,
+        "--epochs",
+        "-e",
+        help="Replications per trial (samples provider nondeterminism).",
+    ),
     log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
 ) -> None:
     """Run the truthiness-bias eval (keyless mock by default)."""
@@ -76,7 +94,8 @@ def run(
         if model is not None:
             raise typer.BadParameter("Use either --model or --interactive, not both.")
         model = select_model_interactively()
-    run_eval(model=model, log_dir=log_dir)
+    langs = tuple(lang.strip() for lang in languages.split(",") if lang.strip())
+    run_eval(model=model, log_dir=log_dir, languages=langs, epochs=epochs)
 
 
 @app.command()
@@ -103,19 +122,68 @@ def probe(
 
 
 @app.command()
-def analyze(log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir")) -> None:
-    """Summarize logged trials: parse health, position baseline, content preference."""
-    summary = summarize(load_trials(log_dir))
+def analyze(
+    log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
+    all_runs: bool = typer.Option(
+        False,
+        "--all",
+        help="Aggregate every run in the dir (default: latest run only).",
+    ),
+) -> None:
+    """Summarize logged trials: control baselines, then the language main effect."""
+    df = load_trials(log_dir)
+    if not all_runs:
+        df = filter_latest_eval(df)
+
+    summary = summarize(df)
     console.print(
         f"Loaded {summary['n_trials']} trials "
         f"({summary['n_parse_errors']} parse errors)"
     )
+    console.print("\n[bold]Same-language controls[/bold] (no language difference):")
     console.print(
-        f"  position bias (chose first-presented): {summary['position_first_rate']:.2f}"
+        f"  position bias (chose first-presented): {summary['position_first_rate']:.2f}  "
+        "[dim](~0.5 = none)[/dim]"
     )
     console.print(
-        f"  content preference for testimony A:    {summary['content_pref_A_rate']:.2f}"
+        f"  content preference for testimony A:    {summary['content_pref_A_rate']:.2f}  "
+        "[dim](~0.5 = balanced)[/dim]"
     )
+
+    reports = language_report(df)
+    if not reports:
+        console.print(
+            "\n[yellow]No cross-language trials found (single-language run?).[/yellow]"
+        )
+        return
+
+    console.print("\n[bold]Language main effect[/bold] (cross-language trials):")
+    for r in reports:
+        lo, hi = r["ci95"]
+        verdict = (
+            "[green]significant[/green]"
+            if r["significant"]
+            else "[dim]not significant[/dim]"
+        )
+        console.print(
+            f"  P(prefer {r['target']} over {r['reference']}): "
+            f"{r['p_prefer_target']:.3f}  95% CI [{lo:.3f}, {hi:.3f}]  {verdict}  "
+            f"[dim](n={r['n_cross_trials']})[/dim]"
+        )
+        if r["p_prefer_target_continuous"] is not None:
+            console.print(
+                f"      continuous (logprob mass on {r['target']}): "
+                f"{r['p_prefer_target_continuous']:.3f}"
+            )
+
+    effects = per_scenario_language_effect(df, reports[0]["target"])
+    if not effects.empty:
+        console.print(
+            f"\n[bold]Per-scenario shift[/bold] "
+            f"(P(chose A | A={reports[0]['target']}) - P(chose A | A={reports[0]['reference']})):"
+        )
+        for _, row in effects.iterrows():
+            console.print(f"  {row['scenario_id']:34} {row['language_effect']:+.3f}")
 
 
 if __name__ == "__main__":

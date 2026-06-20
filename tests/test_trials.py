@@ -72,3 +72,44 @@ def test_language_assignment_recorded_per_language():
     samples = expand_scenario(_scenario(), languages=("af",))
     assert all(_meta(s)["lang_first"] == "af" for s in samples)
     assert all(_meta(s)["prov_first"] == "human" for s in samples)
+
+
+def test_language_set_expands_to_all_assignments_and_orders():
+    # |L|^2 assignments x 2 position orders; half are same-language controls for |L|=2.
+    samples = expand_scenario(_scenario(), languages=("en", "af"))
+    assert len(samples) == 8
+    conditions = [_meta(s)["condition"] for s in samples]
+    assert conditions.count("same_language_control") == 4
+    assert conditions.count("cross_language") == 4
+
+
+def test_language_is_bound_to_content_not_position():
+    # The bias measure depends on language tracking *content* (testimony id), not the slot
+    # it is shown in. Across the cross trials, content A must appear in each language
+    # equally; that symmetry is what cancels content bias in the analysis.
+    cross = [
+        s
+        for s in expand_scenario(_scenario(), languages=("en", "af"))
+        if _meta(s)["condition"] == "cross_language"
+    ]
+    a_langs = []
+    for sample in cross:
+        text = _user_text(sample)
+        a_lang = "en" if "text-A-en" in text else "af"
+        b_lang = "en" if "text-B-en" in text else "af"
+        assert a_lang != b_lang, (
+            "a cross trial must clothe the two contents differently"
+        )
+        a_langs.append(a_lang)
+    assert a_langs.count("en") == a_langs.count("af") == 2
+
+
+def test_same_language_control_has_matching_languages():
+    controls = [
+        s
+        for s in expand_scenario(_scenario(), languages=("en", "af"))
+        if _meta(s)["condition"] == "same_language_control"
+    ]
+    for sample in controls:
+        meta = _meta(sample)
+        assert meta["lang_first"] == meta["lang_second"]

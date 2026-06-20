@@ -28,31 +28,45 @@ one Inspect `Sample`. Module boundaries:
 - **`experiment/`** — the Inspect task. `trials.py` expands scenarios into counterbalanced
   `Sample`s (factor levels go into `Sample.metadata`); `prompt.py` is the forced-choice
   template; `scoring.py` is a **record-only `@scorer`** that parses the choice and maps position
-  back to content (no target, no correctness); `task.py` wires dataset + `generate()` + scorer;
-  `run.py` calls `eval()`; `mock.py` is a deterministic keyless responder for flow tests.
+  back to content (no target, no correctness); `task.py` wires dataset + `generate()` + scorer +
+  `epochs`; `run.py` calls `eval()`; `mock.py` is a deterministic keyless responder for flow tests.
 - **`providers/`** — now just model-selection defaults + `GenerateConfig`. Inspect's own model
   layer supersedes the planned per-provider adapter, including logprob capability handling
   (OpenAI yes, Anthropic no); `generation_config()` requests logprobs, ignored where unsupported.
-- **`analysis/`** — `load.py` reads logs via Inspect's `samples_df()` into pandas; preference
-  rates, position-bias baseline, language main effect.
+- **`analysis/`** — `load.py` reads logs via Inspect's `samples_df()` (one row per trial-epoch,
+  choice logprob pulled from score metadata via a column spec) into pandas: control baselines,
+  the **language main effect** (`P(prefer the target-written testimony)` over cross-language
+  trials, content bias cancelled by symmetric aggregation), per-scenario shift, and a continuous
+  logprob measure, all with **scenario-level (cluster) bootstrap** CIs. `filter_latest_eval`
+  keeps `analyze` to the most recent run so mixed log dirs do not corrupt aggregates.
 - **`results/`** — gitignored. Inspect writes one `.eval` log per run under `results/logs/`.
 
 A **trial** = `(scenario, language_assignment, position_order, model, system_prompt)`: model and
 system prompt are fixed per `eval()` run; scenario, language assignment, and position order are
-encoded per `Sample` (the last two in `metadata`). Measure = forced binary choice (primary) +
-choice-token logprob (continuous, where the provider supplies it). Counterbalancing isolates the
-language main effect: randomize position, permute language assignment, include same-language
-controls. Inspect caches model calls (`cache=True`) and resumes from its logs, covering the
-trial-level rerun-skipping the design called for.
+encoded per `Sample` (the last two in `metadata`). Languages are a **set**: each scenario expands
+to every assignment of languages to its two contents (|L|^2) crossed with both position orders;
+equal-language assignments are `same_language_control`, differing ones are `cross_language`.
+Measure = forced binary choice (primary) + choice-token logprob (continuous, where the provider
+supplies it). Counterbalancing isolates the language main effect: randomize position, permute
+language assignment over content, include same-language controls.
+
+**Replication via `epochs` (default 10), not caching.** gpt-4o-mini is materially
+nondeterministic even at temperature 0 (greedy decoding still rides on nondeterministic
+floating-point reductions and MoE routing); measured ~60/40 choice splits on identical prompts,
+and pinning the OpenRouter provider and setting an OpenAI `seed` did **not** restore determinism.
+So we sample the choice distribution with epochs and report distributional CIs; model-call
+caching stays **off** (it would collapse the epochs to one response). Reproducibility is
+distributional, not exact.
 
 ## Domain context
 
 - **Validity hinges on translation fidelity.** Testimonies must be content-equivalent across
   languages; this is the central confound, sharpest for isiZulu/isiXhosa (brittle MT, no
   in-team verifier). `translation_provenance` (`human` | `machine`) is a first-class attribute.
-- **Afrikaans is the calibration language:** the repo owner is a native speaker, so compare
-  human vs machine Afrikaans translations. If machine Afrikaans performs clearly worse, it
-  bounds confidence in the isiZulu/isiXhosa results and justifies sourcing an expert speaker.
+- **Afrikaans is the calibration language:** the repo owner is a native speaker. Every scenario
+  now carries `en` (source) + `afr` (human) testimonies; the en/afr set is the first study pair.
+  Machine Afrikaans is the planned next translation arm: if it performs clearly worse than human
+  Afrikaans, it bounds confidence in the isiZulu/isiXhosa results and justifies an expert speaker.
 - **Same-language controls are not optional** — without them, language bias and content
   imbalance are not separable.
 - The formal hackathon brief arrives at the event; H2 scope and task framing may shift. The
@@ -79,11 +93,14 @@ trial-level rerun-skipping the design called for.
 ## Run / test
 
 ```sh
-uv run ufakazi run                  # run the eval (keyless mock by default)
-uv run ufakazi run --model default  # real default: openrouter/openai/gpt-4o-mini
-uv run ufakazi run --interactive    # pick a model from a Rich menu
-uv run ufakazi probe default        # check a model parses + returns logprobs (no persistence)
-uv run ufakazi analyze              # summarize logged trials
+uv run ufakazi run                            # keyless mock, en+afr, epochs 10
+uv run ufakazi run --model default            # real default: openrouter/openai/gpt-4o-mini
+uv run ufakazi run --model default -l en,afr -e 10   # explicit language set + epochs
+uv run ufakazi run --interactive              # pick a model from a Rich menu
+uv run ufakazi probe default                  # check a model parses + returns logprobs
+uv run ufakazi analyze                        # control baselines + language main effect (latest run)
+uv run ufakazi analyze --all                  # aggregate every run in the log dir
+uv run inspect view --log-dir results/logs    # browse raw outputs in the log viewer
 uv run pytest          # tests
 uv run ruff check      # lint
 uv run ruff format     # format
@@ -93,10 +110,11 @@ The `ufakazi` CLI (Typer, see `cli.py`) is the single entry point. Model selecti
 modes: no `--model` runs the keyless `mockllm` mock (deterministic position-biased responder in
 `experiment/mock.py`) so the pipeline runs end-to-end with no API key or spend; `--model` takes a
 registry key (`providers.MODEL_REGISTRY`), `default`, or a raw Inspect string (the scriptable path
-for study runs); `--interactive` opens a picker. Real models go through **OpenRouter** by default
-(one key); put `OPENROUTER_API_KEY` in `.env` (gitignored, auto-loaded in `ufakazi/__init__.py`;
-see `.env.example`). Routing is currently unpinned, so logprob availability can vary by backend;
-`probe` a model before trusting its logprobs. A benign `Unable to convert value to float: a/b`
-warning appears each run (Inspect's epoch reducer averaging our categorical A/B score, which we
-never use; analysis reads `samples_df`). Package is flat-root layout (`ufakazi/`, no `src/`).
-No GCP deploy target for the hackathon.
+for study runs); `--interactive` opens a picker. `run` takes `--languages`/`-l` (comma-separated
+set, default `en,afr`) and `--epochs`/`-e` (default 10). Real models go through **OpenRouter** by
+default (one key); put `OPENROUTER_API_KEY` in `.env` (gitignored, auto-loaded in
+`ufakazi/__init__.py`; see `.env.example`). Routing is currently unpinned, so logprob availability
+can vary by backend; `probe` a model before trusting its logprobs. A benign `Unable to convert
+value to float: a/b` warning appears each run (Inspect's epoch reducer averaging our categorical
+A/B score, which we never use; analysis reads `samples_df`). Package is flat-root layout
+(`ufakazi/`, no `src/`). No GCP deploy target for the hackathon.
