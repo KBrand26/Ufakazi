@@ -19,6 +19,11 @@ testimonies:
         text: >-
           Ek het die aangeklaagde gesien werk vanaf my woonstel venster. Hulle was besig vir die hele aand van die moord.
           Hulle kon nie daardie tyd by die park gewees het nie.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek kon die beskuldigdes vanuit my woonstelvenster sien werk. Hulle was die hele aand van die moord besig.
+          Hulle kon nie destyds in die park gewees het nie.
 
 
   - testimony_id: B
@@ -31,5 +36,10 @@ testimonies:
       afr:
         provenance: human
         text: >-
-          Terwyl ek terug geloop het van die werk af het ek die aangeklaagde sien hardloop uit 'n park uit. Dit was rondom die tyd
-          van die moord. 
+          Terwyl ek terug geloop het van die werk af het ek die aangeklaagde sien hardloop uit 'n park uit.
+          Dit was rondom die tyd van die moord. 
+      afr_mt:
+        provenance: machine
+        text: >-
+          Toe ek van die werk af huis toe stap, het ek die beskuldigde uit 'n park sien hardloop.
+          Dit was omtrent die tyd van die moord.

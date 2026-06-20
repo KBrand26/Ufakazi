@@ -2,7 +2,7 @@ scenario_id: dog_vs_kid
 domain: dog_accident
 question: >-
   Below are the accounts of two individuals who witnessed a dog attack on a child.
-  Their accounts disagree as to what occurred before the . Assess the testimonies below. 
+  Their accounts disagree as to what occurred before the attack. Assess the testimonies below. 
 
 testimonies:
   - testimony_id: A
@@ -16,6 +16,10 @@ testimonies:
         provenance: human
         text: >-
           Ek was besig om 'n boek met my dogter in die parkie te lees toe 'n hond ons sonder rede aangeval het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was besig om 'n boek saam met my dogter in die park te lees toe 'n hond haar skielik onverwags aanval.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -26,5 +30,10 @@ testimonies:
       afr:
         provenance: human
         text: >-
-          Ek het 'n piekniek in die parkie gehou toe ek gesien het hoe 'n meisie 'n hond met 'n klip gegooi het. Dit het veroorsaak
+          Ek het piekniek in die park gehou toe ek gesien het hoe 'n meisie 'n hond met 'n klip gegooi het. Dit het veroorsaak
           dat die hond haar aangeval het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was besig met 'n piekniek in die park toe ek 'n meisie sien wat 'n klip na 'n hond gooi,
+          wat veroorsaak het dat dit haar aanval.

@@ -18,6 +18,11 @@ testimonies:
         text: >-
           Ek het twee rye agter die student gesit. Ek het hulle gesien 'n tissue uit hulle tas uit haal en hulle neus blaas.
           Daarna het hulle die toets klaar geskryf.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het twee rye agter die student gesit. Ek het gesien hoe hulle in hul sak gryp na 'n sneesdoekie om hul neus te blaas.
+          Daarna het hulle voortgegaan om hul toets te skryf.
 
   - testimony_id: B
     speaker: Second witness
@@ -32,3 +37,8 @@ testimonies:
         text: >-
           Ek het twee rye agter die student gesit. Hulle het 'n stuk papier uit hulle tas uit gehaal en daarna gekyk.
           Daarna het hulle die toets klaar geskryf.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het twee rye agter die student gesit. Hulle het 'n stuk papier uit hul sak gegryp wat hulle bekyk het.
+          Hulle het toe voortgegaan om hul toets te skryf.

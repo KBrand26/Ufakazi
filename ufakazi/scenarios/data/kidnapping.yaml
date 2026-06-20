@@ -16,6 +16,10 @@ testimonies:
         provenance: human
         text: >-
           My eks-man het ons kinders ontvoer en na Spanje geneem, sonder my toestemming.
+      afr_mt:
+        provenance: machine
+        text: >-
+          My eksman het ons kinders ontvoer en hulle na Spanje geneem, sonder my toestemming.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -27,3 +31,7 @@ testimonies:
         provenance: human
         text: >-
           Ek het ons kinders na Spanje geneem na ek toestemming van my eks-vrou gekry het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het ons kinders na Spanje geneem nadat ek my eksvrou se goedkeuring gekry het.

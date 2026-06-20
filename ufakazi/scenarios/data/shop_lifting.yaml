@@ -18,6 +18,11 @@ testimonies:
         text: >-
           Ek was in die winkel besig om sjokolades vir my man te koop toe ek gesien het hoe
           die seun 'n sjokolade van die rak af vat en in sy rugsak sit voor hy geloop het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was in die winkel besig om sjokolade vir my man te koop toe ek opgemerk het hoe die
+          seun 'n sjokolade van die rak af haal en dit in sy rugsak sit voordat hy vertrek.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -31,3 +36,8 @@ testimonies:
         text: >-
           Ek was in die winkel met 'n vriend toe ek gesien het hoe die seun 'n sjokolade van die rak af neem.
           Na hy daarna gekyk het, het hy dit teruggesit en uitgeloop.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was in die winkel saam met 'n vriend toe ek die seun 'n sjokolade van die rak sien optel.
+          Nadat hy daarna gekyk het, het hy dit teruggesit en uitgeloop.

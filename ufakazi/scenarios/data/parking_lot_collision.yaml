@@ -31,6 +31,14 @@ testimonies:
           Ek het die sedan se tru-alarm gehoor voor die stamp. Ek sal bieg dat ek vir 'n oomblik afgekyk het na my trolley,
           maar toe ek opgekyk het was die sedan steeds besig om terug te rol in die luikrug se deur vas. Die luikrug het glad nie
           beweeg nie.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was besig om sakke in my kattebak te laai omtrent drie motors verder, met die gesig na die baan toe.
+          Die grys sedan het uit sy baai gestruikel en aangehou ry terwyl die wit luikrug reeds stilgestaan
+          ​​en daarvoor gewag het. Ek het die sedan se trurat- pieper gehoor voor die hobbel. Ek moet erken ek het vir
+          'n sekonde na my trollie afgekyk, maar toe ek opkyk, het die sedan steeds agteruit in die luikrug se deur gerol.
+          Die luikrug het nie van waar dit gestaan ​​het, beweeg nie.
 
   - testimony_id: B
     speaker: Second witness
@@ -51,3 +59,10 @@ testimonies:
           Die wit luikrug was besig om vorentoe te ry uit sy parkeing uit en het die grys sedan getref, wat klaar teruggestoot
           het en stilgestaan het in die baan. Ek het musiek in my oorfone gehad so ek het nie veel gehoor nie, maar ek het
           die luikrug se voorste wiele sien draai en eerste beweeg. Die sedan se briekligte was heeltyd aan terwyl dit stilgestaan het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het my trollie teruggestoot na die oorkantste parkeerplek en reguit gekyk oor die baan. Die wit luikrug
+          het vorentoe uit sy spasie getrek en die grys sedan getref, wat reeds klaar agteruit gery het en stilgestaan
+          ​​het in die baan. Ek het musiek in my oorfone gehad, so ek het nie veel gehoor nie, maar ek het die luikrug
+          se voorwiele eerste sien draai en beweeg. Die sedan se remligte was die hele tyd aan, stil.

@@ -16,6 +16,10 @@ testimonies:
         provenance: human
         text: >-
           Ek het 120km/h gery toe ek die silwer Hyundai verbygevat het op die snelweg.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het teen 120 km/h gery en ek het die silwer Hyundai op die snelweg verbygesteek.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -27,3 +31,7 @@ testimonies:
         provenance: human
         text: >-
           Die silwer Hyundai het my op die snelweg verbygevat terwyl ek 120km/h gery het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Die silwer Hyundai het my op die snelweg verbygesteek terwyl ek teen 120 km/h gery het.

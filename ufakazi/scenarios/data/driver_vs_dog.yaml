@@ -18,6 +18,11 @@ testimonies:
         text: >-
           Ek het huistoe gery toe 'n hond sonder 'n leiband voor my kar in gehardloop het.
           Ek het uitgeswaai om die hond te vermy, maar dit was te laat.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was op pad huis toe toe 'n loslopende hond oor die pad voor my motor gehardloop het.
+          Ek het uitgeswaai om die hond te vermy, maar dit was te laat.
           
   - testimony_id: B
     speaker: Second witness
@@ -30,3 +35,7 @@ testimonies:
         provenance: human
         text: >-
           Ek het met my hond op 'n leiband gaan loop toe 'n kar in ons ingeswaai het en my hond getref het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek was besig om met my hond aan 'n leiband te stap toe 'n motor in ons ingeswaai en my hond getref het.

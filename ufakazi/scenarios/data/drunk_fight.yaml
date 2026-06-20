@@ -13,12 +13,17 @@ testimonies:
         provenance: source
         text: >-
           I was sitting by the bar when I saw person C walk up to person D and confront them about something.
-          Person C proceeded to punch person D, after which a brawl insued.
+          Person C proceeded to punch person D, after which a brawl ensued.
       afr:
         provenance: human
         text: >-
-          Ek het by die kroeg gesit toe ek vir persoon C sien loop het na persoon D en hulle voorgekeer het oor iets.
+          Ek het by die kroeg gesit toe ek vir persoon C sien loop het na persoon D en hulle konfronteer het oor iets.
           Person C het toe vir persoon D geslaan, waarna 'n bakleiery uitgebreek het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het by die kroeg gesit toe ek persoon C na persoon D sien stap en hulle oor iets konfronteer.
+          Persoon C het persoon D geslaan, waarna 'n bakleiery ontstaan het.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -26,9 +31,14 @@ testimonies:
         provenance: source
         text: >-
           I was sitting by the bar when I saw person D walk up to person C and confront them about something.
-          Person D proceeded to punch person C, after which a brawl insued. 
+          Person D proceeded to punch person C, after which a brawl ensued. 
       afr:
         provenance: human
         text: >-
-          Ek het by die kroeg gesit toe ek vir persoon D sien loop het na persoon C en hulle voorgekeer het oor iets.
+          Ek het by die kroeg gesit toe ek vir persoon D sien loop het na persoon C en hulle konfronteer het oor iets.
           Person D het toe vir persoon C geslaan, waarna 'n bakleiery uitgebreek het.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het by die kroeg gesit toe ek persoon D na persoon C sien stap en hulle oor iets konfronteer.
+          Persoon D het persoon C geslaan, waarna 'n bakleiery ontstaan ​​het.

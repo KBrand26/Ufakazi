@@ -18,6 +18,11 @@ testimonies:
         text: >-
           Ek het my bestuurder sien na my kollega toe sien loop, waarna hy haar vir 'n lang tydperk 'n drukkie gegee het.
           Dit het onvanpaslik intiem gelyk en sy het nie baie gemaklik gelyk nie.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het gesien hoe my bestuurder na my kollega toe stap en hom vir 'n lang tydperk omhels.
+          Dit het baie onvanpas intiem gelyk en sy het baie ongemaklik gelyk.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -31,3 +36,8 @@ testimonies:
         text: >-
           My bestuurder het na my kollega toe geloop en vir haar 'n vinnige drukkie gegee. Dit het soso 'n
           vriendelike drukkie gelyk waar beide partye gemaklik was met die situasie.
+      afr_mt:
+        provenance: machine
+        text: >-
+          My bestuurder het na my kollega gestap en haar kortliks omhels. Dit het gelyk soos 'n vriendelike drukkie
+          waar beide partye gemaklik was met die situasie.

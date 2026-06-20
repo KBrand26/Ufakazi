@@ -18,6 +18,11 @@ testimonies:
         text: >-
           Ek het hierdie persoon gesien loop op die sypadjie met hulle hond en geen rolstoel - iets wat hulle
           sê hulle nodig het vir hulle gestremdheid.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het hierdie persoon met hul hond en geen rolstoel, wat hulle beweer hulle vir hul gestremdheid nodig het,
+          langs die sypaadjie sien loop nie.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -29,3 +34,7 @@ testimonies:
         provenance: human
         text: >-
           Ek het hierdie persoon nog altyd in hulle rolstoel gesien. Ek spandeer gereeld tyd met hulle.
+      afr_mt:
+        provenance: machine
+        text: >-
+          Ek het hierdie persoon nog net in hul rolstoel gesien. Ek spandeer toevallig heelwat tyd saam met hulle.
