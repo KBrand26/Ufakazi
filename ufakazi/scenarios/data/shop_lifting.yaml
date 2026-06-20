@@ -13,6 +13,11 @@ testimonies:
         text: >-
           I was in the store buying some chocolates for my husband when I noticed
           the boy taking a chocolate from the shelf and putting it in his backpack before leaving.
+      afr:
+        provenance: human
+        text: >-
+          Ek was in die winkel besig om sjokolades vir my man te koop toe ek gesien het hoe
+          die seun 'n sjokolade van die rak af vat en in sy rugsak sit voor hy geloop het.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -20,4 +25,9 @@ testimonies:
         provenance: source
         text: >-
           I was in the store with a friend when I saw the boy pick up a chocolate from the shelf.
-          After reading it's label, he put it back and walked out.
+          After looking at it, he put it back and walked out.
+      afr:
+        provenance: human
+        text: >-
+          Ek was in die winkel met 'n vriend toe ek gesien het hoe die seun 'n sjokolade van die rak af neem.
+          Na hy daarna gekyk het, het hy dit teruggesit en uitgeloop.

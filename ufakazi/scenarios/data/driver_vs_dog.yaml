@@ -11,7 +11,13 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was driving home when an unleashed dog ran across the road in front of my car. I swerved to avoid the dog, but it was too late.
+          I was driving home when an unleashed dog ran across the road in front of my car.
+          I swerved to avoid the dog, but it was too late.
+      afr:
+        provenance: human
+        text: >-
+          Ek het huistoe gery toe 'n hond sonder 'n leiband voor my kar in gehardloop het.
+          Ek het uitgeswaai om die hond te vermy, maar dit was te laat.
           
   - testimony_id: B
     speaker: Second witness
@@ -20,3 +26,7 @@ testimonies:
         provenance: source
         text: >-
           I was walking my dog on a leash when a car swerved into us and hit my dog.
+      afr:
+        provenance: human
+        text: >-
+          Ek het met my hond op 'n leiband gaan loop toe 'n kar in ons ingeswaai het en my hond getref het.

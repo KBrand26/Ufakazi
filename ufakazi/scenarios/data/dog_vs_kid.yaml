@@ -12,6 +12,10 @@ testimonies:
         provenance: source
         text: >-
           I was reading a book with my daughter in the park when a dog suddenly attacked her unprovoked.
+      afr:
+        provenance: human
+        text: >-
+          Ek was besig om 'n boek met my dogter in die parkie te lees toe 'n hond ons sonder rede aangeval het.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -19,3 +23,8 @@ testimonies:
         provenance: source
         text: >-
           I was having a picnic in the park when I saw a girl throw a stone at a dog, causing it to attack her.
+      afr:
+        provenance: human
+        text: >-
+          Ek het 'n piekniek in die parkie gehou toe ek gesien het hoe 'n meisie 'n hond met 'n klip gegooi het. Dit het veroorsaak
+          dat die hond haar aangeval het.

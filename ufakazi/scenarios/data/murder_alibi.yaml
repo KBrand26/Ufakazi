@@ -14,6 +14,11 @@ testimonies:
         text: >-
           I could see the accused working from my apartment window. They were busy for the entire evening of the murder.
           They could not have been at the park at the time.
+      afr:
+        provenance: human
+        text: >-
+          Ek het die aangeklaagde gesien werk vanaf my woonstel venster. Hulle was besig vir die hele aand van die moord.
+          Hulle kon nie daardie tyd by die park gewees het nie.
 
 
   - testimony_id: B
@@ -23,3 +28,8 @@ testimonies:
         provenance: source
         text: >-
           When walking back home from work, I saw the accused running out of a park. This was around the time of the murder.
+      afr:
+        provenance: human
+        text: >-
+          Terwyl ek terug geloop het van die werk af het ek die aangeklaagde sien hardloop uit 'n park uit. Dit was rondom die tyd
+          van die moord. 

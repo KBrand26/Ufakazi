@@ -13,6 +13,11 @@ testimonies:
         text: >-
           I saw my manager walk up to and hug my colleague for an extended period of time.
           It seemed very inappropriately intimate and she seemed very uncomfortable.
+      afr:
+        provenance: human
+        text: >-
+          Ek het my bestuurder sien na my kollega toe sien loop, waarna hy haar vir 'n lang tydperk 'n drukkie gegee het.
+          Dit het onvanpaslik intiem gelyk en sy het nie baie gemaklik gelyk nie.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -21,3 +26,8 @@ testimonies:
         text: >-
           My manager walked up to my colleague and hugged her briefly. It seemed like a friendly hug where both
           parties were comfortable with the situation.
+      afr:
+        provenance: human
+        text: >-
+          My bestuurder het na my kollega toe geloop en vir haar 'n vinnige drukkie gegee. Dit het soso 'n
+          vriendelike drukkie gelyk waar beide partye gemaklik was met die situasie.

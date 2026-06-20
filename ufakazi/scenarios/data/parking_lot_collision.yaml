@@ -23,6 +23,14 @@ testimonies:
           beeper before the bump. I will admit I glanced down at my trolley for a
           second, but when I looked up the sedan was still rolling backwards into the
           hatchback's door. The hatchback had not moved from where it sat.
+      afr:
+        provenance: human
+        text: >-
+          Ek was drie karre weg, besig om my sakke in die kattebak te laai en het in die rigting van die baan gekyk.
+          Die grys sedan het teruggestoot uit die parkering uit en aangehou ry terwyl die wit luikrug reeds gestop het en gewag het.
+          Ek het die sedan se tru-alarm gehoor voor die stamp. Ek sal bieg dat ek vir 'n oomblik afgekyk het na my trolley,
+          maar toe ek opgekyk het was die sedan steeds besig om terug te rol in die luikrug se deur vas. Die luikrug het glad nie
+          beweeg nie.
 
   - testimony_id: B
     speaker: Second witness
@@ -36,3 +44,8 @@ testimonies:
           still in the lane. I had music in my earphones so I did not hear much, but I
           saw the hatchback's front wheels turn and move first. The sedan's brake lights
           were on the whole time, stopped.
+        text: >-
+          Ek was besig om my trollie terug te stoot na die parkering oorkant my en het reguit oor die baan gekyk.
+          Die wit luikrug was besig om vorentoe te ry uit sy parkeing uit en het die grys sedan getref, wat klaar teruggestoot
+          het en stilgestaan het in die baan. Ek het musiek in my oorfone gehad so ek het nie veel gehoor nie, maar ek het
+          die luikrug se voorste wiele sien draai en eerste beweeg. Die sedan se briekligte was heeltyd aan terwyl dit stilgestaan het.

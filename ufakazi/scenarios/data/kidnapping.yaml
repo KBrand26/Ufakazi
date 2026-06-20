@@ -12,6 +12,10 @@ testimonies:
         provenance: source
         text: >-
           My ex-husband kidnapped our children and took them to Spain, without my consent.
+      afr:
+        provenance: human
+        text: >-
+          My eks-man het ons kinders ontvoer en na Spanje geneem, sonder my toestemming.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -19,3 +23,7 @@ testimonies:
         provenance: source
         text: >-
           I took our children to Spain after getting my ex-wife's approval.
+      afr:
+        provenance: human
+        text: >-
+          Ek het ons kinders na Spanje geneem na ek toestemming van my eks-vrou gekry het.
