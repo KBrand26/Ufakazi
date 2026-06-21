@@ -23,12 +23,12 @@ testimonies:
         text: >-
           Ek het twee rye agter die student gesit. Ek het gesien hoe hulle in hul sak gryp na 'n sneesdoekie om hul neus te blaas.
           Daarna het hulle voortgegaan om hul toets te skryf.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngahlala imigqa emibili ngemuva komfundi. Ngababona befaka isandla esikhwameni sabo befuna i-tissue yokubakhipha amakhala.
           Ngemva kwalokho, baqhubeka nokubhala ukuhlolwa kwabo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndahlala imiqolo emibini emva komfundi. Ndababona befaka isandla ebhegini yabo befuna ithishu yokuvuthela impumlo.
@@ -52,12 +52,12 @@ testimonies:
         text: >-
           Ek het twee rye agter die student gesit. Hulle het 'n stuk papier uit hul sak gegryp wat hulle bekyk het.
           Hulle het toe voortgegaan om hul toets te skryf.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngahlala imigqa emibili ngemuva komfundi. Athathe ipheshana esikhwameni alibuke.
           Base beqhubeka nokubhala isivivinyo sabo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndahlala imiqolo emibini emva komfundi. Bathatha iphetshana ebhegini yabo balijonga.

@@ -23,12 +23,12 @@ testimonies:
         text: >-
           Ek het gesien hoe my bestuurder na my kollega toe stap en hom vir 'n lang tydperk omhels.
           Dit het baie onvanpas intiem gelyk en sy het baie ongemaklik gelyk.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngabona umphathi wami esondela futhi wanga uzakwethu isikhathi eside.
           Kwakubonakala kusondelene ngendlela engafanele futhi ebonakala engakhululekile.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndibone umphathi wam esiya kuye wandanga umntu endisebenza naye ixesha elide.
@@ -51,12 +51,12 @@ testimonies:
         text: >-
           My bestuurder het na my kollega gestap en haar kortliks omhels. Dit het gelyk soos 'n vriendelike drukkie
           waar beide partye gemaklik was met die situasie.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Umphathi wami wasondela kumlingani wami wamanga kafushane. Kwabonakala njengokugonana kobungane lapho bobabili
           amaqembu ayenethezekile ngalesi simo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Umanejala wam uye waya kugxa wam wamwola ngokufutshane. Kwakubonakala ngathi kukwangana kobuhlobo apho bobabini

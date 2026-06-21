@@ -24,12 +24,12 @@ testimonies:
         text: >-
           Ek het by die kroeg gesit toe ek persoon C na persoon D sien stap en hulle oor iets konfronteer.
           Persoon C het persoon D geslaan, waarna 'n bakleiery ontstaan het.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           SNgangihlezi eduze kwe-bar ngabona umuntu ongu-C eza kumuntu ongu-D futhi abhekane naye ngokuthile.
           U-C uqhubekile washaya umuntu u-D, ngemuva kwalokho kwasuka isidumo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndithe ndisahleli ngase bar ndabona umntu ongu C esiya ku D ajamelane naye ngento.
@@ -52,12 +52,12 @@ testimonies:
         text: >-
           Ek het by die kroeg gesit toe ek persoon D na persoon C sien stap en hulle oor iets konfronteer.
           Persoon D het persoon C geslaan, waarna 'n bakleiery ontstaan ​​het.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngathi ngizihlalele ngasebhawa ngabona umuntu ongu-D esondela kumuntu C afike abhekane naye ngokuthile.
           Umuntu u-D uqhubekile nokushaya umuntu u-C, ngemuva kwalokho kwasuka isidumo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndithe ndisahleli ngasebhayi ndabona umntu onguD esiya ku C wajongana naye ngento.

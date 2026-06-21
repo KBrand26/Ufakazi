@@ -39,7 +39,7 @@ testimonies:
           ​​en daarvoor gewag het. Ek het die sedan se trurat- pieper gehoor voor die hobbel. Ek moet erken ek het vir
           'n sekonde na my trollie afgekyk, maar toe ek opkyk, het die sedan steeds agteruit in die luikrug se deur gerol.
           Die luikrug het nie van waar dit gestaan ​​het, beweeg nie.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Bengilayisha izikhwama ebhuthini yami cishe izimoto ezintathu, ngibheke emzileni. I
@@ -48,7 +48,7 @@ testimonies:
           i-beeper ngaphambi kwe-bump. Ngizovuma ukuthi ngibheke phansi ku-trolley yami ukuthola
           okwesibili, kodwa lapho ngibheka phezulu i-sedan yayilokhu ihlehla ingena ngaphakathi
           umnyango we-hatchback. I-hatchback ibingakasuki lapho ibihleli khona.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Bendifaka iibhegi ebhuthini yam malunga neemoto ezintathu kude, ndijonge indlela. I
@@ -84,7 +84,7 @@ testimonies:
           het vorentoe uit sy spasie getrek en die grys sedan getref, wat reeds klaar agteruit gery het en stilgestaan
           ​​het in die baan. Ek het musiek in my oorfone gehad, so ek het nie veel gehoor nie, maar ek het die luikrug
           se voorwiele eerste sien draai en beweeg. Die sedan se remligte was die hele tyd aan, stil.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Bengiphusha inqola yami ngibuyela ethekwini elibhekene ngqo, ngibheke ngqo
@@ -93,7 +93,7 @@ testimonies:
           ngisesendleleni. Nganginomculo kuma-earphone ami ngakho angizwanga okuningi, kodwa mina
           wabona amasondo angaphambili e-hatchback ephenduka futhi ehamba kuqala. Amalambu amabhuleki e-sedan
           zazikhona sonke isikhathi, zamiswa.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Bendityhala I trolley yam ndibuyela ebhayi ngqo, ndijonge ngqo

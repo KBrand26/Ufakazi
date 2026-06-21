@@ -23,12 +23,12 @@ testimonies:
         text: >-
           Ek het hierdie persoon met hul hond en geen rolstoel, wat hulle beweer hulle vir hul gestremdheid nodig het,
           langs die sypaadjie sien loop nie.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngabona lo muntu ehamba eceleni komgwaqo nenja yakhe engenasihlalo esinamasondo abathi uhamba ngaso
           isidingo sokukhubazeka kwabo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndibone lo mntu ehamba ecaleni kwendlela ehamba nenja yakhe engenasitulo esinamavili ababanga ukuba uhamba ngaso
@@ -48,11 +48,11 @@ testimonies:
         provenance: machine
         text: >-
           Ek het hierdie persoon nog net in hul rolstoel gesien. Ek spandeer toevallig heelwat tyd saam met hulle.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Sengike ngambona lo muntu ehamba ngesihlalo sakhe esinamasondo. Kuyenzeka ngichithe isikhathi esiningi nginabo.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Bendiqala ukumbona lomntu ekwi wheelchair yakhe. Ndiye ndachitha ixesha elininzi kunye nabo.

@@ -30,7 +30,22 @@ from ufakazi.analysis.verbosity import (
     length_summary,
 )
 
-LANG_NAME = {"en": "English", "afr": "Afrikaans", "afr_mt": "Machine Afrikaans"}
+LANG_NAME = {
+    "en": "English",
+    "afr": "Afrikaans",
+    "afr_mt": "Machine Afrikaans",
+    "zul_mt": "isiZulu",
+    "xho_mt": "isiXhosa",
+}
+
+# (display name, translation provenance) for the cross-language ladder. Afrikaans is the
+# one human-verified arm; the rest are machine-translated, which the caption flags.
+LADDER_LABELS = {
+    "afr": ("Afrikaans", "human"),
+    "afr_mt": ("Afrikaans", "machine"),
+    "zul_mt": ("isiZulu", "machine"),
+    "xho_mt": ("isiXhosa", "machine"),
+}
 
 HERE = Path(__file__).parent
 OUT = HERE / "results.html"
@@ -129,6 +144,111 @@ def _scenario_bars(effects: pd.DataFrame) -> str:
         <div class="scn-val">{v:+.2f}</div>
       </div>"""
     return rows
+
+
+def _language_ladder_svg(rows: list[dict]) -> str:
+    """Forest plot: P(prefer each language over English) with bootstrap CIs on one shared
+    0..1 axis. Every point left of 0.50 means English was preferred; the vertical spread
+    between the points is the cross-linguistic gradient that is the card's whole message."""
+    w, x0, x1 = 760, 196, 712
+    plot = x1 - x0
+    top, step = 46, 44
+    axis_y = top + len(rows) * step + 2
+    height = axis_y + 36
+
+    def x(v: float) -> float:
+        return x0 + v * plot
+
+    ticks = ""
+    for v in (0.0, 0.25, 0.5, 0.75, 1.0):
+        ticks += (
+            f'<line x1="{x(v):.1f}" y1="{top - 8}" x2="{x(v):.1f}" y2="{axis_y}" '
+            f'stroke="#e2e8f0" stroke-width="1"/>'
+            f'<text x="{x(v):.1f}" y="{axis_y + 18:.0f}" text-anchor="middle" '
+            f'class="svg-tick">{v:.2f}</text>'
+        )
+    body = ""
+    for i, r in enumerate(rows):
+        cy = top + i * step + step / 2 - 4
+        p, lo, hi = r["p"], r["lo"], r["hi"]
+        body += (
+            f'<text x="{x0 - 16:.0f}" y="{cy - 1:.0f}" text-anchor="end" '
+            f'class="lad-lab">{r["name"]}</text>'
+            f'<text x="{x0 - 16:.0f}" y="{cy + 14:.0f}" text-anchor="end" '
+            f'class="lad-prov">{r["prov"]}</text>'
+            f'<line x1="{x(lo):.1f}" y1="{cy:.1f}" x2="{x(hi):.1f}" y2="{cy:.1f}" '
+            f'stroke="{TEAL}" stroke-width="6" stroke-linecap="round" opacity="0.35"/>'
+            f'<circle cx="{x(p):.1f}" cy="{cy:.1f}" r="7" fill="{TEAL}" '
+            f'stroke="white" stroke-width="2"/>'
+            f'<text x="{x(p):.1f}" y="{cy - 13:.0f}" text-anchor="middle" '
+            f'class="lad-val">{p:.3f}</text>'
+        )
+    return f"""<svg viewBox="0 0 {w} {height}" class="effect-svg" role="img"
+      aria-label="Preference for each language over English, with confidence intervals">
+  <rect x="{x0}" y="{top - 8}" width="{(x(0.5) - x0):.1f}" height="{(axis_y - top + 8):.1f}"
+        fill="{TEAL}" opacity="0.05"/>
+  {ticks}
+  <line x1="{x(0.5):.1f}" y1="{top - 26}" x2="{x(0.5):.1f}" y2="{axis_y}"
+        stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="{x(0.5):.1f}" y="{top - 30:.0f}" text-anchor="middle" class="svg-null">English preferred &#9664; | &#9654; other language preferred (0.50)</text>
+  {body}
+</svg>"""
+
+
+def _language_gradient_card(reports: list[dict], reference: str) -> str:
+    """The cross-linguistic result: how the language penalty varies across all targets,
+    not just Afrikaans. Renders only when at least two non-reference languages were run."""
+    targets = [r for r in reports if not pd.isna(r["p_prefer_target"])]
+    if len(targets) < 2:
+        return ""
+    ordered = sorted(targets, key=lambda r: r["p_prefer_target"], reverse=True)
+    rows = []
+    for r in ordered:
+        name, prov = LADDER_LABELS.get(r["target"], (r["target"], ""))
+        rows.append(
+            {
+                "name": name,
+                "prov": prov,
+                "p": r["p_prefer_target"],
+                "lo": r["ci95"][0],
+                "hi": r["ci95"][1],
+            }
+        )
+    ref_name = LANG_NAME.get(reference, reference)
+    top_r, bot_r = rows[0], rows[-1]
+    top_lab = f"{top_r['name']} ({top_r['prov']})"
+    bot_lab = f"{bot_r['name']} ({bot_r['prov']})"
+    machine_only = [
+        r["name"]
+        for r in rows
+        if r["prov"] == "machine" and r["name"] not in ("Afrikaans",)
+    ]
+    machine_phrase = (
+        " and ".join(dict.fromkeys(machine_only))
+        if machine_only
+        else "the machine-translated languages"
+    )
+    conclusion = (
+        f"Every language is judged less credible than {ref_name}, but the penalty is "
+        f"<strong>graded, not flat</strong>. {top_lab} keeps the most credibility "
+        f"(<b>{top_r['p']:.2f}</b>), while {bot_lab} is chosen over {ref_name} only "
+        f"<b>{bot_r['p'] * 100:.0f}%</b> of the time (<b>{bot_r['p']:.2f}</b>) &mdash; roughly a "
+        f"third of the Afrikaans rate. The content is identical across all renderings, so this "
+        f"ordering is about the <strong>language</strong> itself, and it tracks how much text the "
+        f"model has likely seen in each: a resource- and familiarity-driven bias. One caution: "
+        f"unlike Afrikaans, which a native speaker verified and where human and machine versions "
+        f"behaved alike (below), {machine_phrase} are machine-translated and unverified, so part of "
+        f"their steeper penalty could be translation quality rather than language identity."
+    )
+    return f"""
+    <div class="card">
+      <h2>Does the penalty hold across languages?</h2>
+      <p class="sub">The same forced choice, now with four languages set against the {ref_name}
+        source. Each point is P(prefer that language over {ref_name}); the bar is its 95%
+        scenario-bootstrap interval. Further left means a stronger pull toward {ref_name}.</p>
+      {_language_ladder_svg(rows)}
+      <p class="caption">{conclusion}</p>
+    </div>"""
 
 
 def _verbosity_facts(df: pd.DataFrame, target: str, reference: str) -> dict | None:
@@ -401,6 +521,9 @@ body {{ margin:0; background:#f3f6f4; color:var(--ink);
 .scn-bar.pos {{ background:{AMBER}; }}
 .scn-val {{ text-align:right; font-variant-numeric:tabular-nums; font-weight:700; font-size:.86rem; }}
 .svg-prov {{ font-size:13px; font-weight:800; }}
+.lad-lab {{ fill:#334155; font-size:14px; font-weight:700; }}
+.lad-prov {{ fill:#94a3b8; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }}
+.lad-val {{ fill:var(--ink); font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; }}
 .h2h {{ display:flex; align-items:center; gap:22px; margin-top:20px; padding:18px 22px;
   background:#f0f7f4; border-radius:12px; }}
 .h2h-num {{ font-size:3rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums;
@@ -438,6 +561,7 @@ def build_html(
     n_scenarios: int,
     epochs: int,
     languages: list[str],
+    reports: list[dict],
     verbosity: dict | None = None,
     machine: dict | None = None,
     h2h: dict | None = None,
@@ -517,7 +641,7 @@ def build_html(
         <div><span class="k">Trials</span><span class="v">{effect["n_cross_trials"]}</span></div>
       </div>
     </div>
-
+{_language_gradient_card(reports, effect["reference"])}
     <div class="grid2">
       <div class="card gauge">
         <h2>Position baseline</h2>
@@ -557,9 +681,10 @@ def build_html(
       <ul class="caveats">
         <li>Scenarios and testimonies are <strong>synthetic</strong>; only aggregate rates are shown.</li>
         <li>One model so far (<strong>{meta["model"]}</strong>); the effect may not generalise.</li>
-        <li>Both <strong>human and machine</strong> Afrikaans were tested and the model treats
-          them alike (see above), which separates the language effect from translation quality.
-          Still a single non-English language so far; isiXhosa and isiZulu are the next arms.</li>
+        <li>For <strong>Afrikaans</strong>, human and machine translations behave alike (see above),
+          separating the language effect from translation quality. The <strong>isiZulu and isiXhosa</strong>
+          arms are machine-translated and unverified, so their steeper penalty conflates language with
+          possible translation degradation; a human-verified pass is the next step there.</li>
         <li>The aggregate effect is bias-cancelled; the <em>per-scenario</em> bars are indicative
           only, since a single scenario's content imbalance is not cancelled in isolation.</li>
       </ul>
@@ -605,6 +730,7 @@ def main() -> None:
         n_scenarios,
         epochs,
         languages,
+        reports,
         verbosity,
         machine,
         h2h,

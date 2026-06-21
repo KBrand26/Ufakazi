@@ -20,11 +20,11 @@ testimonies:
         provenance: machine
         text: >-
           Ek het teen 120 km/h gery en ek het die silwer Hyundai op die snelweg verbygesteek.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Bengihamba ngesivinini esingu-120km/h ngase ngidlula iHyundai esiliva emgwaqweni onguthelawayeka.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Bendihamba nge 120km/h ndadlula i Hyundai esilver kuhola wendlela.
@@ -43,11 +43,11 @@ testimonies:
         provenance: machine
         text: >-
           Die silwer Hyundai het my op die snelweg verbygesteek terwyl ek teen 120 km/h gery het.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           IHyundai esilver yangidlula kuthelawayeka ngihamba ngesivinini esingu-120km/h.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           I-Hyundai yesilivere yadlula kum kuhola wendlela ngelixa ndihamba nge-120km/h.

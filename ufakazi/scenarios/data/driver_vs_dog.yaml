@@ -23,12 +23,12 @@ testimonies:
         text: >-
           Ek was op pad huis toe toe 'n loslopende hond oor die pad voor my motor gehardloop het.
           Ek het uitgeswaai om die hond te vermy, maar dit was te laat.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Bengishayela ekhaya ngesikhathi inja ekhululiwe igijima iwela umgwaqo phambi kwemoto yami.
           Ngachezuka ukuze ngigweme inja, kodwa kwase kwephuze kakhulu.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndandiqhuba imoto egodukayo xa inja ekhululweyo ibaleka inqumla indlela phambi kwemoto yam.
@@ -49,11 +49,11 @@ testimonies:
         provenance: machine
         text: >-
           Ek was besig om met my hond aan 'n leiband te stap toe 'n motor in ons ingeswaai en my hond getref het.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Bengihamba nenja yami ngentambo ngesikhathi imoto iphaphalaza ingena kithi yashayisa inja yami.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndandihamba nenja yam ngentambo xa imoto yawela kuthi yaza yabetha inja yam.

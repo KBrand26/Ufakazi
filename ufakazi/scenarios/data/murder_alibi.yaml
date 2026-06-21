@@ -24,12 +24,12 @@ testimonies:
         text: >-
           Ek kon die beskuldigdes vanuit my woonstelvenster sien werk. Hulle was die hele aand van die moord besig.
           Hulle kon nie destyds in die park gewees het nie.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngangibona ummangalelwa esebenza ngefasitela lendlu yami. Babematasa ubusuku bonke becala lokubulala.
           Babengeke babe sepaki ngaleso sikhathi.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Ndandimbona umtyholwa esebenza ngefestile yendlu yam. Babexakekile ubusuku bonke bokubulala.
@@ -53,11 +53,11 @@ testimonies:
         text: >-
           Toe ek van die werk af huis toe stap, het ek die beskuldigde uit 'n park sien hardloop.
           Dit was omtrent die tyd van die moord.
-      zulu_mt:
+      zul_mt:
         provenance: machine
         text: >-
           Ngathi ngibuya emsebenzini ngabona ummangalelwa egijima ephuma epaki. Lokhu kwenzeka ngesikhathi sokubulala.
-      xhosa_mt:
+      xho_mt:
         provenance: machine
         text: >-
           Xa ndibuya emsebenzini, ndabona umtyholwa ebaleka ephuma epakini. Oku kwakumalunga nexesha lokubulala.
