@@ -451,22 +451,41 @@ def _flatten_pref(model: str, pref: dict) -> dict:
     }
 
 
+def _balanced_subset(mdf: pd.DataFrame) -> pd.DataFrame:
+    """A single model's trials restricted to its balanced (non-saturated) scenarios, the
+    clean estimand for the language main effect. With no control trials (e.g. synthetic test
+    frames) saturation can't be judged, so the frame is returned unfiltered."""
+    labels = saturation_labels(mdf)
+    if labels.empty:
+        return mdf
+    balanced = set(labels.loc[~labels["saturated"], "scenario_id"])
+    return mdf[mdf["metadata_scenario_id"].isin(balanced)]
+
+
 def language_effect_table(
     df: pd.DataFrame,
     reference: str = DEFAULT_REFERENCE,
     n_boot: int = 2000,
     seed: int = 0,
+    *,
+    balanced_only: bool = True,
 ) -> pd.DataFrame:
     """Per-model language main effect: one row per (model, target language) with the
     preference, its scenario-bootstrap 95% CI, significance and n. Drives the forest plot,
-    the model x language heatmap, and the cross-linguistic gradient."""
-    rows = [
-        _flatten_pref(model, pref)
-        for model in models_in(df)
-        for pref in language_report(
-            df[df["model"] == model], reference, n_boot=n_boot, seed=seed
+    the model x language heatmap, and the cross-linguistic gradient.
+
+    `balanced_only` (default) restricts each model to its balanced scenarios, the clean
+    main-effect arm; the saturated scenarios are reported separately by
+    `override_effect_table`. Saturation is judged per model from its own controls."""
+    rows = []
+    for model in models_in(df):
+        mdf = df[df["model"] == model]
+        if balanced_only:
+            mdf = _balanced_subset(mdf)
+        rows.extend(
+            _flatten_pref(model, pref)
+            for pref in language_report(mdf, reference, n_boot=n_boot, seed=seed)
         )
-    ]
     return pd.DataFrame(
         rows,
         columns=[
@@ -479,6 +498,55 @@ def language_effect_table(
             "significant",
             "n_cross_trials",
             "p_prefer_target_continuous",
+        ],
+    )
+
+
+def override_effect_table(
+    df: pd.DataFrame,
+    reference: str = DEFAULT_REFERENCE,
+    threshold: float = SATURATION_THRESHOLD,
+    n_boot: int = 2000,
+    seed: int = 0,
+) -> pd.DataFrame:
+    """Per-model content-override probe, one row per (model, target language): how the
+    model's content favourite survives being written in the target language, plus the
+    fraction of saturated scenarios where the favourite flipped. Drives the override figure;
+    the saturated-arm companion to `language_effect_table`."""
+    rows = []
+    for model in models_in(df):
+        over = content_override(
+            df[df["model"] == model], reference, threshold, n_boot=n_boot, seed=seed
+        )
+        for _, r in over.iterrows():
+            n = r["n_scenarios"]
+            rows.append(
+                {
+                    "model": model,
+                    "target": r["target"],
+                    "p_pick_favoured_in_target": r["p_pick_favoured_in_target"],
+                    "p_pick_favoured_in_reference": r["p_pick_favoured_in_reference"],
+                    "override_drop": r["override_drop"],
+                    "flip_fraction": (r["n_flipped"] / n) if n else float("nan"),
+                    "ci_lo": r["ci_lo"],
+                    "ci_hi": r["ci_hi"],
+                    "n_scenarios": int(n),
+                    "n_flipped": int(r["n_flipped"]),
+                }
+            )
+    return pd.DataFrame(
+        rows,
+        columns=[
+            "model",
+            "target",
+            "p_pick_favoured_in_target",
+            "p_pick_favoured_in_reference",
+            "override_drop",
+            "flip_fraction",
+            "ci_lo",
+            "ci_hi",
+            "n_scenarios",
+            "n_flipped",
         ],
     )
 

@@ -29,6 +29,7 @@ from ufakazi.analysis.load import (
     language_effect_table,
     load_trials,
     models_in,
+    override_effect_table,
     provenance_effect_table,
 )
 
@@ -153,7 +154,7 @@ def _forest(plt, palette, effect: pd.DataFrame):
     ax.invert_yaxis()
     ax.set_xlim(0, 1)
     ax.set_xlabel("P(prefer the target-language testimony over English)")
-    ax.set_title("Language main effect by model")
+    ax.set_title("Language main effect by model\n(balanced scenarios)")
     ax.text(
         NEUTRAL,
         ax.get_ylim()[0],
@@ -194,7 +195,41 @@ def _heatmap(plt, sns, effect: pd.DataFrame):
     )
     ax.set_xlabel("")
     ax.set_ylabel("")
-    ax.set_title("Preference for the target language vs English")
+    ax.set_title("Preference for the target language vs English\n(balanced scenarios)")
+    return fig
+
+
+def _override_heatmap(plt, sns, override: pd.DataFrame):
+    """Model x language heatmap of the override flip-rate: the share of a model's *saturated*
+    scenarios whose content favourite it abandons once that testimony is written in the target
+    language. High = language overrides a content preference the model otherwise holds."""
+    targets = _ordered_targets(override["target"].unique())
+    models = models_in_table(override)
+    grid = override.pivot_table(
+        index="model", columns="target", values="flip_fraction"
+    ).reindex(index=models, columns=targets)
+    grid.index = [short_model_name(m) for m in grid.index]
+    grid.columns = [lang_label(c, multiline=True) for c in grid.columns]
+    fig, ax = plt.subplots(
+        figsize=(1.6 + 1.15 * len(targets), 1.4 + 0.5 * max(len(models), 1))
+    )
+    sns.heatmap(
+        grid,
+        ax=ax,
+        cmap="Reds",
+        vmin=0.0,
+        vmax=1.0,
+        annot=True,
+        fmt=".0%",
+        linewidths=0.5,
+        linecolor="white",
+        cbar_kws={"label": "saturated scenarios flipped", "shrink": 0.8},
+    )
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_title(
+        "Content override: language flips the favourite\n(saturated scenarios)"
+    )
     return fig
 
 
@@ -379,10 +414,13 @@ def generate_figures(
     reference: str = "en",
     n_boot: int = 2000,
     seed: int = 0,
+    all_runs: bool = True,
 ) -> list[Path]:
     """Build every paper figure (PDF + PNG) and the tidy tables (CSV + macros.tex) from
     the eval logs in `logs`, written under `outdir`. Returns the paths written.
 
+    `all_runs` (default) pools every eval per model, so a model split across logs (e.g. a
+    partial run plus its top-up) combines; set it False to use only each model's latest eval.
     Deterministic: the scenario bootstrap uses a fixed `seed`, so reruns are identical."""
     import matplotlib
 
@@ -392,11 +430,14 @@ def generate_figures(
 
     from ufakazi.analysis.load import filter_latest_per_model
 
-    df = filter_latest_per_model(load_trials(logs))
+    df = load_trials(logs)
+    if not all_runs:
+        df = filter_latest_per_model(df)
     if df.empty or not models_in(df):
         raise ValueError(f"No model results found in {logs!r}.")
 
     effect = language_effect_table(df, reference, n_boot=n_boot, seed=seed)
+    override = override_effect_table(df, reference, n_boot=n_boot, seed=seed)
     prov = provenance_effect_table(df, n_boot=n_boot, seed=seed)
     controls = control_table(df)
 
@@ -407,6 +448,7 @@ def generate_figures(
     # Tidy numbers first, so they exist even if a plot is skipped for sparse data.
     for name, table in (
         ("language_effect", effect),
+        ("override_effect", override),
         ("provenance_effect", prov),
         ("controls", controls),
     ):
@@ -421,6 +463,9 @@ def generate_figures(
     builders = {
         "forest_language_effect": lambda: _forest(plt, palette, effect),
         "heatmap_model_language": lambda: _heatmap(plt, sns, effect),
+        "override_heatmap": (lambda: _override_heatmap(plt, sns, override))
+        if not override.empty
+        else None,
         "gradient": lambda: _gradient(plt, palette, effect),
         "provenance": (lambda: _provenance(plt, palette, prov))
         if not prov.empty
