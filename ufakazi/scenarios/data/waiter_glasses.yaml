@@ -18,13 +18,16 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby die toonbank gesit en sien hoe die kelner teen 'n kas stamp,
+          wat die glase op hul skinkbord laat val en breek het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngihlaliswe eduze kwekhawunta ngabona uweta eshayisa ikhabethe,
+          okwenze izibuko zethreyi labo zawa zaphuka.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndihleli kufutshane nekhawuntara ndabona iwaiter ingqubeka kwikhabhathi,
+          nto leyo eyenza ukuba iiglasi ezikwitreyi zabo ziwe zaphuka.
 
   - testimony_id: B
     speaker: Second witness
@@ -39,10 +42,13 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby die toonbank gesit en sien hoe 'n ander klant teen die kelner stamp,
+          wat die glase op hul skinkbord laat val en breek het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngihlaliswe eduze kwekhawunta ngabona elinye ikhasimende lishayisa uweta,
+          okwenze izibuko zethreyi labo zawa zaphuka.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndihleli kufutshane nekhawuntara ndabona omnye umthengi engqubeka kwi waiter,
+          nto leyo eyenza ukuba iiglasi ezikwitreyi zabo ziwe zaphuka.

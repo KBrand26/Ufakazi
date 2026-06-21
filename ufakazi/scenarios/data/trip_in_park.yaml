@@ -18,13 +18,13 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het langs die passasier gesit en hulle sien vertrek voordat ek die bestuurder betaal het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangihlezi eceleni komgibeli ngababona behamba ngaphambi kokukhokhela umshayeli.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Bendihleli ecaleni kwe passanger ndababona behamba bengekabhatali umqhubi.
 
   - testimony_id: B
     speaker: Second witness
@@ -39,10 +39,13 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het met my hond daar naby gaan stap toe ek sien hoe Persoon D oor 'n rots op die paadjie trippel
+          en val op die grond.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Bengihambisa inja yami eduze ngenkathi ngibona u-Person D egibela idwala endleleni
+          futhi awe phansi.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndandihamba nenja yam kufutshane xa ndabona uMntu D ekhwela ilitye endleleni
+          aze awe emhlabeni.

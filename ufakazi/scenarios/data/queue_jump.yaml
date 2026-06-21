@@ -19,13 +19,16 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het verder agter in die ry gewag en gesien hoe Persoon D voor Persoon C insny
+          wie eerste daar gestaan ​​het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngisalinde emuva kakhulu kulayini futhi ngabona uMuntu D esika phambi koMuntu C
+          owama lapho kuqala.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndithe ndisalinde umva emgceni ndabona uMntu D esika phambi koMntu C
+          owama apho kuqala.
 
   - testimony_id: B
     speaker: Second witness
@@ -40,10 +43,13 @@ testimonies:
         text: "[TODO: human Afrikaans (calibration) translation]"
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het verder agter in die tou gewag en gesien hoe Persoon C voor Persoon D probeer sny,
+          wat eerste daar gestaan ​​het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Bengilokhu ngilindile emuva kulayini ngabona uMuntu C ezama ukudlula kuMuntu D,
+          owayekade emi lapho kuqala.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndilinde umva emgceni ndabona uMntu C ezama ukusika ngaphambi koMntu D,
+          ababemi apho kuqala.

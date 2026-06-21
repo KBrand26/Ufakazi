@@ -19,13 +19,16 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby gestaan ​​en sien hoe Persoon C Persoon D takel.
+          Persoon D is met harsingskudding gelaat.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangimi eduze ngabona uMuntu C ebhekana noMuntu D.
+          Umuntu D wasala ebanjwe yikhanda.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndime kufutshane ndabona uMntu C equbisana no-D.
+          Umntu uD washiyeka exhuzule.
 
   - testimony_id: B
     speaker: Second witness
@@ -40,10 +43,13 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby gestaan ​​en sien hoe Persoon D aggressief in Persoon C vashardloop.
+          Persoon D is met harsingskudding gelaat.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangimi eduze ngabona uMuntu D egijima eyongena kuMuntu C.
+          Umuntu D wasala ebanjwe yikhanda.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: TBNdime kufuphi ndabona u-D ebaleka eyongena kuMntu C.
+          Umntu uD washiyeka exhuzule.

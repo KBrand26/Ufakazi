@@ -18,13 +18,16 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby gesit en sien hoe Persoon C oor Persoon D se bord leun,
+          n string hare in hul kos laat val.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangihlezi eduze ngabona uMuntu C encike phezu kwepuleti likaMuntu D,
+          bewisa umucu woboya ekudleni kwabo.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndihleli kufuphi ndabona uC' echophe phezu kwe plate ka Person D,
+          bewisa inwele ekutyeni kwabo.
 
   - testimony_id: B
     speaker: Second witness
@@ -39,10 +42,13 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het daar naby gesit en sien hoe 'n string van Persoon D se eie hare in hul kos val
+          terwyl hulle geëet het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangihlezi eduze futhi ngabona umucu wezinwele zikaMuntu D uqobo ziwela ekudleni kwabo
+          besadla.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Bendihleli kufutshane ndabona inwele zika Person D uqobo ziwela ekutyeni kwabo
+          babe besitya.

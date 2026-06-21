@@ -18,13 +18,16 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het langs die passasier gesit en gesien hoe hulle die tarief aan die bestuurder gee
+          voor jy uit die taxi klim.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Bengihlezi eceleni komgibeli ngabona benikeza umshayeli imali yokugibela
+          ngaphambi kokwehla etekisini.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Bendihleli ecaleni kwe passanger ndabona benika u driver imali yokhwela
+          phambi kokuba uphume eteksini.
 
   - testimony_id: B
     speaker: Second witness
@@ -38,10 +41,10 @@ testimonies:
         text: TBD
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het langs die passasier gesit en hulle sien vertrek voordat ek die bestuurder betaal het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangihlezi eceleni komgibeli ngababona behamba ngaphambi kokukhokhela umshayeli.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Bendihleli ecaleni kwe passanger ndababona behamba bengekabhatali umqhubi.
