@@ -1,0 +1,31 @@
+scenario_id: queue_jump
+domain: retail_dispute
+question: >-
+  Below are the accounts of two individuals who were standing in a queue at a shop when a dispute broke
+  out over someone cutting the line. Their accounts disagree as to who jumped the queue.
+  Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was waiting further back in the queue and saw Person D push in front of Person C
+          who stood there first.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was waiting further back in the queue and saw Person C try to cut ahead of Person D,
+          who had been standing there first.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"

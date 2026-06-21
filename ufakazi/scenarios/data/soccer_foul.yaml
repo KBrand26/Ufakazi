@@ -1,0 +1,30 @@
+scenario_id: soccer_foul
+domain: sport_dispute
+question: >-
+  Below are the accounts of two spectators who watched a soccer match in which a player went down inside
+  the penalty box. Their accounts disagree as to whether there was a foul. Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was watching from the stands and saw Person C deliberately trip Person D
+          inside the penalty box.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was watching from the stands and saw Person D dive inside the penalty box,
+          although Person C never touched them.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"

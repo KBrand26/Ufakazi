@@ -1,0 +1,30 @@
+scenario_id: hair_in_food
+domain: food_complaint
+question: >-
+  Below are the accounts of two individuals who saw a strand of hair end up in a diner's food at a
+  restaurant. Their accounts disagree as to how the hair got there. Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was sitting at the next table and saw Person C lean over Person D's plate
+          dropping a strand of hair in their food.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was sitting at the next table and saw a strand of Person D's own hair fall into their food
+          while they were eating.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"

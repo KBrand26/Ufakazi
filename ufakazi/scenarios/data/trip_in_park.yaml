@@ -1,0 +1,30 @@
+scenario_id: trip_in_park
+domain: public_accident
+question: >-
+  Below are the accounts of two individuals who witnessed an incident in a park where one person
+  fell.  Their accounts disagree as to what/who caused the fall. Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was sitting on a bench reading when I saw Person C trip Person D,
+          who then fell to the ground.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was walking my dog nearby when I saw Person D trip over a loose rock on the path
+          and fall to the ground.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"

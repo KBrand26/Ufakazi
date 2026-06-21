@@ -1,0 +1,30 @@
+scenario_id: concussion_tackle
+domain: injury_dispute
+question: >-
+  Below are the accounts of two individuals who witnessed a collision between two people during a rugby
+  match which resulted in one of them suffering a concussion. Their accounts disagree as to who caused
+  the collision. Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was standing close by and saw Person C tackle Person D to the ground.
+          Person D fell to the ground and was left with a concussion.
+      afr:
+        provenance: human
+        text: ""
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was standing close by and saw Person D run aggressively into Person C, leaving Person D with a concussion.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"

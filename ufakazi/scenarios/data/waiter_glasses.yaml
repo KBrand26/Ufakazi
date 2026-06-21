@@ -1,0 +1,30 @@
+scenario_id: waiter_glasses
+domain: property_damage
+question: >-
+  Below are the accounts of two individuals who saw a waiter drop a tray of glasses in a restaurant.
+  Their accounts disagree as to what caused the glasses to break. Assess the testimonies below.
+
+testimonies:
+  - testimony_id: A
+    speaker: First witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was seated near the counter and saw the waiter walk into a cabinet,
+          which made the glasses on their tray fall and break.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"
+
+  - testimony_id: B
+    speaker: Second witness
+    translations:
+      en:
+        provenance: source
+        text: >-
+          I was seated near the counter and saw another customer walk into the waiter,
+          which made the glasses on their tray fall and break.
+      afr:
+        provenance: human
+        text: "[TODO: human Afrikaans (calibration) translation]"
