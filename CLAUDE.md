@@ -43,12 +43,20 @@ one Inspect `Sample`. Module boundaries:
 
 A **trial** = `(scenario, language_assignment, position_order, model, system_prompt)`: model and
 system prompt are fixed per `eval()` run; scenario, language assignment, and position order are
-encoded per `Sample` (the last two in `metadata`). Languages are a **set**: each scenario expands
-to every assignment of languages to its two contents (|L|^2) crossed with both position orders;
-equal-language assignments are `same_language_control`, differing ones are `cross_language`.
-Measure = forced binary choice (primary) + choice-token logprob (continuous, where the provider
-supplies it). Counterbalancing isolates the language main effect: randomize position, permute
-language assignment over content, include same-language controls.
+encoded per `Sample` (the last two in `metadata`). Languages are a **set** rendered onto the two
+contents; which language *pairs* are rendered is the **design** (`trials.py`). Default is **star**:
+every language against a single `reference` (English) plus the same-language reference control plus
+human-vs-machine provenance pairs (a `{x}_mt` machine code whose `{x}` human base is present, e.g.
+`afr`/`afr_mt`). `full` is the complete `|L|^2` crossing (every language against every other),
+available via `--design full`. Star is the default because the cross terms it drops (e.g.
+`zul_mt`x`xho_mt`) map to no hypothesis; for 5 languages it is 242 vs 550 samples/epoch. For each
+cross pair both content->language assignments are emitted (each content carries each language) and
+crossed with both position orders; equal-language assignments are `same_language_control`,
+differing ones are `cross_language`. Measure = forced binary choice (primary) + choice-token
+logprob (continuous, where the provider supplies it). Counterbalancing isolates the language main
+effect *structurally*: content and position bias cancel via the cross-pair symmetry, so the
+same-language controls are a balance diagnostic, not a term in the estimator (one reference control
+suffices; per-language controls would only catch content x language interaction).
 
 **Replication via `epochs` (default 10), not caching.** gpt-4o-mini is materially
 nondeterministic even at temperature 0 (greedy decoding still rides on nondeterministic

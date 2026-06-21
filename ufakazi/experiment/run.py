@@ -19,6 +19,7 @@ from inspect_ai import eval as inspect_eval
 
 from ufakazi.experiment.models import resolve_model
 from ufakazi.experiment.task import truthiness_bias
+from ufakazi.experiment.trials import DEFAULT_DESIGN
 
 DEFAULT_LOG_DIR = "results/logs"
 
@@ -28,9 +29,16 @@ def run(
     log_dir: str = DEFAULT_LOG_DIR,
     languages: tuple[str, ...] = ("en", "afr"),
     epochs: int = 10,
+    design: str = DEFAULT_DESIGN,
+    reference: str | None = None,
 ):
     return inspect_eval(
-        truthiness_bias(languages=tuple(languages), epochs=epochs),
+        truthiness_bias(
+            languages=tuple(languages),
+            epochs=epochs,
+            design=design,
+            reference=reference,
+        ),
         model=resolve_model(model),
         log_dir=log_dir,
     )

@@ -33,6 +33,7 @@ from ufakazi.analysis.verbosity import (
 )
 from ufakazi.experiment.probe import probe as probe_model
 from ufakazi.experiment.run import run as run_eval
+from ufakazi.experiment.trials import DEFAULT_DESIGN
 from ufakazi.providers import DEFAULT_KEY, MODEL_REGISTRY
 
 app = typer.Typer(
@@ -94,6 +95,18 @@ def run(
         "-e",
         help="Replications per trial (samples provider nondeterminism).",
     ),
+    design: str = typer.Option(
+        DEFAULT_DESIGN,
+        "--design",
+        "-d",
+        help="'star' (each language vs the English reference + human/machine pairs) "
+        "or 'full' (complete crossing).",
+    ),
+    reference: str = typer.Option(
+        None,
+        "--reference",
+        help="Reference language for the star design (default: en, else first language).",
+    ),
     log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
 ) -> None:
     """Run the truthiness-bias eval (keyless mock by default)."""
@@ -101,8 +114,17 @@ def run(
         if model is not None:
             raise typer.BadParameter("Use either --model or --interactive, not both.")
         model = select_model_interactively()
+    if design not in ("star", "full"):
+        raise typer.BadParameter("--design must be 'star' or 'full'.")
     langs = tuple(lang.strip() for lang in languages.split(",") if lang.strip())
-    run_eval(model=model, log_dir=log_dir, languages=langs, epochs=epochs)
+    run_eval(
+        model=model,
+        log_dir=log_dir,
+        languages=langs,
+        epochs=epochs,
+        design=design,
+        reference=reference,
+    )
 
 
 @app.command()

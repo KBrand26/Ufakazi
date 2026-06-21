@@ -5,18 +5,20 @@ internally consistent."""
 
 from inspect_ai.dataset import Sample
 
-from ufakazi.experiment.trials import expand_scenario
+from ufakazi.experiment.trials import comparison_pairs, expand_scenario
 from ufakazi.scenarios.loader import Scenario, Testimony, Translation
 
 
-def _scenario() -> Scenario:
+def _scenario(langs: tuple[str, ...] = ("en", "af")) -> Scenario:
+    prov = {"en": "source", "af": "human", "af_mt": "machine", "zu_mt": "machine"}
+
     def testimony(tid: str) -> Testimony:
         return Testimony(
             testimony_id=tid,
             speaker=f"Witness {tid}",
             translations={
-                "en": Translation(text=f"text-{tid}-en", provenance="source"),
-                "af": Translation(text=f"text-{tid}-af", provenance="human"),
+                lang: Translation(text=f"text-{tid}-{lang}", provenance=prov[lang])
+                for lang in langs
             },
         )
 
@@ -74,13 +76,62 @@ def test_language_assignment_recorded_per_language():
     assert all(_meta(s)["prov_first"] == "human" for s in samples)
 
 
-def test_language_set_expands_to_all_assignments_and_orders():
-    # |L|^2 assignments x 2 position orders; half are same-language controls for |L|=2.
+def test_star_design_is_reference_centered():
+    # Default star for {en, af}: the en control + the en-af cross pair only. One
+    # same-language assignment (en,en) and both cross directions, each x 2 orders.
     samples = expand_scenario(_scenario(), languages=("en", "af"))
+    conditions = [_meta(s)["condition"] for s in samples]
+    assert conditions.count("same_language_control") == 2  # (en,en) x 2 orders
+    assert conditions.count("cross_language") == 4  # (en,af)+(af,en) x 2 orders
+    # The control is the reference language, never the target.
+    controls = [s for s in samples if _meta(s)["condition"] == "same_language_control"]
+    assert all(_meta(s)["lang_first"] == "en" for s in controls)
+
+
+def test_star_design_omits_non_reference_cross_pairs():
+    # zu_mt is a target, not the reference: it appears only against en, never against af.
+    sc = _scenario(("en", "af", "zu_mt"))
+    cross = [
+        s
+        for s in expand_scenario(sc, languages=("en", "af", "zu_mt"))
+        if _meta(s)["condition"] == "cross_language"
+    ]
+    pairs = {
+        frozenset((_meta(s)["lang_first"], _meta(s)["lang_second"])) for s in cross
+    }
+    assert frozenset(("af", "zu_mt")) not in pairs
+    assert frozenset(("en", "zu_mt")) in pairs and frozenset(("en", "af")) in pairs
+
+
+def test_star_design_includes_human_machine_provenance_pair():
+    # af and af_mt share a base language, so the human-vs-machine pair is rendered even
+    # though af is not the reference.
+    sc = _scenario(("en", "af", "af_mt"))
+    cross = {
+        frozenset((_meta(s)["lang_first"], _meta(s)["lang_second"]))
+        for s in expand_scenario(sc, languages=("en", "af", "af_mt"))
+        if _meta(s)["condition"] == "cross_language"
+    }
+    assert frozenset(("af", "af_mt")) in cross
+
+
+def test_full_design_is_the_complete_crossing():
+    # |L|^2 assignments x 2 position orders; half are same-language controls for |L|=2.
+    samples = expand_scenario(_scenario(), languages=("en", "af"), design="full")
     assert len(samples) == 8
     conditions = [_meta(s)["condition"] for s in samples]
     assert conditions.count("same_language_control") == 4
     assert conditions.count("cross_language") == 4
+
+
+def test_comparison_pairs_star_vs_full():
+    langs = ("en", "af", "af_mt")
+    star = comparison_pairs(langs, design="star")
+    # en control, en-af, en-af_mt, plus the af/af_mt provenance sibling. No af-only or
+    # af_mt-only same-language control.
+    assert set(star) == {("en",), ("af", "en"), ("af_mt", "en"), ("af", "af_mt")}
+    full = comparison_pairs(langs, design="full")
+    assert len(full) == 6  # 3 same-language + C(3,2)=3 cross
 
 
 def test_language_is_bound_to_content_not_position():
