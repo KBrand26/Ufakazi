@@ -18,13 +18,13 @@ testimonies:
           Ek het naby gesit en gesien hoe Persoon C hulle koffie op Person D se skootrekenaar omstamp.
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby gesit en gesien hoe Persoon C hul koffie op Persoon D se skootrekenaar slaan.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangihlezi eduze futhi ngabona u-Person C engqongqoza ikhofi lakhe kwi-laptop ka-Person D.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndihleli kufutshane ndabona uCr ebetha ikofu yakhe kwilaptop kaPerson D.
 
   - testimony_id: B
     speaker: Second witness
@@ -41,10 +41,13 @@ testimonies:
           wat Persoon C se koffie op Persoon D se skootrekenaar laat omval het.
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het naby gesit en gesien hoe Persoon D die gedeelde tafel trek,
+          wat Persoon C se koffie op hul skootrekenaar gestort het.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangihlezi eduze ngabona u-D edonsa itafula elihlanganyelwayo,
+          owathipha ikhofi lika-Person C kwi-laptop yakhe.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndandihleli kufutshane ndabona uMntu D etsala itafile ekwabelwana ngayo,
+          owanika ikofu kaMntu C kwilaptop yakhe.

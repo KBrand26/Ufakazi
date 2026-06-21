@@ -20,13 +20,16 @@ testimonies:
           strafgebied.
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het vanaf die erwe gekyk en gesien hoe Persoon C doelbewus Persoon D struikel
+          binne die strafkas.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangibukele ngimi ngasezitendi ngabona uMuntu C egibela uMuntu D ngamabomu
+          ngaphakathi kwebhokisi lamaphenathi.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndandibukele ndikwindawo yokumisa ndabona uMntu C ekhwelisa uMntu uD ngabom
+          ngaphakathi kwibhokisi yesohlwayo.
 
   - testimony_id: B
     speaker: Second witness
@@ -43,10 +46,13 @@ testimonies:
           Persoon C het nie aan hulle geraak nie.
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het vanaf die staanplek gekyk en gesien hoe Persoon D oor hul eie voete binne die strafkas trippel.
+          Persoon C het nooit aan hulle geraak nie.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngangibukele ngimi ngasezitendi ngabona u-D egibela izinyawo zakhe ngaphakathi kwebhokisi lamaphenathi.
+          Umuntu C akakaze abathinte.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndandibukele ndimi ndaza ndabona uMntu u-D ewela ezinyaweni zakhe ngaphakathi kwibhokisi yesohlwayo.
+          Umntu C akazange abaphathe.

@@ -20,13 +20,16 @@ testimonies:
           maar hulle het nie.
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Ek het vir hulle geld geleen met die mondelinge ooreenkoms dat hulle dit sou terugbetaal
+          maar hulle het nie.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Ngababoleka imali ngesivumelwano somlomo sokuthi bazoyibuyisela
+          kodwa kabazange.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Ndaboleka imali ngesivumelwano somlomo sokuba baza kuyibuyisela
+          kodwa abanayo.
 
   - testimony_id: B
     speaker: Second witness
@@ -41,10 +44,10 @@ testimonies:
           Hulle het vir my geld gee sonder enige ooreenkoms dat ek hulle terug sou betaal.
       afr_mt:
         provenance: machine
-        text: TBD
+        text: Hulle het vir my geld gegee sonder enige ooreenkoms dat ek hulle sou terugbetaal.
       zul_mt:
         provenance: machine
-        text: TBD
+        text: Banginika imali ngaphandle kwesivumelwano sokuthi ngizobabuyisela.
       xho_mt:
         provenance: machine
-        text: TBD
+        text: Bandinika imali bengavumelananga nokuba ndizobabhatala.
