@@ -29,6 +29,12 @@ CROSS = "cross_language"
 DEFAULT_REFERENCE = "en"
 MT_SUFFIX = "_mt"
 
+# A scenario is "saturated" for a model when its control content_skew (|P(chose A) - 0.5|)
+# is at least this high, i.e. the model picks one testimony >= 90% of the time regardless of
+# position. Saturation is judged per model from its own controls, not tagged in the data, so
+# a scenario a strong model balances is not mislabelled by a weaker model's preference.
+SATURATION_THRESHOLD = 0.4
+
 
 def _column_spec() -> list:
     """Default sample columns plus the eval's model, the scorer's logprob, rationale, and
@@ -240,6 +246,138 @@ def control_baselines(df: pd.DataFrame) -> dict:
         if n
         else float("nan"),
     }
+
+
+def per_scenario_control_balance(df: pd.DataFrame) -> pd.DataFrame:
+    """Per-scenario content balance from the same-language controls, a scenario-quality
+    diagnostic. In a control both testimonies share one language, so over the two position
+    orders (which cancel) `P(chose A)` is pure content preference: `content_skew` =
+    `|P(chose A) - 0.5|` is how lopsided the scenario's two testimonies are.
+
+    A near-0.5 skew (P(chose A) ~ 0 or 1) flags a *saturated* scenario whose content has a
+    runaway favourite. Counterbalancing means this does not bias the language main effect,
+    but a saturated scenario contributes little signal: the choice is pinned at the floor or
+    ceiling, so language has no headroom to move it. Sorted worst (most skewed) first."""
+    ctrl = df[(df["metadata_condition"] == CONTROL) & df["valid"]]
+    rows = [
+        {
+            "scenario_id": sid,
+            "p_chose_A": float((g["chosen_id"] == "A").mean()),
+            "content_skew": abs(float((g["chosen_id"] == "A").mean()) - 0.5),
+            "n_control": int(len(g)),
+        }
+        for sid, g in ctrl.groupby("metadata_scenario_id")
+    ]
+    cols = ["scenario_id", "p_chose_A", "content_skew", "n_control"]
+    if not rows:
+        return pd.DataFrame(columns=cols)
+    return pd.DataFrame(rows, columns=cols).sort_values(
+        "content_skew", ascending=False, ignore_index=True
+    )
+
+
+def saturation_labels(
+    df: pd.DataFrame, threshold: float = SATURATION_THRESHOLD
+) -> pd.DataFrame:
+    """Per-scenario control balance plus a `saturated` flag and the `favoured_id` (the
+    testimony the model picks in the control). The split key for the two analysis arms:
+    `saturated == False` scenarios feed the language main effect (content balanced, the
+    counterbalancing assumption holds); `saturated == True` scenarios feed the override
+    probe. Pass a single model's frame, so saturation is judged per model."""
+    bal = per_scenario_control_balance(df)
+    if bal.empty:
+        return bal.assign(
+            saturated=pd.Series(dtype=bool), favoured_id=pd.Series(dtype=str)
+        )
+    bal = bal.copy()
+    bal["saturated"] = bal["content_skew"] >= threshold
+    bal["favoured_id"] = np.where(bal["p_chose_A"] >= 0.5, "A", "B")
+    return bal
+
+
+def content_override(
+    df: pd.DataFrame,
+    reference: str = DEFAULT_REFERENCE,
+    threshold: float = SATURATION_THRESHOLD,
+    n_boot: int = 2000,
+    seed: int = 0,
+) -> pd.DataFrame:
+    """Override probe on the saturated scenarios: can language flip a content preference?
+
+    For each saturated scenario the control fixes the model's *content* favourite. In the
+    cross-language trials that content is sometimes written in the reference language and
+    sometimes in a target language. We measure `P(still pick the favoured testimony)` in each
+    case: when the favourite is written in the reference it should stay strongly preferred
+    (the within-pair baseline); if writing it in the target language drops that below 0.5,
+    language has *overridden* a content preference the model otherwise holds.
+
+    One row per target language: the two probabilities, the drop between them (the override
+    magnitude), a scenario-bootstrap CI on the target-language probability, and how many of
+    the saturated scenarios actually flipped (per-scenario mean < 0.5). Pass one model's
+    frame. Empty if no scenario is saturated for this model."""
+    labels = saturation_labels(df, threshold)
+    sat = set(labels.loc[labels["saturated"], "scenario_id"])
+    favoured = dict(zip(labels["scenario_id"], labels["favoured_id"]))
+    cols = [
+        "target",
+        "p_pick_favoured_in_reference",
+        "p_pick_favoured_in_target",
+        "override_drop",
+        "ci_lo",
+        "ci_hi",
+        "n_scenarios",
+        "n_flipped",
+    ]
+    cross = df[(df["metadata_condition"] == CROSS) & df["valid"]].copy()
+    cross = cross[cross["metadata_scenario_id"].isin(sat)]
+    if cross.empty:
+        return pd.DataFrame(columns=cols)
+
+    cross["favoured_id"] = cross["metadata_scenario_id"].map(favoured)
+    cross["chose_favoured"] = (cross["chosen_id"] == cross["favoured_id"]).astype(float)
+    cross["lang_favoured"] = np.where(
+        cross["favoured_id"] == "A", cross["lang_A"], cross["lang_B"]
+    )
+
+    rows = []
+    targets = sorted((set(cross["lang_A"]) | set(cross["lang_B"])) - {reference, None})
+    for target in targets:
+        pair = cross[
+            cross.apply(
+                lambda r: {r["lang_A"], r["lang_B"]} == {reference, target}, axis=1
+            )
+        ]
+        in_target = pair[pair["lang_favoured"] == target]
+        in_reference = pair[pair["lang_favoured"] == reference]
+        if in_target.empty:
+            continue
+        by_scenario = {
+            s: in_target.loc[
+                in_target["metadata_scenario_id"] == s, "chose_favoured"
+            ].to_numpy()
+            for s in in_target["metadata_scenario_id"].unique()
+        }
+        per_scenario_mean = {s: v.mean() for s, v in by_scenario.items()}
+        lo, hi = _cluster_bootstrap_ci(by_scenario, n_boot, seed)
+        p_target = float(in_target["chose_favoured"].mean())
+        p_reference = (
+            float(in_reference["chose_favoured"].mean())
+            if not in_reference.empty
+            else float("nan")
+        )
+        rows.append(
+            {
+                "target": target,
+                "p_pick_favoured_in_reference": p_reference,
+                "p_pick_favoured_in_target": p_target,
+                "override_drop": p_reference - p_target,
+                "ci_lo": lo,
+                "ci_hi": hi,
+                "n_scenarios": len(by_scenario),
+                "n_flipped": int(sum(m < 0.5 for m in per_scenario_mean.values())),
+            }
+        )
+    return pd.DataFrame(rows, columns=cols)
 
 
 def summarize(df: pd.DataFrame) -> dict:

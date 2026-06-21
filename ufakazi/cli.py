@@ -19,6 +19,8 @@ from rich.prompt import Prompt
 from rich.table import Table
 
 from ufakazi.analysis.load import (
+    SATURATION_THRESHOLD,
+    content_override,
     filter_latest_eval,
     filter_latest_per_model,
     language_preference,
@@ -26,6 +28,7 @@ from ufakazi.analysis.load import (
     load_trials,
     models_in,
     per_scenario_language_effect,
+    saturation_labels,
     summarize,
 )
 from ufakazi.analysis.verbosity import (
@@ -276,35 +279,79 @@ def _report_one(df) -> None:
         "[dim](~0.5 = balanced)[/dim]"
     )
 
-    reports = language_report(df)
-    if not reports:
+    labels = saturation_labels(df)
+    saturated = labels[labels["saturated"]] if not labels.empty else labels
+    balanced_ids = (
+        set(labels.loc[~labels["saturated"], "scenario_id"])
+        if not labels.empty
+        else set()
+    )
+    if not labels.empty:
         console.print(
-            "\n[yellow]No cross-language trials found (single-language run?).[/yellow]"
+            "\n[bold]Per-scenario content balance[/bold] "
+            f"(controls; skew = |P(chose A) - 0.5|, >= {SATURATION_THRESHOLD:.2f} = saturated):"
         )
-        return
-
-    console.print("\n[bold]Language main effect[/bold] (cross-language trials):")
-    for r in reports:
-        lo, hi = r["ci95"]
-        verdict = (
-            "[green]significant[/green]"
-            if r["significant"]
-            else "[dim]not significant[/dim]"
-        )
-        console.print(
-            f"  P(prefer {r['target']} over {r['reference']}): "
-            f"{r['p_prefer_target']:.3f}  95% CI [{lo:.3f}, {hi:.3f}]  {verdict}  "
-            f"[dim](n={r['n_cross_trials']})[/dim]"
-        )
-        if r["p_prefer_target_continuous"] is not None:
+        if saturated.empty:
             console.print(
-                f"      continuous (logprob mass on {r['target']}): "
-                f"{r['p_prefer_target_continuous']:.3f}"
+                f"  [green]all {len(labels)} scenarios balanced[/green] "
+                f"(max skew {labels['content_skew'].max():.2f})"
+            )
+        else:
+            for _, row in saturated.iterrows():
+                console.print(
+                    f"  [yellow]{row['scenario_id']:34}[/yellow] "
+                    f"P(chose A)={row['p_chose_A']:.2f}  skew={row['content_skew']:.2f}  "
+                    f"favours {row['favoured_id']}  [dim](n={row['n_control']})[/dim]"
+                )
+            console.print(
+                f"  [dim]{len(balanced_ids)} balanced -> main effect; "
+                f"{len(saturated)} saturated -> override probe.[/dim]"
             )
 
-    langs_present = set(df["lang_A"].dropna()) | set(df["lang_B"].dropna())
+    balanced_df = df[df["metadata_scenario_id"].isin(balanced_ids)]
+    reports = language_report(balanced_df)
+    if reports:
+        console.print(
+            "\n[bold]Language main effect[/bold] "
+            "(cross-language trials, balanced scenarios only):"
+        )
+        for r in reports:
+            lo, hi = r["ci95"]
+            verdict = (
+                "[green]significant[/green]"
+                if r["significant"]
+                else "[dim]not significant[/dim]"
+            )
+            console.print(
+                f"  P(prefer {r['target']} over {r['reference']}): "
+                f"{r['p_prefer_target']:.3f}  95% CI [{lo:.3f}, {hi:.3f}]  {verdict}  "
+                f"[dim](n={r['n_cross_trials']})[/dim]"
+            )
+            if r["p_prefer_target_continuous"] is not None:
+                console.print(
+                    f"      continuous (logprob mass on {r['target']}): "
+                    f"{r['p_prefer_target_continuous']:.3f}"
+                )
+
+    _print_override(df)
+
+    if not reports:
+        if balanced_df.empty and not saturated.empty:
+            console.print(
+                "\n[dim]Every scenario saturated for this model; no balanced main "
+                "effect (see override probe above).[/dim]"
+            )
+        else:
+            console.print(
+                "\n[yellow]No cross-language trials found (single-language run?).[/yellow]"
+            )
+        return
+
+    langs_present = set(balanced_df["lang_A"].dropna()) | set(
+        balanced_df["lang_B"].dropna()
+    )
     if {"afr", "afr_mt"} <= langs_present:
-        hm = language_preference(df, target="afr_mt", reference="afr")
+        hm = language_preference(balanced_df, target="afr_mt", reference="afr")
         lo, hi = hm["ci95"]
         verdict = (
             "[green]significant[/green]"
@@ -321,7 +368,7 @@ def _report_one(df) -> None:
         )
 
     target, reference = reports[0]["target"], reports[0]["reference"]
-    effects = per_scenario_language_effect(df, target)
+    effects = per_scenario_language_effect(balanced_df, target)
     if not effects.empty:
         console.print(
             f"\n[bold]Per-scenario shift[/bold] "
@@ -330,7 +377,32 @@ def _report_one(df) -> None:
         for _, row in effects.iterrows():
             console.print(f"  {row['scenario_id']:34} {row['language_effect']:+.3f}")
 
-    _print_verbosity(df, target, reference)
+    _print_verbosity(balanced_df, target, reference)
+
+
+def _print_override(df) -> None:
+    """Content-override probe: on saturated scenarios, does writing the content-favoured
+    testimony in another language flip the model's otherwise-certain choice?"""
+    override = content_override(df)
+    if override.empty:
+        return
+    console.print(
+        "\n[bold]Content-override probe[/bold] (saturated scenarios; can language flip the "
+        "content favourite?):"
+    )
+    for _, row in override.iterrows():
+        flipped = (
+            f"[red]{int(row['n_flipped'])}/{int(row['n_scenarios'])} flipped[/red]"
+            if row["n_flipped"]
+            else f"[dim]0/{int(row['n_scenarios'])} flipped[/dim]"
+        )
+        console.print(
+            f"  favourite in {row['target']}: P(still pick it) = "
+            f"{row['p_pick_favoured_in_target']:.3f}  "
+            f"95% CI [{row['ci_lo']:.3f}, {row['ci_hi']:.3f}]  "
+            f"[dim](vs {row['p_pick_favoured_in_reference']:.3f} in en; "
+            f"drop {row['override_drop']:+.3f})[/dim]  {flipped}"
+        )
 
 
 def _print_verbosity(df, target: str, reference: str) -> None:

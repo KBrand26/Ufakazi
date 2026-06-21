@@ -10,9 +10,11 @@ import pandas as pd
 
 from ufakazi.analysis.load import (
     _continuous_target_prob,
+    content_override,
     filter_latest_per_model,
     language_effect_table,
     language_preference,
+    per_scenario_control_balance,
     per_scenario_language_effect,
 )
 
@@ -122,3 +124,49 @@ def test_per_scenario_effect_empty_when_no_paired_assignments():
     effects = per_scenario_language_effect(pd.DataFrame(rows), target="afr")
     assert effects.empty
     assert list(effects.columns) == ["scenario_id", "language_effect", "n_trials"]
+
+
+def _control_row(scenario: str, chosen_id: str):
+    """One same-language-control trial (both testimonies in the reference language)."""
+    return {
+        "metadata_condition": "same_language_control",
+        "metadata_scenario_id": scenario,
+        "chosen_id": chosen_id,
+        "valid": True,
+    }
+
+
+def test_control_balance_flags_saturated_scenarios_and_sorts_worst_first():
+    # "sat" always yields testimony A (a runaway favourite -> skew 0.5); "bal" splits evenly
+    # over both orders (skew 0). The diagnostic must surface the saturated one at the top.
+    rows = [_control_row("sat", "A") for _ in range(4)]
+    rows += [_control_row("bal", c) for c in ("A", "B", "A", "B")]
+    out = per_scenario_control_balance(pd.DataFrame(rows))
+
+    assert list(out["scenario_id"]) == ["sat", "bal"]  # worst (most skewed) first
+    sat = out.set_index("scenario_id").loc["sat"]
+    bal = out.set_index("scenario_id").loc["bal"]
+    assert sat["p_chose_A"] == 1.0 and sat["content_skew"] == 0.5
+    assert bal["p_chose_A"] == 0.5 and bal["content_skew"] == 0.0
+
+
+def test_content_override_detects_language_flipping_a_content_favourite():
+    # "sat": control always picks A, so A is the saturated content favourite. In cross
+    # {en, xho}, the favourite written in en stays picked, but written in xho the model
+    # defects to the en testimony (a flip). "bal" is balanced -> excluded from the probe.
+    rows = [_control_row("sat", "A") for _ in range(4)]
+    rows += [_control_row("bal", c) for c in ("A", "B")]
+    rows += [
+        _cross_row("sat", "en", "xho", "A"),  # favourite (A) in en -> kept
+        _cross_row("sat", "xho", "en", "B"),  # favourite (A) in xho -> flipped to B
+        _cross_row("bal", "en", "xho", "A"),  # balanced scenario, must be ignored
+        _cross_row("bal", "xho", "en", "A"),
+    ]
+    out = content_override(pd.DataFrame(rows), reference="en")
+
+    assert list(out["target"]) == ["xho"]  # only the saturated scenario's pair
+    row = out.iloc[0]
+    assert row["p_pick_favoured_in_reference"] == 1.0
+    assert row["p_pick_favoured_in_target"] == 0.0
+    assert row["override_drop"] == 1.0
+    assert row["n_scenarios"] == 1 and row["n_flipped"] == 1

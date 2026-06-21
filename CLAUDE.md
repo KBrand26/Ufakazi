@@ -38,7 +38,17 @@ one Inspect `Sample`. Module boundaries:
   score metadata via a column spec) into pandas: control baselines, the **language main effect**
   (`P(prefer the target-written testimony)` over cross-language trials, content bias cancelled by
   symmetric aggregation), per-scenario shift, and a continuous logprob measure, all with
-  **scenario-level (cluster) bootstrap** CIs. A multi-model `sweep` writes one eval (one model) per
+  **scenario-level (cluster) bootstrap** CIs. **Two analysis arms, split per model from the
+  controls (not tagged in the data):** `per_scenario_control_balance` measures each scenario's
+  `content_skew = |P(chose A) - 0.5|`; `saturation_labels` flags scenarios with skew >=
+  `SATURATION_THRESHOLD` (0.4) as **saturated** for that model. Balanced scenarios feed the clean
+  **language main effect**; saturated ones feed the **`content_override` probe** (does writing the
+  model's content favourite in another language flip a choice it otherwise makes ~always? the
+  vivid "language overrides evidence" result, but capability-confounded for low-resource languages,
+  so lead it with Afrikaans where comprehension is not the issue). The split is dynamic: a scenario
+  saturated for a weak model may be balanced for a strong one, so all scenarios run and each model's
+  own controls sort them. Keep a **diverse** scenario set (some easy/saturated, some balanced); do
+  not engineer balance or cut saturated scenarios. A multi-model `sweep` writes one eval (one model) per
   `.eval`, so the `model` column is load-bearing: `filter_latest_per_model` keeps each model's most
   recent eval (the per-model generalization of `filter_latest_eval`), and the tidy
   `language_effect_table` / `provenance_effect_table` / `control_table` emit one row per
@@ -121,7 +131,7 @@ uv run ufakazi sweep -m batch1 -e 1 --limit 8 # smoke test the final panel (~$0.
 uv run ufakazi sweep -m batch1                # final Batch 1 (Claude/GPT/Gemini + Gemma ladder)
 uv run ufakazi sweep -m batch2                # final Batch 2 (Grok, Qwen); pools via analyze --all
 uv run ufakazi probe claude                   # check a model parses + returns logprobs
-uv run ufakazi analyze                        # per-model control baselines + language main effect
+uv run ufakazi analyze                        # per-model: controls, balance split, main effect + override probe
 uv run ufakazi analyze --all                  # pool every run per model (additive epochs)
 uv run ufakazi figures                        # paper figures (PDF+PNG) + tables -> results/figures
 uv run inspect view --log-dir results/logs    # browse raw outputs in the log viewer
