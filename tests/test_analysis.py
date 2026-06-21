@@ -10,6 +10,8 @@ import pandas as pd
 
 from ufakazi.analysis.load import (
     _continuous_target_prob,
+    filter_latest_per_model,
+    language_effect_table,
     language_preference,
     per_scenario_language_effect,
 )
@@ -84,3 +86,39 @@ def test_continuous_measure_uses_chosen_token_probability():
     ]
     cross = pd.DataFrame(rows)
     assert _continuous_target_prob(cross, "afr") == 0.45
+
+
+def test_language_effect_table_does_not_conflate_models():
+    # The whole point of model-awareness: an afr-favoring model and a language-blind one
+    # in the same frame must yield separate, correct per-model rows, not a pooled average.
+    afr = _afr_favoring(SCENARIOS).assign(model="favors_afr")
+    blind = _blind_always_A(SCENARIOS).assign(model="language_blind")
+    table = language_effect_table(pd.concat([afr, blind], ignore_index=True), seed=1)
+    assert set(table["model"]) == {"favors_afr", "language_blind"}
+    favors = table[table["model"] == "favors_afr"].iloc[0]
+    neutral = table[table["model"] == "language_blind"].iloc[0]
+    assert favors["p_prefer_target"] == 1.0 and favors["significant"]
+    assert neutral["p_prefer_target"] == 0.5 and not neutral["significant"]
+
+
+def test_filter_latest_per_model_keeps_each_models_most_recent_eval():
+    # Model A has two evals; the newer (lexicographically-later log) wins. Model B's single
+    # eval survives. A naive global "latest eval" would have dropped B entirely.
+    df = pd.DataFrame(
+        [
+            {"model": "A", "eval_id": "a_old", "log": "2026-01-01_t.eval"},
+            {"model": "A", "eval_id": "a_new", "log": "2026-02-01_t.eval"},
+            {"model": "B", "eval_id": "b_one", "log": "2026-01-15_t.eval"},
+        ]
+    )
+    kept = set(filter_latest_per_model(df)["eval_id"])
+    assert kept == {"a_new", "b_one"}
+
+
+def test_per_scenario_effect_empty_when_no_paired_assignments():
+    # No scenario has both an A=target and an A=reference trial, so no paired difference
+    # can be formed. Must return an empty, correctly-columned frame (not raise).
+    rows = [_cross_row("s0", "afr", "en", "A"), _cross_row("s1", "afr", "en", "B")]
+    effects = per_scenario_language_effect(pd.DataFrame(rows), target="afr")
+    assert effects.empty
+    assert list(effects.columns) == ["scenario_id", "language_effect", "n_trials"]

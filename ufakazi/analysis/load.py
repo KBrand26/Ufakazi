@@ -20,27 +20,35 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from inspect_ai.analysis import SampleColumn, SampleSummary, samples_df
+from inspect_ai.analysis import EvalColumn, SampleColumn, SampleSummary, samples_df
 
 CHOICE_COLUMN = "score_record_choice"
 VALID_CHOICES = ("A", "B")
 CONTROL = "same_language_control"
 CROSS = "cross_language"
 DEFAULT_REFERENCE = "en"
+MT_SUFFIX = "_mt"
 
 
 def _column_spec() -> list:
-    """Default sample columns plus the scorer's logprob, rationale, and raw completion."""
-    return list(SampleSummary) + [
-        SampleColumn(
-            "choice_logprob", path="scores.record_choice.metadata.choice_logprob"
-        ),
-        SampleColumn(
-            "chosen_position", path="scores.record_choice.metadata.chosen_position"
-        ),
-        SampleColumn("rationale", path="scores.record_choice.explanation"),
-        SampleColumn("completion", path="scores.record_choice.answer"),
-    ]
+    """Default sample columns plus the eval's model, the scorer's logprob, rationale, and
+    raw completion. The `model` column is what makes the frame model-aware: a multi-model
+    sweep writes one eval (one model) per `.eval` log, so without it the per-model results
+    would be pooled into nonsense."""
+    return (
+        list(SampleSummary)
+        + [EvalColumn("model", path="eval.model")]
+        + [
+            SampleColumn(
+                "choice_logprob", path="scores.record_choice.metadata.choice_logprob"
+            ),
+            SampleColumn(
+                "chosen_position", path="scores.record_choice.metadata.chosen_position"
+            ),
+            SampleColumn("rationale", path="scores.record_choice.explanation"),
+            SampleColumn("completion", path="scores.record_choice.answer"),
+        ]
+    )
 
 
 def load_trials(logs: str = "results/logs") -> pd.DataFrame:
@@ -79,6 +87,29 @@ def filter_latest_eval(df: pd.DataFrame) -> pd.DataFrame:
         return df
     latest_eval_id = df.sort_values("log")["eval_id"].iloc[-1]
     return df[df["eval_id"] == latest_eval_id]
+
+
+def filter_latest_per_model(df: pd.DataFrame) -> pd.DataFrame:
+    """Keep each model's most recent eval run, dropping older runs of the same model.
+
+    A multi-model sweep writes one `.eval` per model, so the whole batch survives (one
+    eval each); re-running a model supersedes its earlier eval rather than pooling into it.
+    This is the per-model generalization of `filter_latest_eval`: the right default when a
+    log dir holds a full panel plus stale re-runs. To instead pool every run of a model
+    (additive epochs), skip this and analyze the frame directly."""
+    if df.empty or not {"model", "eval_id", "log"} <= set(df.columns):
+        return df
+    order = df.sort_values("log")
+    latest = order.groupby("model")["eval_id"].last()
+    keep = set(latest.values)
+    return df[df["eval_id"].isin(keep)]
+
+
+def models_in(df: pd.DataFrame) -> list[str]:
+    """Distinct models present, in stable (sorted) order."""
+    if "model" not in df.columns:
+        return []
+    return sorted(m for m in df["model"].dropna().unique())
 
 
 def _pair_cross_trials(df: pd.DataFrame, target: str, reference: str) -> pd.DataFrame:
@@ -187,7 +218,14 @@ def per_scenario_language_effect(
                         "n_trials": int(len(g)),
                     }
                 )
-    return pd.DataFrame(rows).sort_values("language_effect", ignore_index=True)
+    cols = ["scenario_id", "language_effect", "n_trials"]
+    if (
+        not rows
+    ):  # no scenario has both A=target and A=reference cross trials (sparse data)
+        return pd.DataFrame(columns=cols)
+    return pd.DataFrame(rows, columns=cols).sort_values(
+        "language_effect", ignore_index=True
+    )
 
 
 def control_baselines(df: pd.DataFrame) -> dict:
@@ -230,3 +268,123 @@ def language_report(
         language_preference(df, target, reference, n_boot=n_boot, seed=seed)
         for target in targets
     ]
+
+
+# --- Tidy per-model result tables (the inputs the paper figures + LaTeX macros consume) ---
+
+
+def provenance_pairs(df: pd.DataFrame) -> list[tuple[str, str]]:
+    """Human/machine sibling pairs present: a `{x}_mt` machine code whose `{x}` human base
+    is also assigned somewhere in the frame (e.g. `(afr, afr_mt)`). These isolate the
+    translation-source effect with content and language held constant."""
+    langs = set(df["lang_A"].dropna()) | set(df["lang_B"].dropna())
+    pairs = [
+        (code[: -len(MT_SUFFIX)], code)
+        for code in sorted(langs)
+        if code.endswith(MT_SUFFIX) and code[: -len(MT_SUFFIX)] in langs
+    ]
+    return pairs
+
+
+def _flatten_pref(model: str, pref: dict) -> dict:
+    """One `language_preference` dict flattened to a tidy row, CI split into lo/hi."""
+    lo, hi = pref["ci95"]
+    return {
+        "model": model,
+        "reference": pref["reference"],
+        "target": pref["target"],
+        "p_prefer_target": pref["p_prefer_target"],
+        "ci_lo": lo,
+        "ci_hi": hi,
+        "significant": pref["significant"],
+        "n_cross_trials": pref["n_cross_trials"],
+        "p_prefer_target_continuous": pref["p_prefer_target_continuous"],
+    }
+
+
+def language_effect_table(
+    df: pd.DataFrame,
+    reference: str = DEFAULT_REFERENCE,
+    n_boot: int = 2000,
+    seed: int = 0,
+) -> pd.DataFrame:
+    """Per-model language main effect: one row per (model, target language) with the
+    preference, its scenario-bootstrap 95% CI, significance and n. Drives the forest plot,
+    the model x language heatmap, and the cross-linguistic gradient."""
+    rows = [
+        _flatten_pref(model, pref)
+        for model in models_in(df)
+        for pref in language_report(
+            df[df["model"] == model], reference, n_boot=n_boot, seed=seed
+        )
+    ]
+    return pd.DataFrame(
+        rows,
+        columns=[
+            "model",
+            "reference",
+            "target",
+            "p_prefer_target",
+            "ci_lo",
+            "ci_hi",
+            "significant",
+            "n_cross_trials",
+            "p_prefer_target_continuous",
+        ],
+    )
+
+
+def provenance_effect_table(
+    df: pd.DataFrame, n_boot: int = 2000, seed: int = 0
+) -> pd.DataFrame:
+    """Per-model human-vs-machine effect for each provenance sibling pair: P(prefer the
+    machine translation over the human one), same content and language. Drives the
+    translation-source figure that bounds confidence in the MT-only languages."""
+    pairs = provenance_pairs(df)
+    rows = []
+    for model in models_in(df):
+        mdf = df[df["model"] == model]
+        for human, machine in pairs:
+            pref = language_preference(
+                mdf, target=machine, reference=human, n_boot=n_boot, seed=seed
+            )
+            row = _flatten_pref(model, pref)
+            row["human"] = human
+            row["machine"] = machine
+            rows.append(row)
+    return pd.DataFrame(
+        rows,
+        columns=[
+            "model",
+            "human",
+            "machine",
+            "reference",
+            "target",
+            "p_prefer_target",
+            "ci_lo",
+            "ci_hi",
+            "significant",
+            "n_cross_trials",
+            "p_prefer_target_continuous",
+        ],
+    )
+
+
+def control_table(df: pd.DataFrame) -> pd.DataFrame:
+    """Per-model control diagnostics: parse health and the same-language-control baselines
+    (position bias, residual content preference), each ~0.5 if counterbalancing held."""
+    rows = []
+    for model in models_in(df):
+        mdf = df[df["model"] == model]
+        rows.append({"model": model, **summarize(mdf)})
+    return pd.DataFrame(
+        rows,
+        columns=[
+            "model",
+            "n_trials",
+            "n_parse_errors",
+            "n_control_trials",
+            "position_first_rate",
+            "content_pref_A_rate",
+        ],
+    )
