@@ -15,7 +15,9 @@ testimonies:
           dropping a strand of hair in their food.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby gesit en gesien hoe Persoon C oor Persoon D se bord leun en een van hulle
+          hare in Persoon D se kos val.
       afr_mt:
         provenance: machine
         text: TBD
@@ -36,7 +38,8 @@ testimonies:
           while they were eating.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby gesit en gesien hoe een van Persoon D se eie hare in hulle kos val terwyl hulle geëet het.
       afr_mt:
         provenance: machine
         text: TBD

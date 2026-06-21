@@ -15,7 +15,9 @@ testimonies:
           before getting out of the taxi.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het langsaan die passasier gesit en gesien hoe hulle die bestuurder betaal voordat 
+          hulle uit die taxi geklim het.
       afr_mt:
         provenance: machine
         text: TBD
@@ -35,7 +37,8 @@ testimonies:
           I was sitting beside the passenger and saw them leave before paying the driver.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het langsaan die passasier gesit en gesien hoe hulle uitklim sonder om vir die bestuurder te betaal.
       afr_mt:
         provenance: machine
         text: TBD

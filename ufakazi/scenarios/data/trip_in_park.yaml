@@ -15,7 +15,9 @@ testimonies:
           who then fell to the ground.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het op 'n bank gesit en lees toe ek gesien het hoe Persoon C vir Persoon D potjie,
+          wie toe grond toe val.
       afr_mt:
         provenance: machine
         text: TBD
@@ -36,7 +38,9 @@ testimonies:
           and fall to the ground.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het met my hond daar naby gestap toe ek gesien het hoe Persoon D oor 'n klip in die pad struikel
+          en grond toe val.
       afr_mt:
         provenance: machine
         text: TBD

@@ -16,7 +16,9 @@ testimonies:
           Person D was left with a concussion.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby gestaan en gesien hoe Persoon C vir Persoon D plat duik.
+          Persoon D het harsaanskudding gekry.
       afr_mt:
         provenance: machine
         text: TBD
@@ -37,7 +39,9 @@ testimonies:
           Person D was left with a concussion.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby gestaan en gesien hoe Persoon D aggressief in Person C vashardloop.
+          Persoon D het harsaanskudding gekry.
       afr_mt:
         provenance: machine
         text: TBD

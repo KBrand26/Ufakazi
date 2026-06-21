@@ -15,7 +15,9 @@ testimonies:
           inside the penalty box.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het van die pawiljoen af gekyk en gesien hoe Persoon C opsetlik vir Persoon D potjie binne die
+          strafgebied.
       afr_mt:
         provenance: machine
         text: TBD
@@ -36,7 +38,9 @@ testimonies:
           Person C never touched them.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het van die pawiljoen af gekyk en gesien hoe Persoon D oor hulle eie voete val binne die strafgebied.
+          Persoon C het nie aan hulle geraak nie.
       afr_mt:
         provenance: machine
         text: TBD

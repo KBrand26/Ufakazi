@@ -15,7 +15,9 @@ testimonies:
           which made the glasses on their tray fall and break.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby die toonbank gesit en gesien hoe die kelner teen 'n kas stamp,
+          wat gemaak het dat die glase op hulle skinkbord omval en breek.
       afr_mt:
         provenance: machine
         text: TBD
@@ -36,7 +38,9 @@ testimonies:
           which made the glasses on their tray fall and break.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby die toonbank gesit en gesien hoe 'n ander kliënt die kelner stamp,
+          wat gemaak het dat die glase op hulle skinkbord omval en breek.
       afr_mt:
         provenance: machine
         text: TBD

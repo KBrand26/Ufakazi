@@ -15,7 +15,9 @@ testimonies:
           but they have not.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het vir hulle geld geleen met die verbale ooreenkoms dat hulle my terug sou betaal,
+          maar hulle het nie.
       afr_mt:
         provenance: machine
         text: TBD
@@ -35,7 +37,8 @@ testimonies:
           They gave me money without any agreement that I would pay them back.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Hulle het vir my geld gee sonder enige ooreenkoms dat ek hulle terug sou betaal.
       afr_mt:
         provenance: machine
         text: TBD

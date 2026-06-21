@@ -16,7 +16,9 @@ testimonies:
           who stood there first.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het verder terug in die ry gewag en het gesien hoe Persoon D indruk voor Persoon C wat eerste daar
+          gestaan het.
       afr_mt:
         provenance: machine
         text: TBD
@@ -37,7 +39,9 @@ testimonies:
           who had been standing there first.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: >-
+          Ek het verder terug in die ry gewag en het gesien hoe Persoon C indruk voor Persoon D wat eerste daar
+          gestaan het.
       afr_mt:
         provenance: machine
         text: TBD

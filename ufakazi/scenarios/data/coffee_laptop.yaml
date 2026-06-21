@@ -14,7 +14,8 @@ testimonies:
           I was sitting nearby and saw Person C knock their coffee onto Person D's laptop.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby gesit en gesien hoe Persoon C hulle koffie op Person D se skootrekenaar omstamp.
       afr_mt:
         provenance: machine
         text: TBD
@@ -35,7 +36,9 @@ testimonies:
           which tipped Person C's coffee onto their laptop.
       afr:
         provenance: human
-        text: TBD
+        text: >-
+          Ek het naby gesit en gesien hoe Persoon D die gedeelde tafel trek,
+          wat Persoon C se koffie op Persoon D se skootrekenaar laat omval het.
       afr_mt:
         provenance: machine
         text: TBD
