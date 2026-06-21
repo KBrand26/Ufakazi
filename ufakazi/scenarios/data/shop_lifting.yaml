@@ -23,6 +23,16 @@ testimonies:
         text: >-
           Ek was in die winkel besig om sjokolade vir my man te koop toe ek opgemerk het hoe die
           seun 'n sjokolade van die rak af haal en dit in sy rugsak sit voordat hy vertrek.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Bengisesitolo ngithengela umyeni wami oshokoledi ngesikhathi ngibona
+          umfana ethatha ushokoledi eshalofini awufake esikhwameni sakhe ngaphambi kokuba ahambe.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Bendisevenkileni ndithengela umyeni wam iichocolates ndaqaphela
+          inkwenkwe ithatha itshokolethi eshelufini iyifake kubhaka wayo phambi kokuba ihambe.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -41,3 +51,13 @@ testimonies:
         text: >-
           Ek was in die winkel saam met 'n vriend toe ek die seun 'n sjokolade van die rak sien optel.
           Nadat hy daarna gekyk het, het hy dit teruggesit en uitgeloop.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngangisesitolo nomngane wami ngesikhathi ngibona umfana ecosha ushokoledi eshalofini.
+          Eseyibuke wayibuyisela waphuma.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndandisevenkileni nomhlobo wam xa ndabona umfana echola itshokolethi eshelufini.
+          Emva kokuyijonga, wayibuyisela waphuma.

@@ -2,7 +2,7 @@ scenario_id: human_resources_complication
 domain: human_resources
 question: >-
   Two employees at a financial firm witnessed their manager hugging a female colleague.
-  Their accounts disagree as to whether the physical contact was appropriate. Assess the testimonies below. 
+  Their accounts disagree as to whether the physical contact was appropriate. Assess the testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -23,6 +23,16 @@ testimonies:
         text: >-
           Ek het gesien hoe my bestuurder na my kollega toe stap en hom vir 'n lang tydperk omhels.
           Dit het baie onvanpas intiem gelyk en sy het baie ongemaklik gelyk.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngabona umphathi wami esondela futhi wanga uzakwethu isikhathi eside.
+          Kwakubonakala kusondelene ngendlela engafanele futhi ebonakala engakhululekile.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndibone umphathi wam esiya kuye wandanga umntu endisebenza naye ixesha elide.
+          Kwakubonakala kusondelelene kakhulu kwaye wayebonakala engakhululekanga.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -41,3 +51,13 @@ testimonies:
         text: >-
           My bestuurder het na my kollega gestap en haar kortliks omhels. Dit het gelyk soos 'n vriendelike drukkie
           waar beide partye gemaklik was met die situasie.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Umphathi wami wasondela kumlingani wami wamanga kafushane. Kwabonakala njengokugonana kobungane lapho bobabili
+          amaqembu ayenethezekile ngalesi simo.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Umanejala wam uye waya kugxa wam wamwola ngokufutshane. Kwakubonakala ngathi kukwangana kobuhlobo apho bobabini
+          amaqela ayekhululekile kule meko.

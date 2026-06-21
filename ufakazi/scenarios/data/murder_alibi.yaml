@@ -3,7 +3,7 @@ domain: crime_cases
 question: >-
   Below are the accounts of two individuals who have expressed their knowledge of where they saw someone who
   has been accused of a murder that took place in a park. Each of the witnesses are acquaintances of the accused.
-  They have conflicting statements. Assess their testimonies below. 
+  They have conflicting statements. Assess their testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -24,6 +24,16 @@ testimonies:
         text: >-
           Ek kon die beskuldigdes vanuit my woonstelvenster sien werk. Hulle was die hele aand van die moord besig.
           Hulle kon nie destyds in die park gewees het nie.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngangibona ummangalelwa esebenza ngefasitela lendlu yami. Babematasa ubusuku bonke becala lokubulala.
+          Babengeke babe sepaki ngaleso sikhathi.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndandimbona umtyholwa esebenza ngefestile yendlu yam. Babexakekile ubusuku bonke bokubulala.
+          Babengenakubakho epakini ngelo xesha.
 
 
   - testimony_id: B
@@ -37,9 +47,17 @@ testimonies:
         provenance: human
         text: >-
           Terwyl ek terug geloop het van die werk af het ek die aangeklaagde sien hardloop uit 'n park uit.
-          Dit was rondom die tyd van die moord. 
+          Dit was rondom die tyd van die moord.
       afr_mt:
         provenance: machine
         text: >-
           Toe ek van die werk af huis toe stap, het ek die beskuldigde uit 'n park sien hardloop.
           Dit was omtrent die tyd van die moord.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngathi ngibuya emsebenzini ngabona ummangalelwa egijima ephuma epaki. Lokhu kwenzeka ngesikhathi sokubulala.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Xa ndibuya emsebenzini, ndabona umtyholwa ebaleka ephuma epakini. Oku kwakumalunga nexesha lokubulala.

@@ -2,7 +2,7 @@ scenario_id: dog_vs_kid
 domain: dog_accident
 question: >-
   Below are the accounts of two individuals who witnessed a dog attack on a child.
-  Their accounts disagree as to what occurred before the attack. Assess the testimonies below. 
+  Their accounts disagree as to what occurred before the attack. Assess the testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -20,6 +20,16 @@ testimonies:
         provenance: machine
         text: >-
           Ek was besig om 'n boek saam met my dogter in die park te lees toe 'n hond haar skielik onverwags aanval.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngangifunda incwadi nendodakazi yami epaki lapho inja imhlasela kungazelele muntu.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndandifunda incwadi nentombi yam epakini xa ngequbuliso inja yamhlasela ngaphandle kwesizathu.
+
+
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -37,3 +47,11 @@ testimonies:
         text: >-
           Ek was besig met 'n piekniek in die park toe ek 'n meisie sien wat 'n klip na 'n hond gooi,
           wat veroorsaak het dat dit haar aanval.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Bengisepikinikini epaki ngesikhathi ngibona intombazane ijikijela inja itshe, yayihlasela.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndandikwipikiniki epakini xa ndabona intombazana igibisela inja ngelitye, yaza yayihlasela.

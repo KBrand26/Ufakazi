@@ -2,7 +2,7 @@ scenario_id: kidnapping
 domain: kidnapping
 question: >-
   Below are the accounts of two parents whereby one is accusing the other of kidnapping their children.
-  They both have conflicting statements. Assess their testimonies below. 
+  They both have conflicting statements. Assess their testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -20,6 +20,14 @@ testimonies:
         provenance: machine
         text: >-
           My eksman het ons kinders ontvoer en hulle na Spanje geneem, sonder my toestemming.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Owayengumyeni wami wathumba izingane zethu waziyisa eSpain ngaphandle kwemvume yami.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Owayesakuba ngumyeni wam waxhwila abantwana bethu waza waya nabo eSpain, ngaphandle kwemvume yam.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -35,3 +43,11 @@ testimonies:
         provenance: machine
         text: >-
           Ek het ons kinders na Spanje geneem nadat ek my eksvrou se goedkeuring gekry het.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngayisa izingane zethu eSpain ngemva kokuthola imvume yowayengumkami.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndasa abantwana bethu eSpeyin emva kokuba ndifumene imvume yomfazi wam wangaphambili.

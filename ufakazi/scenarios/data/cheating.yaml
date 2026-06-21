@@ -2,7 +2,7 @@ scenario_id: cheating
 domain: cheating
 question: >-
   Below are the accounts of two students who sat close to a student who was accused of cheating on a test.
-  They both have conflicting statements. Assess their testimonies below. 
+  They both have conflicting statements. Assess their testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -23,6 +23,16 @@ testimonies:
         text: >-
           Ek het twee rye agter die student gesit. Ek het gesien hoe hulle in hul sak gryp na 'n sneesdoekie om hul neus te blaas.
           Daarna het hulle voortgegaan om hul toets te skryf.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngahlala imigqa emibili ngemuva komfundi. Ngababona befaka isandla esikhwameni sabo befuna i-tissue yokubakhipha amakhala.
+          Ngemva kwalokho, baqhubeka nokubhala ukuhlolwa kwabo.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndahlala imiqolo emibini emva komfundi. Ndababona befaka isandla ebhegini yabo befuna ithishu yokuvuthela impumlo.
+          Emva koko, baqhubeka bebhala uvavanyo lwabo.
 
   - testimony_id: B
     speaker: Second witness
@@ -42,3 +52,13 @@ testimonies:
         text: >-
           Ek het twee rye agter die student gesit. Hulle het 'n stuk papier uit hul sak gegryp wat hulle bekyk het.
           Hulle het toe voortgegaan om hul toets te skryf.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngahlala imigqa emibili ngemuva komfundi. Athathe ipheshana esikhwameni alibuke.
+          Base beqhubeka nokubhala isivivinyo sabo.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndahlala imiqolo emibini emva komfundi. Bathatha iphetshana ebhegini yabo balijonga.
+          Baqhubeka ke babhala uvavanyo lwabo.

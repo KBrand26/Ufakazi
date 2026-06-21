@@ -2,7 +2,7 @@ scenario_id: driver_vs_dog
 domain: dog_accident
 question: >-
   Below are the accounts of two individuals who were key players in an accident where a dog got injured.
-  Their accounts disagree as to how the accident took place. Assess the testimonies below. 
+  Their accounts disagree as to how the accident took place. Assess the testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -23,7 +23,17 @@ testimonies:
         text: >-
           Ek was op pad huis toe toe 'n loslopende hond oor die pad voor my motor gehardloop het.
           Ek het uitgeswaai om die hond te vermy, maar dit was te laat.
-          
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Bengishayela ekhaya ngesikhathi inja ekhululiwe igijima iwela umgwaqo phambi kwemoto yami.
+          Ngachezuka ukuze ngigweme inja, kodwa kwase kwephuze kakhulu.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndandiqhuba imoto egodukayo xa inja ekhululweyo ibaleka inqumla indlela phambi kwemoto yam.
+          Ndatyibilika ukuze ndiphephe inja, kodwa lalisele lishiywe lixesha.
+
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -39,3 +49,11 @@ testimonies:
         provenance: machine
         text: >-
           Ek was besig om met my hond aan 'n leiband te stap toe 'n motor in ons ingeswaai en my hond getref het.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Bengihamba nenja yami ngentambo ngesikhathi imoto iphaphalaza ingena kithi yashayisa inja yami.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndandihamba nenja yam ngentambo xa imoto yawela kuthi yaza yabetha inja yam.

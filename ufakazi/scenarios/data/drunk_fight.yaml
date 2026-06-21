@@ -3,7 +3,7 @@ domain: minor_bar_brawl
 question: >-
   Below are the accounts of two people who witnessed a fight between two individuals at the local bar.
   Their accounts are conflicting. We will refer to one individual as person C and the other as person D.
-  Assess their testimonies below. 
+  Assess their testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -24,6 +24,16 @@ testimonies:
         text: >-
           Ek het by die kroeg gesit toe ek persoon C na persoon D sien stap en hulle oor iets konfronteer.
           Persoon C het persoon D geslaan, waarna 'n bakleiery ontstaan het.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          SNgangihlezi eduze kwe-bar ngabona umuntu ongu-C eza kumuntu ongu-D futhi abhekane naye ngokuthile.
+          U-C uqhubekile washaya umuntu u-D, ngemuva kwalokho kwasuka isidumo.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndithe ndisahleli ngase bar ndabona umntu ongu C esiya ku D ajamelane naye ngento.
+          UMntu uC uye wabetha umntu onguD, emva koko kwabakho ingxabano.
   - testimony_id: B
     speaker: Second witness
     translations:
@@ -31,7 +41,7 @@ testimonies:
         provenance: source
         text: >-
           I was sitting by the bar when I saw person D walk up to person C and confront them about something.
-          Person D proceeded to punch person C, after which a brawl ensued. 
+          Person D proceeded to punch person C, after which a brawl ensued.
       afr:
         provenance: human
         text: >-
@@ -42,3 +52,13 @@ testimonies:
         text: >-
           Ek het by die kroeg gesit toe ek persoon D na persoon C sien stap en hulle oor iets konfronteer.
           Persoon D het persoon C geslaan, waarna 'n bakleiery ontstaan ​​het.
+      zulu_mt:
+        provenance: machine
+        text: >-
+          Ngathi ngizihlalele ngasebhawa ngabona umuntu ongu-D esondela kumuntu C afike abhekane naye ngokuthile.
+          Umuntu u-D uqhubekile nokushaya umuntu u-C, ngemuva kwalokho kwasuka isidumo.
+      xhosa_mt:
+        provenance: machine
+        text: >-
+          Ndithe ndisahleli ngasebhayi ndabona umntu onguD esiya ku C wajongana naye ngento.
+          Umntu ongu-D uye wabetha umntu u-C, emva koko kwabakho ingxabano.
