@@ -15,7 +15,16 @@ testimonies:
           inside the penalty box.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -23,8 +32,17 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was watching from the stands and saw Person D dive inside the penalty box,
-          although Person C never touched them.
+          I was watching from the stands and saw Person D trip over their own feet inside the penalty box.
+          Person C never touched them.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

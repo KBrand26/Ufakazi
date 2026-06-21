@@ -1,7 +1,7 @@
 scenario_id: taxi_fare
 domain: transport_dispute
 question: >-
-  Below are the accounts of two passengers who were riding in a minibus taxi when a dispute broke out
+  Below are the accounts of two passengers who were in a minibus taxi when a dispute broke out
   over an unpaid fare. Their accounts disagree as to whether the passenger paid. Assess the testimonies below.
 
 testimonies:
@@ -11,11 +11,20 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was sitting beside them and saw the passenger hand the fare to the driver
+          I was sitting beside the passenger and saw them hand the fare to the driver
           before getting out of the taxi.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -26,4 +35,13 @@ testimonies:
           I was sitting beside the passenger and saw them leave before paying the driver.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

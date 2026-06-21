@@ -3,9 +3,14 @@ appears first, position bias and content preference become inseparable. These te
 that the two position orders are generated and that the metadata describing them is
 internally consistent."""
 
+import pytest
 from inspect_ai.dataset import Sample
 
-from ufakazi.experiment.trials import comparison_pairs, expand_scenario
+from ufakazi.experiment.trials import (
+    build_dataset,
+    comparison_pairs,
+    expand_scenario,
+)
 from ufakazi.scenarios.loader import Scenario, Testimony, Translation
 
 
@@ -164,3 +169,88 @@ def test_same_language_control_has_matching_languages():
     for sample in controls:
         meta = _meta(sample)
         assert meta["lang_first"] == meta["lang_second"]
+
+
+def _partial_scenario(scenario_id: str, langs: tuple[str, ...]) -> Scenario:
+    """A two-testimony scenario where both testimonies carry exactly `langs`."""
+    prov = {"en": "source", "af": "human", "af_mt": "machine"}
+
+    def testimony(tid: str) -> Testimony:
+        return Testimony(
+            testimony_id=tid,
+            speaker=f"Witness {tid}",
+            translations={
+                lang: Translation(
+                    text=f"{scenario_id}-{tid}-{lang}", provenance=prov[lang]
+                )
+                for lang in langs
+            },
+        )
+
+    return Scenario(
+        scenario_id=scenario_id,
+        domain="test",
+        question="Which is more credible?",
+        testimonies=[testimony("A"), testimony("B")],
+    )
+
+
+def test_build_dataset_drops_scenarios_missing_a_requested_language():
+    # Translations land incrementally: a half-translated scenario must not crash the run
+    # or silently corrupt it; it should be dropped, leaving only the complete ones.
+    complete = _partial_scenario("complete", ("en", "af"))
+    incomplete = _partial_scenario("incomplete", ("en",))
+    samples = build_dataset(
+        [complete, incomplete], languages=("en", "af"), design="star"
+    )
+    scenario_ids = {str(s.id).split("|")[0] for s in samples}
+    assert scenario_ids == {"complete"}, "only the fully-translated scenario survives"
+
+
+def test_build_dataset_keeps_scenarios_when_all_languages_present():
+    a = _partial_scenario("a", ("en", "af"))
+    b = _partial_scenario("b", ("en",))
+    samples = build_dataset([a, b], languages=("en",), design="star")
+    assert {str(s.id).split("|")[0] for s in samples} == {"a", "b"}
+
+
+def test_build_dataset_raises_when_no_scenario_qualifies():
+    only_en = _partial_scenario("only_en", ("en",))
+    with pytest.raises(ValueError, match="No scenarios carry all requested languages"):
+        build_dataset([only_en], languages=("en", "af"), design="star")
+
+
+def _scenario_with_texts(scenario_id: str, texts: dict[str, str]) -> Scenario:
+    """Two-testimony scenario where every testimony uses the given lang->text map."""
+    prov = {"en": "source", "af": "human"}
+
+    def testimony(tid: str) -> Testimony:
+        return Testimony(
+            testimony_id=tid,
+            speaker=f"Witness {tid}",
+            translations={
+                lang: Translation(text=text, provenance=prov[lang])
+                for lang, text in texts.items()
+            },
+        )
+
+    return Scenario(
+        scenario_id=scenario_id,
+        domain="test",
+        question="Which is more credible?",
+        testimonies=[testimony("A"), testimony("B")],
+    )
+
+
+def test_placeholder_translation_is_not_assignable():
+    # A present-but-stubbed translation must never render into a trial: it is excluded
+    # from the assignable set until real text replaces the marker.
+    stubbed = _scenario_with_texts("stub", {"en": "real text", "af": "TBD"})
+    assert stubbed.languages() == {"en"}
+    with pytest.raises(ValueError, match="No scenarios carry all requested languages"):
+        build_dataset([stubbed], languages=("en", "af"), design="star")
+
+
+def test_real_translation_becomes_assignable():
+    landed = _scenario_with_texts("landed", {"en": "real text", "af": "regte teks"})
+    assert landed.languages() == {"en", "af"}

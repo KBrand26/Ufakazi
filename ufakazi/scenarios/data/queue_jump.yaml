@@ -12,11 +12,20 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was waiting further back in the queue and saw Person D push in front of Person C
+          I was waiting further back in the queue and saw Person D cut in front of Person C
           who stood there first.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -29,3 +38,12 @@ testimonies:
       afr:
         provenance: human
         text: "[TODO: human Afrikaans (calibration) translation]"
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

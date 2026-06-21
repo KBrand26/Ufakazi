@@ -11,11 +11,20 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was sitting at the next table and saw Person C lean over Person D's plate
+          I was sitting nearby and saw Person C lean over Person D's plate,
           dropping a strand of hair in their food.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -23,8 +32,17 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was sitting at the next table and saw a strand of Person D's own hair fall into their food
+          I was sitting nearby and saw a strand of Person D's own hair fall into their food
           while they were eating.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

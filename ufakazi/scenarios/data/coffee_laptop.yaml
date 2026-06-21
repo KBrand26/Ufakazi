@@ -1,7 +1,7 @@
 scenario_id: coffee_laptop
 domain: property_damage
 question: >-
-  Below are the accounts of two individuals who were in a cafe when coffee was spilled onto a laptop.
+  Below are the accounts of two individuals who were in a cafe when coffee was spilled on a laptop.
   Their accounts disagree as to what caused the spill. Assess the testimonies below.
 
 testimonies:
@@ -11,10 +11,19 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was sitting at the next table and saw Person C knock their coffee onto Person D's laptop.
+          I was sitting nearby and saw Person C knock their coffee onto Person D's laptop.
       afr:
         provenance: human
-        text: ""
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -22,8 +31,17 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was sitting at the next table and saw Person D pull the shared table,
+          I was sitting nearby and saw Person D pull the shared table,
           which tipped Person C's coffee onto their laptop.
       afr:
         provenance: human
-        text: ""
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

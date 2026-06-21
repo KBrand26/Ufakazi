@@ -11,11 +11,20 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was seated near the counter and saw the waiter walk into a cabinet,
+          I was seated near the counter and saw the waiter bump into a cabinet,
           which made the glasses on their tray fall and break.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -23,8 +32,17 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was seated near the counter and saw another customer walk into the waiter,
+          I was seated near the counter and saw another customer bump into the waiter,
           which made the glasses on their tray fall and break.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

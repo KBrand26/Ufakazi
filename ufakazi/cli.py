@@ -34,7 +34,7 @@ from ufakazi.analysis.verbosity import (
 from ufakazi.experiment.probe import probe as probe_model
 from ufakazi.experiment.run import run as run_eval
 from ufakazi.experiment.trials import DEFAULT_DESIGN
-from ufakazi.providers import DEFAULT_KEY, MODEL_REGISTRY
+from ufakazi.providers import BATCHES, DEFAULT_KEY, MODEL_REGISTRY, option_for
 
 app = typer.Typer(
     help="Ufakazi: language-conditioned truthiness-bias eval harness.",
@@ -124,6 +124,90 @@ def run(
         epochs=epochs,
         design=design,
         reference=reference,
+    )
+
+
+def _resolve_models(spec: str) -> list[str]:
+    """Expand a `sweep` models spec into an ordered list of registry keys.
+
+    Accepts a named batch (`batch1`, `batch2`, `reasoning`, `gemma`) or a comma-separated
+    list of keys; deduplicates while preserving order. Validates every key against the
+    registry so a typo fails before any spend.
+    """
+    raw = BATCHES.get(spec.strip().lower())
+    keys = list(raw) if raw else [k.strip() for k in spec.split(",") if k.strip()]
+    seen: dict[str, None] = {}
+    for key in keys:
+        if option_for(key) is None:
+            known = ", ".join(o.key for o in MODEL_REGISTRY)
+            batches = ", ".join(BATCHES)
+            raise typer.BadParameter(
+                f"unknown model '{key}'. Use a batch ({batches}) or registry keys: {known}."
+            )
+        seen[key] = None
+    return list(seen)
+
+
+@app.command()
+def sweep(
+    models: str = typer.Option(
+        "batch1",
+        "--models",
+        "-m",
+        help="A named batch (batch1, batch2, reasoning, gemma) or comma-separated keys.",
+    ),
+    languages: str = typer.Option(
+        "en,afr,afr_mt,zul_mt,xho_mt",
+        "--languages",
+        "-l",
+        help="Comma-separated language set (default: the full study set).",
+    ),
+    epochs: int = typer.Option(
+        10, "--epochs", "-e", help="Replications per trial (samples nondeterminism)."
+    ),
+    design: str = typer.Option(DEFAULT_DESIGN, "--design", "-d"),
+    reference: str = typer.Option(None, "--reference"),
+    max_connections: int = typer.Option(
+        20,
+        "--max-connections",
+        "-c",
+        help="In-run concurrency; raise for the slow reasoning models.",
+    ),
+    limit: int = typer.Option(
+        None,
+        "--limit",
+        help="Cap samples per model (smoke-test lever, e.g. --limit 8 --epochs 1).",
+    ),
+    log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
+) -> None:
+    """Run several models in sequence, one eval per model into a shared log dir.
+
+    Each model runs as its own eval (its own per-model reasoning/logprob config), so the
+    batch can be run iteratively and topped up later; `analyze --all` pools across runs.
+    A cheap smoke test: `ufakazi sweep -m batch1 -e 1 --limit 8`.
+    """
+    if design not in ("star", "full"):
+        raise typer.BadParameter("--design must be 'star' or 'full'.")
+    keys = _resolve_models(models)
+    langs = tuple(lang.strip() for lang in languages.split(",") if lang.strip())
+    console.print(
+        f"[bold]Sweeping {len(keys)} model(s):[/bold] {', '.join(keys)}  "
+        f"[dim](epochs={epochs}, design={design}, limit={limit})[/dim]"
+    )
+    for index, key in enumerate(keys, start=1):
+        console.print(f"\n[bold cyan]({index}/{len(keys)}) {key}[/bold cyan]")
+        run_eval(
+            model=key,
+            log_dir=log_dir,
+            languages=langs,
+            epochs=epochs,
+            design=design,
+            reference=reference,
+            max_connections=max_connections,
+            limit=limit,
+        )
+    console.print(
+        "\n[green]Sweep complete.[/green] Analyze with `ufakazi analyze --all`."
     )
 
 

@@ -18,12 +18,24 @@ import yaml
 DATA_DIR = Path(__file__).parent / "data"
 
 
+# Markers a not-yet-written translation carries in the YAML. Translations land
+# incrementally, so a placeholder must never render into a real trial; the assignable
+# language set (`Scenario.languages`) excludes them until real text replaces the marker.
+_PLACEHOLDER_PREFIXES = ("TBD", "[TODO", "[TBD", "TODO")
+
+
 @dataclass(frozen=True)
 class Translation:
     """One language rendering of a testimony."""
 
     text: str
     provenance: str  # "source" | "human" | "machine"
+
+    @property
+    def is_placeholder(self) -> bool:
+        """True for an empty or stub (`TBD` / `[TODO ...]`) text awaiting a real translation."""
+        marker = self.text.strip().upper()
+        return not marker or marker.startswith(_PLACEHOLDER_PREFIXES)
 
 
 @dataclass(frozen=True)
@@ -53,8 +65,13 @@ class Scenario:
     testimonies: list[Testimony]
 
     def languages(self) -> set[str]:
-        """Languages present for every testimony (the assignable set)."""
-        return set.intersection(*(set(t.translations) for t in self.testimonies))
+        """Languages assignable for every testimony: present and non-placeholder on each."""
+        return set.intersection(
+            *(
+                {lang for lang, tr in t.translations.items() if not tr.is_placeholder}
+                for t in self.testimonies
+            )
+        )
 
 
 def _parse_scenario(raw: dict) -> Scenario:

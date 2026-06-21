@@ -1,7 +1,8 @@
 scenario_id: loan_vs_gift
 domain: money_dispute
 question: >-
-  Below are the accounts of two individuals who disagree over money that was exchanged between them. Their accounts differ from each other. Assess the testimonies below.
+  Below are the accounts of two individuals who disagree over money that was exchanged between them.
+  Their accounts differ from each other. Assess the testimonies below.
 
 testimonies:
   - testimony_id: A
@@ -10,11 +11,20 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I lent the other person money on the understanding that they would pay it back
+          I lent them money with the verbal agreement that they would pay it back
           but they have not.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -22,8 +32,16 @@ testimonies:
       en:
         provenance: source
         text: >-
-          The other person gave me money as a gift to thank me for helping them move.
-          We never agreed that I would pay them back.
+          They gave me money without any agreement that I would pay them back.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD

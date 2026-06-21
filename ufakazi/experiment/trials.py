@@ -26,6 +26,7 @@ handled by Inspect `epochs`, not here.
 
 from __future__ import annotations
 
+import logging
 from itertools import permutations
 from typing import Literal
 
@@ -34,6 +35,8 @@ from inspect_ai.model import ChatMessageSystem, ChatMessageUser
 
 from ufakazi.experiment.prompt import SYSTEM_PROMPT, render_user_prompt
 from ufakazi.scenarios.loader import Scenario
+
+logger = logging.getLogger(__name__)
 
 SAME_LANGUAGE_CONTROL = "same_language_control"
 CROSS_LANGUAGE = "cross_language"
@@ -170,10 +173,37 @@ def build_dataset(
     reference: str | None = None,
     design: str = DEFAULT_DESIGN,
 ) -> list[Sample]:
+    """Expand the scenarios that carry every requested language into counterbalanced samples.
+
+    A scenario only counts a language once every testimony carries a real (non-placeholder)
+    translation for it, so half-written scenarios (new ones start `en`/`afr` only, with the
+    rest stubbed `TBD`) are dropped with a warning rather than crashing the run or rendering
+    a placeholder into a trial. Raises if none qualify.
+    """
+    want = set(languages)
+    supported, skipped = [], []
+    for scenario in scenarios:
+        if want <= scenario.languages():
+            supported.append(scenario)
+        else:
+            skipped.append(scenario.scenario_id)
+    if skipped:
+        logger.warning(
+            "Skipping %d/%d scenario(s) missing requested languages %s: %s",
+            len(skipped),
+            len(scenarios),
+            sorted(want),
+            ", ".join(skipped),
+        )
+    if not supported:
+        raise ValueError(
+            f"No scenarios carry all requested languages {sorted(want)}; "
+            f"checked {len(scenarios)} scenario(s)."
+        )
     return [
-        s
-        for scenario in scenarios
-        for s in expand_scenario(
+        sample
+        for scenario in supported
+        for sample in expand_scenario(
             scenario, languages, reference=reference, design=design
         )
     ]

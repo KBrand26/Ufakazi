@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from inspect_ai import eval as inspect_eval
 
-from ufakazi.experiment.models import resolve_model
+from ufakazi.experiment.models import resolve_model, task_config_for
 from ufakazi.experiment.task import truthiness_bias
 from ufakazi.experiment.trials import DEFAULT_DESIGN
 
@@ -31,14 +31,32 @@ def run(
     epochs: int = 10,
     design: str = DEFAULT_DESIGN,
     reference: str | None = None,
+    max_connections: int | None = None,
+    limit: int | None = None,
 ):
+    """Run the eval for a single model.
+
+    The per-model generation config (`task_config_for`) is threaded into the task so the
+    model is called with its own reasoning/logprob settings rather than a global default.
+    `max_connections` raises in-run concurrency (helps the slow reasoning models);
+    `limit` caps the number of samples (the smoke-test lever).
+    """
+    # `eval()` GenerateConfigArgs (max_connections) and `limit` are only forwarded when set,
+    # so the defaults stay Inspect's own.
+    extra: dict = {}
+    if max_connections is not None:
+        extra["max_connections"] = max_connections
+    if limit is not None:
+        extra["limit"] = limit
     return inspect_eval(
         truthiness_bias(
             languages=tuple(languages),
             epochs=epochs,
             design=design,
             reference=reference,
+            config=task_config_for(model),
         ),
         model=resolve_model(model),
         log_dir=log_dir,
+        **extra,
     )

@@ -4,6 +4,7 @@ record-only scorer. Model and generation config are supplied by the runner / eva
 from __future__ import annotations
 
 from inspect_ai import Task, task
+from inspect_ai.model import GenerateConfig
 from inspect_ai.solver import generate
 
 from ufakazi.experiment.scoring import record_choice
@@ -18,6 +19,7 @@ def truthiness_bias(
     epochs: int = 10,
     design: str = DEFAULT_DESIGN,
     reference: str | None = None,
+    config: GenerateConfig | None = None,
 ) -> Task:
     """Counterbalanced truthiness-bias task.
 
@@ -28,6 +30,10 @@ def truthiness_bias(
     floating-point reductions and routing), so a single call per trial would measure noise;
     the epochs give a choice distribution per condition. No model-call cache is enabled, on
     purpose: caching would collapse the epochs back to one response.
+
+    `config` is the per-model generation config (reasoning/logprob/temperature settings).
+    It must match the config the model was built with, because Inspect lets this task
+    ("active") config override the model's own; defaults to the logprob-requesting config.
     """
     scenarios = load_scenarios()
     dataset = build_dataset(
@@ -37,6 +43,6 @@ def truthiness_bias(
         dataset=dataset,
         solver=generate(),
         scorer=record_choice(),
-        config=generation_config(),
+        config=config or generation_config(),
         epochs=epochs,
     )

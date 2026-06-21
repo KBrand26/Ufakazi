@@ -105,7 +105,10 @@ uv run ufakazi run                            # keyless mock, en+afr, epochs 10
 uv run ufakazi run --model default            # real default: openrouter/openai/gpt-4o-mini
 uv run ufakazi run --model default -l en,afr -e 10   # explicit language set + epochs
 uv run ufakazi run --interactive              # pick a model from a Rich menu
-uv run ufakazi probe default                  # check a model parses + returns logprobs
+uv run ufakazi sweep -m batch1 -e 1 --limit 8 # smoke test the final panel (~$0.50, 1 epoch)
+uv run ufakazi sweep -m batch1                # final Batch 1 (Claude/GPT/Gemini + Gemma ladder)
+uv run ufakazi sweep -m batch2                # final Batch 2 (Grok, Qwen); pools via analyze --all
+uv run ufakazi probe claude                   # check a model parses + returns logprobs
 uv run ufakazi analyze                        # control baselines + language main effect (latest run)
 uv run ufakazi analyze --all                  # aggregate every run in the log dir
 uv run inspect view --log-dir results/logs    # browse raw outputs in the log viewer
@@ -121,8 +124,28 @@ registry key (`providers.MODEL_REGISTRY`), `default`, or a raw Inspect string (t
 for study runs); `--interactive` opens a picker. `run` takes `--languages`/`-l` (comma-separated
 set, default `en,afr`) and `--epochs`/`-e` (default 10). Real models go through **OpenRouter** by
 default (one key); put `OPENROUTER_API_KEY` in `.env` (gitignored, auto-loaded in
-`ufakazi/__init__.py`; see `.env.example`). Routing is currently unpinned, so logprob availability
-can vary by backend; `probe` a model before trusting its logprobs. A benign `Unable to convert
+`ufakazi/__init__.py`; see `.env.example`). A benign `Unable to convert
 value to float: a/b` warning appears each run (Inspect's epoch reducer averaging our categorical
 A/B score, which we never use; analysis reads `samples_df`). Package is flat-root layout
 (`ufakazi/`, no `src/`). No GCP deploy target for the hackathon.
+
+**Per-model config + `sweep`.** Each `MODEL_REGISTRY` entry carries its own generation knobs
+(`ModelOption.generate_config()` / `.model_args()`): reasoning models set `reasoning=True`, which
+turns logprobs **off** (reasoning models 400 on `logprobs=True`) and widens `max_tokens` to 3000,
+plus a reasoning effort or token cap; non-reasoning models request logprobs at `max_tokens=200`.
+`experiment.models.resolve_model` bakes that config (and any OpenRouter `provider` pin) into the
+built model, and `task_config_for` threads the *same* config into the task, because Inspect lets
+the task ("active") config override the model's own. The final panel: a reasoning cohort
+(`claude` Sonnet 4.6 at temp 1, `gpt` 5.4, `gemini` 3.5 Flash, `grok` 4.3, `qwen` 3.7 Plus, all at
+lowest reasoning) plus a non-reasoning Gemma scale ladder (`gemma-4b/12b/27b`, DeepInfra pinned).
+`ufakazi sweep -m <batch|keys>` runs several models in sequence, one eval each (so the panel is
+iterable and tops up the same log dir; `BATCHES` names `batch1`/`batch2`/`reasoning`/`gemma`).
+`--max-connections` raises in-run concurrency; `--limit` caps samples (the smoke-test lever).
+Logprob availability still varies by backend even when pinned (DeepInfra serves the Gemma ladder
+but returns no logprobs over OpenRouter), so the Gemma arms rely on the binary-choice measure only;
+`probe` a model before trusting its logprobs.
+
+**Incremental translations.** `build_dataset` renders only scenarios that carry *every* requested
+language on *both* testimonies; scenarios missing a translation (new ones start `en`/`afr` only)
+are dropped with a logged warning rather than crashing the run. So a partially-translated scenario
+set still produces a clean dataset over the complete scenarios.

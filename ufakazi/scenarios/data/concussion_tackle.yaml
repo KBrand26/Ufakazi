@@ -12,11 +12,20 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was standing close by and saw Person C tackle Person D to the ground.
-          Person D fell to the ground and was left with a concussion.
+          I was standing close by and saw Person C tackle Person D.
+          Person D was left with a concussion.
       afr:
         provenance: human
-        text: ""
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
 
   - testimony_id: B
     speaker: Second witness
@@ -24,7 +33,17 @@ testimonies:
       en:
         provenance: source
         text: >-
-          I was standing close by and saw Person D run aggressively into Person C, leaving Person D with a concussion.
+          I was standing close by and saw Person D run aggressively into Person C.
+          Person D was left with a concussion.
       afr:
         provenance: human
-        text: "[TODO: human Afrikaans (calibration) translation]"
+        text: TBD
+      afr_mt:
+        provenance: machine
+        text: TBD
+      zul_mt:
+        provenance: machine
+        text: TBD
+      xho_mt:
+        provenance: machine
+        text: TBD
