@@ -9,7 +9,9 @@ import math
 import pandas as pd
 
 from ufakazi.analysis.load import (
+    CHOICE_COLUMN,
     _continuous_target_prob,
+    _derive_trial_columns,
     content_override,
     filter_latest_per_model,
     language_effect_table,
@@ -124,6 +126,27 @@ def test_per_scenario_effect_empty_when_no_paired_assignments():
     effects = per_scenario_language_effect(pd.DataFrame(rows), target="afr")
     assert effects.empty
     assert list(effects.columns) == ["scenario_id", "language_effect", "n_trials"]
+
+
+def test_derive_columns_survives_error_rows_with_na_metadata():
+    # A run that hits an API limit mid-stream leaves error samples: NA chosen_id and NA
+    # metadata. Deriving columns must not raise "boolean value of NA is ambiguous"; the
+    # error row must come out invalid, the good row fully derived.
+    raw = pd.DataFrame(
+        {
+            CHOICE_COLUMN: ["A", pd.NA],
+            "metadata_first_testimony_id": ["A", pd.NA],
+            "metadata_lang_first": ["afr", pd.NA],
+            "metadata_lang_second": ["en", pd.NA],
+        }
+    )
+    out = _derive_trial_columns(raw)
+    assert list(out["valid"]) == [True, False]
+    good = out.iloc[0]
+    assert good["lang_A"] == "afr" and good["lang_B"] == "en"
+    assert good["lang_chosen"] == "afr"  # chose A, which is afr
+    bad = out.iloc[1]["lang_chosen"]
+    assert bad is None or pd.isna(bad)  # error row excluded
 
 
 def _control_row(scenario: str, chosen_id: str):

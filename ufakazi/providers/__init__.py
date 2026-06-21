@@ -160,8 +160,11 @@ MODEL_REGISTRY: tuple[ModelOption, ...] = (
         "gemma-27b",
         "openrouter/google/gemma-3-27b-it",
         "Gemma 3 27B - OpenRouter",
-        "Scale ladder. DeepInfra fp8 pinned (no bf16 endpoint at 27B).",
-        provider_order=("DeepInfra",),
+        # No bf16 endpoint at 27B. Both Parasail and DeepInfra serve fp8; Parasail first
+        # because DeepInfra's 27B endpoint stalled (no response) during the smoke test while
+        # serving 4B/12B fine. Same quant either way, so the ladder comparison is unaffected.
+        "Scale ladder. Parasail fp8, DeepInfra fp8 backup.",
+        provider_order=("Parasail", "DeepInfra"),
     ),
 )
 

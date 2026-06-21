@@ -63,20 +63,31 @@ def load_trials(logs: str = "results/logs") -> pd.DataFrame:
     Adds `valid` (choice parsed), `chose_first` (position baseline), `lang_A`/`lang_B`
     (language assigned to each *content*, independent of presentation order), and
     `lang_chosen` (language of the content the model picked)."""
-    df = samples_df(logs, columns=_column_spec())
+    return _derive_trial_columns(samples_df(logs, columns=_column_spec()))
+
+
+def _derive_trial_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Add `valid` / `chose_first` / `lang_A` / `lang_B` / `lang_chosen` to a raw samples
+    frame. Split out from `load_trials` so the NA-handling is unit-testable without disk."""
     df = df.rename(columns={CHOICE_COLUMN: "chosen_id"})
 
+    # Error/interrupted samples (e.g. a run that hit an API limit mid-stream) land in the
+    # frame with NA chosen_id and metadata. Mask comparisons must stay NA-free or np.where
+    # raises "boolean value of NA is ambiguous"; `fillna(False)` drops those rows out of every
+    # derived column, and `valid` already excludes them downstream.
     df["valid"] = df["chosen_id"].isin(VALID_CHOICES)
-    df["chose_first"] = df["chosen_id"] == df["metadata_first_testimony_id"]
+    df["chose_first"] = (df["chosen_id"] == df["metadata_first_testimony_id"]).fillna(
+        False
+    )
 
-    first_is_a = df["metadata_first_testimony_id"] == "A"
+    first_is_a = (df["metadata_first_testimony_id"] == "A").fillna(False)
     df["lang_A"] = np.where(
         first_is_a, df["metadata_lang_first"], df["metadata_lang_second"]
     )
     df["lang_B"] = np.where(
         first_is_a, df["metadata_lang_second"], df["metadata_lang_first"]
     )
-    chose_a = df["chosen_id"] == "A"
+    chose_a = (df["chosen_id"] == "A").fillna(False)
     df["lang_chosen"] = np.where(
         df["valid"], np.where(chose_a, df["lang_A"], df["lang_B"]), None
     )
