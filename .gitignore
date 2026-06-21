@@ -218,6 +218,9 @@ __marimo__/
 .streamlit/secrets.toml
 
 # --- Ufakazi project ---
+# Claude Code worktrees (transient, created by the worktree tooling under .claude/)
+.claude/worktrees/
+
 # Experiment outputs and caches (never committed; keep the dir, not its contents)
 results/*
 !results/.gitkeep
