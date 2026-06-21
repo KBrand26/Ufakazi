@@ -20,6 +20,7 @@ The figure set (priority order), all driven by the per-model tables in `analysis
 
 from __future__ import annotations
 
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -45,6 +46,22 @@ LANG_LABELS = {
 }
 # Gemma scale ladder: model-string substring -> parameter count (billions).
 GEMMA_SIZES = {"gemma-3-4b": 4, "gemma-3-12b": 12, "gemma-3-27b": 27}
+
+# Canonical display order: the two bias-robust models first, then the biased field grouped
+# by lab (Google's Gemini + Gemma ladder by size, then xAI, then Alibaba), with the legacy
+# baseline last. Used so every figure reads in the same narrative order. Match by substring.
+MODEL_ORDER = [
+    "claude-sonnet",
+    "gpt-5",
+    "gemini",
+    "gemma-3-4b",
+    "gemma-3-12b",
+    "gemma-3-27b",
+    "grok",
+    "qwen",
+    "gpt-4o-mini",
+    "mockllm",
+]
 
 NEUTRAL = 0.5  # no-preference line: P(prefer target) = 0.5
 
@@ -168,6 +185,72 @@ def _forest(plt, palette, effect: pd.DataFrame):
     return fig
 
 
+# Per-point colours: a CI that excludes 0.5 (significant bias) is red and filled; a
+# non-significant point is muted blue and hollow. So a robust model's panel reads all-hollow,
+# a biased model's panel reads filled-red, at a glance.
+_SIG_COLOR = "#b2293a"
+_NS_COLOR = "#4c72b0"
+
+
+def _forest_facets(plt, effect: pd.DataFrame):
+    """Small-multiples forest: one mini-panel per model (canonical order), each plotting
+    P(prefer target) with its 95% CI for the four target languages. Replaces the single
+    8-model forest, which is too dense to read. Significant points (CI excludes 0.5) are
+    filled red, non-significant points hollow blue."""
+    models = order_models(models_in_table(effect))
+    targets = _ordered_targets(effect["target"].unique())
+    ncols = 2 if len(models) > 1 else 1
+    nrows = math.ceil(len(models) / ncols)
+    fig, axes = plt.subplots(
+        nrows,
+        ncols,
+        figsize=(7.2, 1.15 * nrows + 0.7),
+        sharex=True,
+        sharey=True,
+        squeeze=False,
+    )
+    flat = [ax for row in axes for ax in row]
+    for ax, model in zip(flat, models):
+        sub = effect[effect["model"] == model]
+        for yi, target in enumerate(targets):
+            row = sub[sub["target"] == target]
+            if row.empty:
+                continue
+            r = row.iloc[0]
+            sig = bool(r["significant"])
+            color = _SIG_COLOR if sig else _NS_COLOR
+            ax.plot(
+                [r["ci_lo"], r["ci_hi"]],
+                [yi, yi],
+                color=color,
+                lw=1.7,
+                solid_capstyle="round",
+                alpha=0.9,
+            )
+            ax.plot(
+                r["p_prefer_target"],
+                yi,
+                "o",
+                color=color,
+                markersize=5.5,
+                markeredgecolor=color,
+                markeredgewidth=1.0,
+                markerfacecolor=color if sig else "white",
+            )
+        ax.axvline(NEUTRAL, color="0.55", lw=0.9, ls="--", zorder=0)
+        ax.set_xlim(0, 1)
+        ax.set_yticks(range(len(targets)))
+        ax.set_yticklabels([lang_label(t) for t in targets])
+        ax.invert_yaxis()
+        ax.set_title(short_model_name(model), fontsize=10, pad=3)
+        ax.tick_params(labelsize=8)
+    for ax in flat[len(models) :]:  # hide any empty grid cells
+        ax.set_visible(False)
+    fig.supxlabel("P(prefer the target-language testimony over English)", fontsize=10)
+    fig.tight_layout()
+    return fig
+
+
 def _heatmap(plt, sns, effect: pd.DataFrame):
     """Model x language heatmap of P(prefer target), diverging around 0.5."""
     targets = _ordered_targets(effect["target"].unique())
@@ -233,31 +316,48 @@ def _override_heatmap(plt, sns, override: pd.DataFrame):
     return fig
 
 
+def _is_biased(effect: pd.DataFrame, model: str) -> bool:
+    """A model is biased if any of its language effects is significant (CI excludes 0.5)."""
+    return bool(effect[effect["model"] == model]["significant"].any())
+
+
 def _gradient(plt, palette, effect: pd.DataFrame):
-    """Effect ordered by language resource level, one connected line per model."""
+    """Cross-linguistic gradient split into two panels, robust models (no significant bias)
+    vs biased models, each a line per model over languages ordered by resource level. The
+    split keeps the 8-model overlay readable and contrasts flat (robust) against declining
+    (biased). Falls back to a single panel if every model lands in one group."""
     targets = _ordered_targets(effect["target"].unique())
+    models = order_models(models_in_table(effect))
+    robust = [m for m in models if not _is_biased(effect, m)]
+    biased = [m for m in models if _is_biased(effect, m)]
+    groups = [(t, g) for t, g in (("Robust", robust), ("Biased", biased)) if g]
     x = range(len(targets))
-    fig, ax = plt.subplots(figsize=(6.4, 4.0))
-    for model in palette:
-        ys = [_value(effect, model, t, "p_prefer_target") for t in targets]
-        ax.plot(
-            list(x),
-            ys,
-            "-o",
-            color=palette[model],
-            markersize=5,
-            markeredgecolor="white",
-            markeredgewidth=0.6,
-            label=short_model_name(model),
-        )
-    ax.axhline(NEUTRAL, color="0.4", lw=1.0, ls="--", zorder=0)
-    ax.set_xticks(list(x))
-    ax.set_xticklabels([lang_label(t, multiline=True) for t in targets])
-    ax.set_ylim(0, 1)
-    ax.set_ylabel("P(prefer target over English)")
-    ax.set_title("Cross-linguistic gradient")
-    if len(palette) > 1:
-        ax.legend(title="model", loc="best")
+
+    fig, axes = plt.subplots(
+        1, len(groups), figsize=(4.4 * len(groups), 4.0), sharey=True, squeeze=False
+    )
+    for ax, (title, group) in zip(axes[0], groups):
+        for model in group:
+            ys = [_value(effect, model, t, "p_prefer_target") for t in targets]
+            ax.plot(
+                list(x),
+                ys,
+                "-o",
+                color=palette[model],
+                markersize=5,
+                markeredgecolor="white",
+                markeredgewidth=0.6,
+                label=short_model_name(model),
+            )
+        ax.axhline(NEUTRAL, color="0.4", lw=1.0, ls="--", zorder=0)
+        ax.set_xticks(list(x))
+        ax.set_xticklabels([lang_label(t, multiline=True) for t in targets])
+        ax.set_ylim(0, 1)
+        ax.set_title(title)
+        ax.legend(loc="lower left", fontsize=8)
+    axes[0][0].set_ylabel("P(prefer target over English)")
+    fig.suptitle("Cross-linguistic gradient", fontweight="bold")
+    fig.tight_layout()
     return fig
 
 
@@ -367,9 +467,21 @@ def _controls(plt, controls: pd.DataFrame):
 # --- small table helpers ---
 
 
+def _model_rank(model: str) -> tuple[int, str]:
+    for i, key in enumerate(MODEL_ORDER):
+        if key in model:
+            return (i, model)
+    return (len(MODEL_ORDER), model)  # unknown models sort to the end, alphabetically
+
+
+def order_models(models) -> list[str]:
+    """Models in the canonical narrative order (robust first, then biased by lab/size)."""
+    return sorted(set(models), key=_model_rank)
+
+
 def models_in_table(table: pd.DataFrame) -> list[str]:
-    """Distinct models in a tidy result table, in stable sorted order."""
-    return sorted(table["model"].unique())
+    """Distinct models in a tidy result table, in canonical narrative order."""
+    return order_models(table["model"].unique())
 
 
 def _value(table: pd.DataFrame, model: str, target: str, col: str):
@@ -460,8 +572,12 @@ def generate_figures(
     written.append(macros)
 
     palette = _model_palette(sns, models_in_table(effect))
+    multi_model = len(models_in_table(effect)) > 1
     builders = {
-        "forest_language_effect": lambda: _forest(plt, palette, effect),
+        # Small multiples for many models; the single dodged forest only when there's one.
+        "forest_language_effect": (lambda: _forest_facets(plt, effect))
+        if multi_model
+        else (lambda: _forest(plt, palette, effect)),
         "heatmap_model_language": lambda: _heatmap(plt, sns, effect),
         "override_heatmap": (lambda: _override_heatmap(plt, sns, override))
         if not override.empty
