@@ -20,9 +20,11 @@ from rich.table import Table
 
 from ufakazi.analysis.load import (
     filter_latest_eval,
+    filter_latest_per_model,
     language_preference,
     language_report,
     load_trials,
+    models_in,
     per_scenario_language_effect,
     summarize,
 )
@@ -240,14 +242,25 @@ def analyze(
     all_runs: bool = typer.Option(
         False,
         "--all",
-        help="Aggregate every run in the dir (default: latest run only).",
+        help="Pool every run per model (default: each model's most recent eval only).",
     ),
 ) -> None:
-    """Summarize logged trials: control baselines, then the language main effect."""
+    """Summarize logged trials per model: control baselines, then the language main effect."""
     df = load_trials(log_dir)
     if not all_runs:
-        df = filter_latest_eval(df)
+        df = filter_latest_per_model(df)
+    models = models_in(df)
+    if not models:
+        console.print("[yellow]No trials found in the log dir.[/yellow]")
+        return
+    for model in models:
+        if len(models) > 1:
+            console.print(f"\n[bold underline]{model}[/bold underline]")
+        _report_one(df[df["model"] == model])
 
+
+def _report_one(df) -> None:
+    """Print the full bias report for a single model's trials."""
     summary = summarize(df)
     console.print(
         f"Loaded {summary['n_trials']} trials "
@@ -392,6 +405,32 @@ def rationales(
             f"order {row['metadata_position_order']}[/dim]"
         )
         console.print(f"  {row['rationale']}\n")
+
+
+@app.command()
+def figures(
+    log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
+    out_dir: str = typer.Option(
+        "results/figures", "--out-dir", "-o", help="Where to write figures + tables."
+    ),
+    reference: str = typer.Option(
+        "en", "--reference", help="Reference language for the main effect."
+    ),
+) -> None:
+    """Generate the paper figures (PDF + PNG) and tidy tables (CSV + macros.tex).
+
+    Reads each model's most recent eval in the log dir and writes the model-grouped
+    forest plot, heatmap, gradient, provenance and control figures, skipping any that the
+    current data can't support (e.g. the Gemma scale ladder until those models are run).
+    Deterministic: the scenario bootstrap is seeded, so reruns are identical."""
+    from ufakazi.figures import generate_figures
+
+    written = generate_figures(log_dir, out_dir, reference=reference)
+    console.print(
+        f"[green]Wrote {len(written)} files[/green] to [bold]{out_dir}[/bold]:"
+    )
+    for path in written:
+        console.print(f"  {path.name}")
 
 
 if __name__ == "__main__":

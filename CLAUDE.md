@@ -34,12 +34,23 @@ one Inspect `Sample`. Module boundaries:
   layer supersedes the planned per-provider adapter, including logprob capability handling
   (OpenAI yes, Anthropic no); `generation_config()` requests logprobs, ignored where unsupported.
 - **`analysis/`** — `load.py` reads logs via Inspect's `samples_df()` (one row per trial-epoch,
-  choice logprob pulled from score metadata via a column spec) into pandas: control baselines,
-  the **language main effect** (`P(prefer the target-written testimony)` over cross-language
-  trials, content bias cancelled by symmetric aggregation), per-scenario shift, and a continuous
-  logprob measure, all with **scenario-level (cluster) bootstrap** CIs. `filter_latest_eval`
-  keeps `analyze` to the most recent run so mixed log dirs do not corrupt aggregates.
-- **`results/`** — gitignored. Inspect writes one `.eval` log per run under `results/logs/`.
+  plus an `EvalColumn("model")` so the frame is **model-aware**, and the choice logprob pulled from
+  score metadata via a column spec) into pandas: control baselines, the **language main effect**
+  (`P(prefer the target-written testimony)` over cross-language trials, content bias cancelled by
+  symmetric aggregation), per-scenario shift, and a continuous logprob measure, all with
+  **scenario-level (cluster) bootstrap** CIs. A multi-model `sweep` writes one eval (one model) per
+  `.eval`, so the `model` column is load-bearing: `filter_latest_per_model` keeps each model's most
+  recent eval (the per-model generalization of `filter_latest_eval`), and the tidy
+  `language_effect_table` / `provenance_effect_table` / `control_table` emit one row per
+  (model, ...) — these feed both `analyze` (which now loops per model) and the figures.
+- **`figures.py`** — programmatic paper figures from the logs (`ufakazi figures`): the model-grouped
+  forest plot, model x language heatmap, cross-linguistic gradient, human-vs-machine provenance,
+  Gemma scale ladder (auto-skipped until those models are run), and control diagnostics. Vector
+  **PDF** (for LaTeX `\includegraphics`) + **PNG** preview, plus the tidy tables as CSV and a
+  `macros.tex` of `\newcommand`s so in-text numbers track the plots. Own clean style (no journal
+  house-style dep); matplotlib + seaborn imported lazily so the rest of the CLI needs neither.
+- **`results/`** — gitignored. Inspect writes `.eval` logs under `results/logs/`; `ufakazi figures`
+  writes plots + tables under `results/figures/` (regenerated on demand, uploaded to Overleaf).
 
 A **trial** = `(scenario, language_assignment, position_order, model, system_prompt)`: model and
 system prompt are fixed per `eval()` run; scenario, language assignment, and position order are
@@ -87,7 +98,8 @@ distributional, not exact.
 - **Ask before adding dependencies.** Current stack: `inspect-ai` (eval framework); `openai`
   (the client Inspect's OpenRouter/OpenAI providers use); `python-dotenv` (load `.env`);
   `pandas` + `pyarrow` (Inspect's `samples_df`); `pyyaml` (fixtures); `typer` + `rich` (the
-  `ufakazi` CLI). litellm is not used; Inspect's model layer replaced it.
+  `ufakazi` CLI); `matplotlib` + `seaborn` (paper figures, `figures.py` only, lazily imported).
+  litellm is not used; Inspect's model layer replaced it.
 - **Inspect idioms:** trials are `Sample`s; factor levels live in `Sample.metadata`; the scorer
   records rather than grades (no `target`); read results back with `samples_df()`, not by parsing
   raw logs. Keep the metadata key contract (`trials.py`) in sync with the scorer and `analysis/`.
@@ -109,8 +121,9 @@ uv run ufakazi sweep -m batch1 -e 1 --limit 8 # smoke test the final panel (~$0.
 uv run ufakazi sweep -m batch1                # final Batch 1 (Claude/GPT/Gemini + Gemma ladder)
 uv run ufakazi sweep -m batch2                # final Batch 2 (Grok, Qwen); pools via analyze --all
 uv run ufakazi probe claude                   # check a model parses + returns logprobs
-uv run ufakazi analyze                        # control baselines + language main effect (latest run)
-uv run ufakazi analyze --all                  # aggregate every run in the log dir
+uv run ufakazi analyze                        # per-model control baselines + language main effect
+uv run ufakazi analyze --all                  # pool every run per model (additive epochs)
+uv run ufakazi figures                        # paper figures (PDF+PNG) + tables -> results/figures
 uv run inspect view --log-dir results/logs    # browse raw outputs in the log viewer
 uv run pytest          # tests
 uv run ruff check      # lint
