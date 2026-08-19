@@ -25,52 +25,52 @@ z
    <g id="rationale-appeals-dark-LineCollection_1">
     <path d="M 247.869462 27.587185 
 L 249.28532 27.587185 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_2">
     <path d="M 97.38743 51.28282 
 L 145.199153 51.28282 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_3">
     <path d="M 118.197826 74.978456 
 L 393.373691 74.978456 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_4">
     <path d="M 105.481406 98.674091 
 L 323.887031 98.674091 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_5">
     <path d="M 196.678592 122.369727 
 L 471.422164 122.369727 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_6">
     <path d="M 147.733905 146.065362 
 L 233.394978 146.065362 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_7">
     <path d="M 265.509388 169.760997 
 L 313.394598 169.760997 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_8">
     <path d="M 160.40157 193.456633 
 L 345.037889 193.456633 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-LineCollection_9">
     <path d="M 200.050645 217.152268 
 L 483.34776 217.152268 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-width: 2.4"/>
    </g>
    <g id="rationale-appeals-dark-line2d_1">
     <path d="M 93.493756 63.130638 
 L 572.99976 63.130638 
-" clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)" style="fill: none; stroke: #3a3f49; stroke-linecap: square"/>
+" clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)" style="fill: none; stroke: #3a3f49; stroke-linecap: square"/>
    </g>
    <g id="rationale-appeals-dark-matplotlib.axis_1">
     <g id="rationale-appeals-dark-xtick_1">
@@ -98,7 +98,7 @@ L 572.99976 63.130638
      </g>
     </g>
     <g id="rationale-appeals-dark-text_5">
-     <text style="font-size: 9px;  fill: #e7e7e2" transform="translate(92.133242 263.503998)">How often the model's reason cited the language or translation, by which account it chose</text>
+     <text style="font-size: 9px;  fill: #e7e7e2" transform="translate(154.443477 263.503998)">How often the model's reason cited the language or the translation</text>
      <text style="font-size: 9px;  fill: #e7e7e2" transform="translate(143.606914 274.736772)">† difference is statistically significant (95% interval excludes zero)</text>
     </g>
    </g>
@@ -165,7 +165,7 @@ L 572.99976 233.739213
    </g>
    <g id="rationale-appeals-dark-line2d_15">
     <defs>
-     <path id="rationale-appeals-dark-m29f51088a3" d="M 0 4.5 
+     <path id="rationale-appeals-dark-m2094b93b64" d="M 0 4.5 
 C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
 C 4.025852 2.338109 4.5 1.193414 4.5 0 
 C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
@@ -177,13 +177,13 @@ C -2.338109 4.025852 -1.193414 4.5 0 4.5
 z
 " style="stroke: #a9702a"/>
     </defs>
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="247.869462" y="27.587185" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="247.869462" y="27.587185" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_16">
     <defs>
-     <path id="rationale-appeals-dark-m8a206fe7ce" d="M 0 4.5 
+     <path id="rationale-appeals-dark-m027c33d37c" d="M 0 4.5 
 C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
 C 4.025852 2.338109 4.5 1.193414 4.5 0 
 C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
@@ -195,88 +195,88 @@ C -2.338109 4.025852 -1.193414 4.5 0 4.5
 z
 " style="stroke: #00617c"/>
     </defs>
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="249.28532" y="27.587185" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="249.28532" y="27.587185" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_17">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="97.38743" y="51.28282" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="97.38743" y="51.28282" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_18">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="145.199153" y="51.28282" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="145.199153" y="51.28282" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_19">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="118.197826" y="74.978456" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="118.197826" y="74.978456" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_20">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="393.373691" y="74.978456" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="393.373691" y="74.978456" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_21">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="105.481406" y="98.674091" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="105.481406" y="98.674091" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_22">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="323.887031" y="98.674091" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="323.887031" y="98.674091" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_23">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="196.678592" y="122.369727" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="196.678592" y="122.369727" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_24">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="471.422164" y="122.369727" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="471.422164" y="122.369727" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_25">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="147.733905" y="146.065362" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="147.733905" y="146.065362" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_26">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="233.394978" y="146.065362" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="233.394978" y="146.065362" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_27">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="313.394598" y="169.760997" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="313.394598" y="169.760997" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_28">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="265.509388" y="169.760997" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="265.509388" y="169.760997" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_29">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="160.40157" y="193.456633" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="160.40157" y="193.456633" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_30">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="345.037889" y="193.456633" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="345.037889" y="193.456633" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_31">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m29f51088a3" x="200.050645" y="217.152268" style="fill: #a9702a; stroke: #a9702a"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m2094b93b64" x="200.050645" y="217.152268" style="fill: #a9702a; stroke: #a9702a"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-line2d_32">
-    <g clip-path="url(#rationale-appeals-dark-pa8d04ecc2b)">
-     <use xlink:href="#rationale-appeals-dark-m8a206fe7ce" x="483.34776" y="217.152268" style="fill: #00617c; stroke: #00617c"/>
+    <g clip-path="url(#rationale-appeals-dark-pc5a8cb35a2)">
+     <use xlink:href="#rationale-appeals-dark-m027c33d37c" x="483.34776" y="217.152268" style="fill: #00617c; stroke: #00617c"/>
     </g>
    </g>
    <g id="rationale-appeals-dark-text_15">
@@ -312,7 +312,7 @@ z
    <g id="rationale-appeals-dark-legend_1">
     <g id="rationale-appeals-dark-line2d_33">
      <defs>
-      <path id="rationale-appeals-dark-m5129c6cf53" d="M 0 4 
+      <path id="rationale-appeals-dark-mc1118febe9" d="M 0 4 
 C 1.060812 4 2.078319 3.578535 2.828427 2.828427 
 C 3.578535 2.078319 4 1.060812 4 0 
 C 4 -1.060812 3.578535 -2.078319 2.828427 -2.828427 
@@ -325,7 +325,7 @@ z
 " style="stroke: #00617c"/>
      </defs>
      <g>
-      <use xlink:href="#rationale-appeals-dark-m5129c6cf53" x="311.036277" y="22.157818" style="fill: #00617c; stroke: #00617c"/>
+      <use xlink:href="#rationale-appeals-dark-mc1118febe9" x="311.036277" y="22.157818" style="fill: #00617c; stroke: #00617c"/>
      </g>
     </g>
     <g id="rationale-appeals-dark-text_25">
@@ -333,7 +333,7 @@ z
     </g>
     <g id="rationale-appeals-dark-line2d_34">
      <defs>
-      <path id="rationale-appeals-dark-m2144e45c0b" d="M 0 4 
+      <path id="rationale-appeals-dark-m8b3d109ca6" d="M 0 4 
 C 1.060812 4 2.078319 3.578535 2.828427 2.828427 
 C 3.578535 2.078319 4 1.060812 4 0 
 C 4 -1.060812 3.578535 -2.078319 2.828427 -2.828427 
@@ -346,7 +346,7 @@ z
 " style="stroke: #a9702a"/>
      </defs>
      <g>
-      <use xlink:href="#rationale-appeals-dark-m2144e45c0b" x="311.036277" y="34.932388" style="fill: #a9702a; stroke: #a9702a"/>
+      <use xlink:href="#rationale-appeals-dark-m8b3d109ca6" x="311.036277" y="34.932388" style="fill: #a9702a; stroke: #a9702a"/>
      </g>
     </g>
     <g id="rationale-appeals-dark-text_26">
@@ -356,7 +356,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="rationale-appeals-dark-pa8d04ecc2b">
+  <clipPath id="rationale-appeals-dark-pc5a8cb35a2">
    <rect x="93.493756" y="11.00024" width="479.506004" height="222.738973"/>
   </clipPath>
  </defs>

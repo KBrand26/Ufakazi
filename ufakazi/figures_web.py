@@ -479,7 +479,7 @@ def render_language_heatmap(lang_table, out: Path) -> None:
         annotations,
         sig,
         _diverging_cmap(),
-        "How often the model chose the non-English account (balanced scenarios)",
+        "How often the model chose the non-English account\n(balanced scenarios)",
         ("← always chose English", "always chose the other language →"),
         out,
     )
@@ -493,7 +493,7 @@ def render_override_heatmap(override_table, out: Path) -> None:
         annotations,
         np.zeros_like(vals, dtype=bool),
         _sequential_cmap(),
-        "How often the language change flipped the choice (saturated scenarios)",
+        "How often the language change flipped the choice\n(saturated scenarios)",
         ("← never flipped", "always flipped →"),
         out,
     )
@@ -596,7 +596,9 @@ def render_provenance(prov_table, out: Path) -> None:
             f"{lab.strip()}: {r['p_prefer_target']:.0%} ({r['ci_lo']:.0%} to {r['ci_hi']:.0%})"
             for lab, r in dagger_rows
         )
-        foot += f"  ·  † interval excludes 50%: {notes}"
+        # Own line: the page renders SVG text in its own monospace font, which can
+        # run wider than matplotlib's, so long label lines need real slack.
+        foot += f"\n† interval excludes 50%: {notes}"
     xlabel += "\n" + foot
     ax.set_xlabel(xlabel, fontsize=9, labelpad=32)
     _save(fig, out)
@@ -691,7 +693,7 @@ def render_rationale_appeals(appeal_table, out: Path) -> None:
         labelcolor=THEME.ink,
     )
     ax.set_xlabel(
-        "How often the model's reason cited the language or translation, by which account it chose"
+        "How often the model's reason cited the language or the translation"
         "\n† difference is statistically significant (95% interval excludes zero)",
         fontsize=9,
         labelpad=10,

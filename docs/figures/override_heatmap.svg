@@ -14,102 +14,102 @@ z
   </g>
   <g id="override-heatmap-light-axes_1">
    <g id="override-heatmap-light-patch_2">
-    <path d="M 103.728287 91.373679 
-L 469.165229 91.373679 
+    <path d="M 103.728287 88.695662 
+L 469.165229 88.695662 
 L 469.165229 14.698482 
 L 103.728287 14.698482 
-L 103.728287 91.373679 
+L 103.728287 88.695662 
 z
 " style="fill: none"/>
    </g>
    <g id="override-heatmap-light-QuadMesh_1">
     <path d="M 103.728287 14.698482 
 L 195.087522 14.698482 
-L 195.087522 53.036081 
-L 103.728287 53.036081 
+L 195.087522 51.697072 
+L 103.728287 51.697072 
 L 103.728287 14.698482 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
     <path d="M 195.087522 14.698482 
 L 286.446758 14.698482 
-L 286.446758 53.036081 
-L 195.087522 53.036081 
+L 286.446758 51.697072 
+L 195.087522 51.697072 
 L 195.087522 14.698482 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
     <path d="M 286.446758 14.698482 
 L 377.805993 14.698482 
-L 377.805993 53.036081 
-L 286.446758 53.036081 
+L 377.805993 51.697072 
+L 286.446758 51.697072 
 L 286.446758 14.698482 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
     <path d="M 377.805993 14.698482 
 L 469.165229 14.698482 
-L 469.165229 53.036081 
-L 377.805993 53.036081 
+L 469.165229 51.697072 
+L 377.805993 51.697072 
 L 377.805993 14.698482 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 53.036081 
-L 195.087522 53.036081 
-L 195.087522 91.373679 
-L 103.728287 91.373679 
-L 103.728287 53.036081 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 53.036081 
-L 286.446758 53.036081 
-L 286.446758 91.373679 
-L 195.087522 91.373679 
-L 195.087522 53.036081 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 53.036081 
-L 377.805993 53.036081 
-L 377.805993 91.373679 
-L 286.446758 91.373679 
-L 286.446758 53.036081 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 53.036081 
-L 469.165229 53.036081 
-L 469.165229 91.373679 
-L 377.805993 91.373679 
-L 377.805993 53.036081 
-" clip-path="url(#override-heatmap-light-p350f20c612)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 51.697072 
+L 195.087522 51.697072 
+L 195.087522 88.695662 
+L 103.728287 88.695662 
+L 103.728287 51.697072 
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 51.697072 
+L 286.446758 51.697072 
+L 286.446758 88.695662 
+L 195.087522 88.695662 
+L 195.087522 51.697072 
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 51.697072 
+L 377.805993 51.697072 
+L 377.805993 88.695662 
+L 286.446758 88.695662 
+L 286.446758 51.697072 
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 51.697072 
+L 469.165229 51.697072 
+L 469.165229 88.695662 
+L 377.805993 88.695662 
+L 377.805993 51.697072 
+" clip-path="url(#override-heatmap-light-p3effcacd19)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
    </g>
    <g id="override-heatmap-light-matplotlib.axis_1"/>
    <g id="override-heatmap-light-matplotlib.axis_2">
     <g id="override-heatmap-light-ytick_1">
      <g id="override-heatmap-light-line2d_1"/>
      <g id="override-heatmap-light-text_1">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="37.489899" transform="rotate(-0 100.228287 37.489899)">Claude Sonnet 4.6</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="36.820394" transform="rotate(-0 100.228287 36.820394)">Claude Sonnet 4.6</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_2">
      <g id="override-heatmap-light-line2d_2"/>
      <g id="override-heatmap-light-text_2">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="75.813767" transform="rotate(-0 100.228287 75.813767)">GPT-5.4</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="73.805254" transform="rotate(-0 100.228287 73.805254)">GPT-5.4</text>
      </g>
     </g>
    </g>
    <g id="override-heatmap-light-text_3">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="36.464938" transform="rotate(-0 149.407905 36.464938)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="35.795433" transform="rotate(-0 149.407905 35.795433)">0%</text>
    </g>
    <g id="override-heatmap-light-text_4">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="36.464938" transform="rotate(-0 240.76714 36.464938)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="35.795433" transform="rotate(-0 240.76714 35.795433)">0%</text>
    </g>
    <g id="override-heatmap-light-text_5">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="36.464938" transform="rotate(-0 332.126376 36.464938)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="35.795433" transform="rotate(-0 332.126376 35.795433)">0%</text>
    </g>
    <g id="override-heatmap-light-text_6">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="36.464938" transform="rotate(-0 423.485611 36.464938)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="35.795433" transform="rotate(-0 423.485611 35.795433)">0%</text>
    </g>
    <g id="override-heatmap-light-text_7">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="74.802536" transform="rotate(-0 149.407905 74.802536)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="72.794023" transform="rotate(-0 149.407905 72.794023)">0%</text>
    </g>
    <g id="override-heatmap-light-text_8">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="74.802536" transform="rotate(-0 240.76714 74.802536)">9%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="72.794023" transform="rotate(-0 240.76714 72.794023)">9%</text>
    </g>
    <g id="override-heatmap-light-text_9">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="74.802536" transform="rotate(-0 332.126376 74.802536)">9%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="72.794023" transform="rotate(-0 332.126376 72.794023)">9%</text>
    </g>
    <g id="override-heatmap-light-text_10">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="74.802536" transform="rotate(-0 423.485611 74.802536)">9%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="72.794023" transform="rotate(-0 423.485611 72.794023)">9%</text>
    </g>
    <g id="override-heatmap-light-text_11">
     <text style="font-size: 7.5px;  text-anchor: start; fill: #636773" x="103.728287" y="8.698482" transform="rotate(-0 103.728287 8.698482)">NO SIGNIFICANT BIAS</text>
@@ -117,211 +117,211 @@ L 377.805993 53.036081
   </g>
   <g id="override-heatmap-light-axes_2">
    <g id="override-heatmap-light-patch_3">
-    <path d="M 103.728287 380.86711 
-L 469.165229 380.86711 
-L 469.165229 112.503921 
-L 103.728287 112.503921 
-L 103.728287 380.86711 
+    <path d="M 103.728287 368.816035 
+L 469.165229 368.816035 
+L 469.165229 109.825904 
+L 103.728287 109.825904 
+L 103.728287 368.816035 
 z
 " style="fill: none"/>
    </g>
    <g id="override-heatmap-light-QuadMesh_2">
-    <path d="M 103.728287 112.503921 
-L 195.087522 112.503921 
-L 195.087522 150.84152 
-L 103.728287 150.84152 
-L 103.728287 112.503921 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 112.503921 
-L 286.446758 112.503921 
-L 286.446758 150.84152 
-L 195.087522 150.84152 
-L 195.087522 112.503921 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 112.503921 
-L 377.805993 112.503921 
-L 377.805993 150.84152 
-L 286.446758 150.84152 
-L 286.446758 112.503921 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e8d6cf; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 112.503921 
-L 469.165229 112.503921 
-L 469.165229 150.84152 
-L 377.805993 150.84152 
-L 377.805993 112.503921 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e8d6cf; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 150.84152 
-L 195.087522 150.84152 
-L 195.087522 189.179118 
-L 103.728287 189.179118 
-L 103.728287 150.84152 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 150.84152 
-L 286.446758 150.84152 
-L 286.446758 189.179118 
-L 195.087522 189.179118 
-L 195.087522 150.84152 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e5cbc2; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 150.84152 
-L 377.805993 150.84152 
-L 377.805993 189.179118 
-L 286.446758 189.179118 
-L 286.446758 150.84152 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #ede6e0; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 150.84152 
-L 469.165229 150.84152 
-L 469.165229 189.179118 
-L 377.805993 189.179118 
-L 377.805993 150.84152 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 189.179118 
-L 195.087522 189.179118 
-L 195.087522 227.516717 
-L 103.728287 227.516717 
-L 103.728287 189.179118 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #ddb3a8; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 189.179118 
-L 286.446758 189.179118 
-L 286.446758 227.516717 
-L 195.087522 227.516717 
-L 195.087522 189.179118 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #ddb3a8; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 189.179118 
-L 377.805993 189.179118 
-L 377.805993 227.516717 
-L 286.446758 227.516717 
-L 286.446758 189.179118 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #cc8678; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 189.179118 
-L 469.165229 189.179118 
-L 469.165229 227.516717 
-L 377.805993 227.516717 
-L 377.805993 189.179118 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #cc8678; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 227.516717 
-L 195.087522 227.516717 
-L 195.087522 265.854315 
-L 103.728287 265.854315 
-L 103.728287 227.516717 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #daaba0; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 227.516717 
-L 286.446758 227.516717 
-L 286.446758 265.854315 
-L 195.087522 265.854315 
-L 195.087522 227.516717 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 227.516717 
-L 377.805993 227.516717 
-L 377.805993 265.854315 
-L 286.446758 265.854315 
-L 286.446758 227.516717 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #cd897c; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 227.516717 
-L 469.165229 227.516717 
-L 469.165229 265.854315 
-L 377.805993 265.854315 
-L 377.805993 227.516717 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #c6796a; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 265.854315 
-L 195.087522 265.854315 
-L 195.087522 304.191914 
-L 103.728287 304.191914 
-L 103.728287 265.854315 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e8d4cc; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 265.854315 
-L 286.446758 265.854315 
-L 286.446758 304.191914 
-L 195.087522 304.191914 
-L 195.087522 265.854315 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 265.854315 
-L 377.805993 265.854315 
-L 377.805993 304.191914 
-L 286.446758 304.191914 
-L 286.446758 265.854315 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #d69e91; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 265.854315 
-L 469.165229 265.854315 
-L 469.165229 304.191914 
-L 377.805993 304.191914 
-L 377.805993 265.854315 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #d69e91; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 304.191914 
-L 195.087522 304.191914 
-L 195.087522 342.529512 
-L 103.728287 342.529512 
-L 103.728287 304.191914 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 304.191914 
-L 286.446758 304.191914 
-L 286.446758 342.529512 
-L 195.087522 342.529512 
-L 195.087522 304.191914 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 304.191914 
-L 377.805993 304.191914 
-L 377.805993 342.529512 
-L 286.446758 342.529512 
-L 286.446758 304.191914 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #c97e70; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 304.191914 
-L 469.165229 304.191914 
-L 469.165229 342.529512 
-L 377.805993 342.529512 
-L 377.805993 304.191914 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #cd897c; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 103.728287 342.529512 
-L 195.087522 342.529512 
-L 195.087522 380.86711 
-L 103.728287 380.86711 
-L 103.728287 342.529512 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 195.087522 342.529512 
-L 286.446758 342.529512 
-L 286.446758 380.86711 
-L 195.087522 380.86711 
-L 195.087522 342.529512 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #e2c2b8; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 286.446758 342.529512 
-L 377.805993 342.529512 
-L 377.805993 380.86711 
-L 286.446758 380.86711 
-L 286.446758 342.529512 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #c47365; stroke: #f5f5f1; stroke-width: 2"/>
-    <path d="M 377.805993 342.529512 
-L 469.165229 342.529512 
-L 469.165229 380.86711 
-L 377.805993 380.86711 
-L 377.805993 342.529512 
-" clip-path="url(#override-heatmap-light-p2d8789d2ec)" style="fill: #cd897c; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 109.825904 
+L 195.087522 109.825904 
+L 195.087522 146.824494 
+L 103.728287 146.824494 
+L 103.728287 109.825904 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 109.825904 
+L 286.446758 109.825904 
+L 286.446758 146.824494 
+L 195.087522 146.824494 
+L 195.087522 109.825904 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #ece3dc; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 109.825904 
+L 377.805993 109.825904 
+L 377.805993 146.824494 
+L 286.446758 146.824494 
+L 286.446758 109.825904 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e8d6cf; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 109.825904 
+L 469.165229 109.825904 
+L 469.165229 146.824494 
+L 377.805993 146.824494 
+L 377.805993 109.825904 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e8d6cf; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 146.824494 
+L 195.087522 146.824494 
+L 195.087522 183.823084 
+L 103.728287 183.823084 
+L 103.728287 146.824494 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 146.824494 
+L 286.446758 146.824494 
+L 286.446758 183.823084 
+L 195.087522 183.823084 
+L 195.087522 146.824494 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e5cbc2; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 146.824494 
+L 377.805993 146.824494 
+L 377.805993 183.823084 
+L 286.446758 183.823084 
+L 286.446758 146.824494 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #ede6e0; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 146.824494 
+L 469.165229 146.824494 
+L 469.165229 183.823084 
+L 377.805993 183.823084 
+L 377.805993 146.824494 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 183.823084 
+L 195.087522 183.823084 
+L 195.087522 220.821674 
+L 103.728287 220.821674 
+L 103.728287 183.823084 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #ddb3a8; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 183.823084 
+L 286.446758 183.823084 
+L 286.446758 220.821674 
+L 195.087522 220.821674 
+L 195.087522 183.823084 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #ddb3a8; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 183.823084 
+L 377.805993 183.823084 
+L 377.805993 220.821674 
+L 286.446758 220.821674 
+L 286.446758 183.823084 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #cc8678; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 183.823084 
+L 469.165229 183.823084 
+L 469.165229 220.821674 
+L 377.805993 220.821674 
+L 377.805993 183.823084 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #cc8678; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 220.821674 
+L 195.087522 220.821674 
+L 195.087522 257.820264 
+L 103.728287 257.820264 
+L 103.728287 220.821674 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #daaba0; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 220.821674 
+L 286.446758 220.821674 
+L 286.446758 257.820264 
+L 195.087522 257.820264 
+L 195.087522 220.821674 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 220.821674 
+L 377.805993 220.821674 
+L 377.805993 257.820264 
+L 286.446758 257.820264 
+L 286.446758 220.821674 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #cd897c; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 220.821674 
+L 469.165229 220.821674 
+L 469.165229 257.820264 
+L 377.805993 257.820264 
+L 377.805993 220.821674 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #c6796a; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 257.820264 
+L 195.087522 257.820264 
+L 195.087522 294.818854 
+L 103.728287 294.818854 
+L 103.728287 257.820264 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e8d4cc; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 257.820264 
+L 286.446758 257.820264 
+L 286.446758 294.818854 
+L 195.087522 294.818854 
+L 195.087522 257.820264 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #efefea; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 257.820264 
+L 377.805993 257.820264 
+L 377.805993 294.818854 
+L 286.446758 294.818854 
+L 286.446758 257.820264 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #d69e91; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 257.820264 
+L 469.165229 257.820264 
+L 469.165229 294.818854 
+L 377.805993 294.818854 
+L 377.805993 257.820264 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #d69e91; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 294.818854 
+L 195.087522 294.818854 
+L 195.087522 331.817444 
+L 103.728287 331.817444 
+L 103.728287 294.818854 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 294.818854 
+L 286.446758 294.818854 
+L 286.446758 331.817444 
+L 195.087522 331.817444 
+L 195.087522 294.818854 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 294.818854 
+L 377.805993 294.818854 
+L 377.805993 331.817444 
+L 286.446758 331.817444 
+L 286.446758 294.818854 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #c97e70; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 294.818854 
+L 469.165229 294.818854 
+L 469.165229 331.817444 
+L 377.805993 331.817444 
+L 377.805993 294.818854 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #cd897c; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 103.728287 331.817444 
+L 195.087522 331.817444 
+L 195.087522 368.816035 
+L 103.728287 368.816035 
+L 103.728287 331.817444 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e6cdc4; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 195.087522 331.817444 
+L 286.446758 331.817444 
+L 286.446758 368.816035 
+L 195.087522 368.816035 
+L 195.087522 331.817444 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #e2c2b8; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 286.446758 331.817444 
+L 377.805993 331.817444 
+L 377.805993 368.816035 
+L 286.446758 368.816035 
+L 286.446758 331.817444 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #c47365; stroke: #f5f5f1; stroke-width: 2"/>
+    <path d="M 377.805993 331.817444 
+L 469.165229 331.817444 
+L 469.165229 368.816035 
+L 377.805993 368.816035 
+L 377.805993 331.817444 
+" clip-path="url(#override-heatmap-light-p199eae8b1c)" style="fill: #cd897c; stroke: #f5f5f1; stroke-width: 2"/>
    </g>
    <g id="override-heatmap-light-matplotlib.axis_3">
     <g id="override-heatmap-light-xtick_1">
      <g id="override-heatmap-light-line2d_3"/>
      <g id="override-heatmap-light-text_12">
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(123.671069 392.536554)">Afrikaans</text>
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(129.390366 404.39337)">(human)</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(123.671069 380.485478)">Afrikaans</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(129.390366 392.342294)">(human)</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_2">
      <g id="override-heatmap-light-line2d_4"/>
      <g id="override-heatmap-light-text_13">
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(215.030304 392.536554)">Afrikaans</text>
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(215.030304 404.39337)">(machine)</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(215.030304 380.485478)">Afrikaans</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(215.030304 392.342294)">(machine)</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_3">
      <g id="override-heatmap-light-line2d_5"/>
      <g id="override-heatmap-light-text_14">
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(312.108836 392.563273)">isiZulu</text>
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(306.38954 404.420089)">(machine)</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(312.108836 380.512197)">isiZulu</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(306.38954 392.369013)">(machine)</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_4">
      <g id="override-heatmap-light-line2d_6"/>
      <g id="override-heatmap-light-text_15">
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(400.608424 392.536554)">isiXhosa</text>
-      <text style="font-size: 9.5px;  fill: #636773" transform="translate(397.748775 404.39337)">(machine)</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(400.608424 380.485478)">isiXhosa</text>
+      <text style="font-size: 9.5px;  fill: #636773" transform="translate(397.748775 392.342294)">(machine)</text>
      </g>
     </g>
    </g>
@@ -329,197 +329,198 @@ L 377.805993 342.529512
     <g id="override-heatmap-light-ytick_3">
      <g id="override-heatmap-light-line2d_7"/>
      <g id="override-heatmap-light-text_16">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="135.295338" transform="rotate(-0 100.228287 135.295338)">Qwen 3.7 Plus</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="131.947817" transform="rotate(-0 100.228287 131.947817)">Qwen 3.7 Plus</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_4">
      <g id="override-heatmap-light-line2d_8"/>
      <g id="override-heatmap-light-text_17">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="173.632936" transform="rotate(-0 100.228287 173.632936)">Gemini 3.5 Flash</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="168.946407" transform="rotate(-0 100.228287 168.946407)">Gemini 3.5 Flash</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_5">
      <g id="override-heatmap-light-line2d_9"/>
      <g id="override-heatmap-light-text_18">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="211.957175" transform="rotate(-0 100.228287 211.957175)">Grok 4.3</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="205.931637" transform="rotate(-0 100.228287 205.931637)">Grok 4.3</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_6">
      <g id="override-heatmap-light-line2d_10"/>
      <g id="override-heatmap-light-text_19">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="250.294403" transform="rotate(-0 100.228287 250.294403)">GPT-4o mini</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="242.929856" transform="rotate(-0 100.228287 242.929856)">GPT-4o mini</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_7">
      <g id="override-heatmap-light-line2d_11"/>
      <g id="override-heatmap-light-text_20">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="288.632001" transform="rotate(-0 100.228287 288.632001)">Gemma 3 4B</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="279.928446" transform="rotate(-0 100.228287 279.928446)">Gemma 3 4B</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_8">
      <g id="override-heatmap-light-line2d_12"/>
      <g id="override-heatmap-light-text_21">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="326.969599" transform="rotate(-0 100.228287 326.969599)">Gemma 3 12B</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="316.927036" transform="rotate(-0 100.228287 316.927036)">Gemma 3 12B</text>
      </g>
     </g>
     <g id="override-heatmap-light-ytick_9">
      <g id="override-heatmap-light-line2d_13"/>
      <g id="override-heatmap-light-text_22">
-      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="365.307198" transform="rotate(-0 100.228287 365.307198)">Gemma 3 27B</text>
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="353.925626" transform="rotate(-0 100.228287 353.925626)">Gemma 3 27B</text>
      </g>
     </g>
    </g>
    <g id="override-heatmap-light-text_23">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="134.270377" transform="rotate(-0 149.407905 134.270377)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="130.922856" transform="rotate(-0 149.407905 130.922856)">0%</text>
    </g>
    <g id="override-heatmap-light-text_24">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="134.270377" transform="rotate(-0 240.76714 134.270377)">9%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="130.922856" transform="rotate(-0 240.76714 130.922856)">9%</text>
    </g>
    <g id="override-heatmap-light-text_25">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="134.270377" transform="rotate(-0 332.126376 134.270377)">18%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="130.922856" transform="rotate(-0 332.126376 130.922856)">18%</text>
    </g>
    <g id="override-heatmap-light-text_26">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="134.270377" transform="rotate(-0 423.485611 134.270377)">18%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="130.922856" transform="rotate(-0 423.485611 130.922856)">18%</text>
    </g>
    <g id="override-heatmap-light-text_27">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="172.607975" transform="rotate(-0 149.407905 172.607975)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="167.921446" transform="rotate(-0 149.407905 167.921446)">0%</text>
    </g>
    <g id="override-heatmap-light-text_28">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="172.607975" transform="rotate(-0 240.76714 172.607975)">27%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="167.921446" transform="rotate(-0 240.76714 167.921446)">27%</text>
    </g>
    <g id="override-heatmap-light-text_29">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="172.607975" transform="rotate(-0 332.126376 172.607975)">7%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="167.921446" transform="rotate(-0 332.126376 167.921446)">7%</text>
    </g>
    <g id="override-heatmap-light-text_30">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="172.607975" transform="rotate(-0 423.485611 172.607975)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="167.921446" transform="rotate(-0 423.485611 167.921446)">0%</text>
    </g>
    <g id="override-heatmap-light-text_31">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="210.945574" transform="rotate(-0 149.407905 210.945574)">44%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="204.920036" transform="rotate(-0 149.407905 204.920036)">44%</text>
    </g>
    <g id="override-heatmap-light-text_32">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="210.945574" transform="rotate(-0 240.76714 210.945574)">44%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="204.920036" transform="rotate(-0 240.76714 204.920036)">44%</text>
    </g>
    <g id="override-heatmap-light-text_33">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="210.945574" transform="rotate(-0 332.126376 210.945574)">78%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="204.920036" transform="rotate(-0 332.126376 204.920036)">78%</text>
    </g>
    <g id="override-heatmap-light-text_34">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="210.945574" transform="rotate(-0 423.485611 210.945574)">78%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="204.920036" transform="rotate(-0 423.485611 204.920036)">78%</text>
    </g>
    <g id="override-heatmap-light-text_35">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="249.283172" transform="rotate(-0 149.407905 249.283172)">50%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="241.918626" transform="rotate(-0 149.407905 241.918626)">50%</text>
    </g>
    <g id="override-heatmap-light-text_36">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="249.283172" transform="rotate(-0 240.76714 249.283172)">25%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="241.918626" transform="rotate(-0 240.76714 241.918626)">25%</text>
    </g>
    <g id="override-heatmap-light-text_37">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="249.283172" transform="rotate(-0 332.126376 249.283172)">75%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="241.918626" transform="rotate(-0 332.126376 241.918626)">75%</text>
    </g>
    <g id="override-heatmap-light-text_38">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="249.283172" transform="rotate(-0 423.485611 249.283172)">88%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="241.918626" transform="rotate(-0 423.485611 241.918626)">88%</text>
    </g>
    <g id="override-heatmap-light-text_39">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="287.620771" transform="rotate(-0 149.407905 287.620771)">20%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="278.917216" transform="rotate(-0 149.407905 278.917216)">20%</text>
    </g>
    <g id="override-heatmap-light-text_40">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="287.620771" transform="rotate(-0 240.76714 287.620771)">0%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="278.917216" transform="rotate(-0 240.76714 278.917216)">0%</text>
    </g>
    <g id="override-heatmap-light-text_41">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="287.620771" transform="rotate(-0 332.126376 287.620771)">60%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="278.917216" transform="rotate(-0 332.126376 278.917216)">60%</text>
    </g>
    <g id="override-heatmap-light-text_42">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="287.620771" transform="rotate(-0 423.485611 287.620771)">60%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="278.917216" transform="rotate(-0 423.485611 278.917216)">60%</text>
    </g>
    <g id="override-heatmap-light-text_43">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="325.958369" transform="rotate(-0 149.407905 325.958369)">25%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="315.915806" transform="rotate(-0 149.407905 315.915806)">25%</text>
    </g>
    <g id="override-heatmap-light-text_44">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="325.958369" transform="rotate(-0 240.76714 325.958369)">25%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="315.915806" transform="rotate(-0 240.76714 315.915806)">25%</text>
    </g>
    <g id="override-heatmap-light-text_45">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="325.958369" transform="rotate(-0 332.126376 325.958369)">83%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="315.915806" transform="rotate(-0 332.126376 315.915806)">83%</text>
    </g>
    <g id="override-heatmap-light-text_46">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="325.958369" transform="rotate(-0 423.485611 325.958369)">75%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="315.915806" transform="rotate(-0 423.485611 315.915806)">75%</text>
    </g>
    <g id="override-heatmap-light-text_47">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="364.295967" transform="rotate(-0 149.407905 364.295967)">25%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="149.407905" y="352.914396" transform="rotate(-0 149.407905 352.914396)">25%</text>
    </g>
    <g id="override-heatmap-light-text_48">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="364.295967" transform="rotate(-0 240.76714 364.295967)">33%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="240.76714" y="352.914396" transform="rotate(-0 240.76714 352.914396)">33%</text>
    </g>
    <g id="override-heatmap-light-text_49">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="364.295967" transform="rotate(-0 332.126376 364.295967)">92%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="332.126376" y="352.914396" transform="rotate(-0 332.126376 352.914396)">92%</text>
    </g>
    <g id="override-heatmap-light-text_50">
-    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="364.295967" transform="rotate(-0 423.485611 364.295967)">75%</text>
+    <text style="font-size: 10px;  text-anchor: middle; fill: #16181d" x="423.485611" y="352.914396" transform="rotate(-0 423.485611 352.914396)">75%</text>
    </g>
    <g id="override-heatmap-light-text_51">
-    <text style="font-size: 7.5px;  text-anchor: start; fill: #636773" x="103.728287" y="106.503921" transform="rotate(-0 103.728287 106.503921)">BIASED TOWARDS ENGLISH</text>
+    <text style="font-size: 7.5px;  text-anchor: start; fill: #636773" x="103.728287" y="103.825904" transform="rotate(-0 103.728287 103.825904)">BIASED TOWARDS ENGLISH</text>
    </g>
   </g>
   <g id="override-heatmap-light-axes_3">
    <g id="override-heatmap-light-patch_4">
-    <path d="M 103.728287 441.168744 
-L 469.165229 441.168744 
-L 469.165229 428.900713 
-L 103.728287 428.900713 
-L 103.728287 441.168744 
+    <path d="M 103.728287 428.539213 
+L 469.165229 428.539213 
+L 469.165229 416.699664 
+L 103.728287 416.699664 
+L 103.728287 428.539213 
 z
 " style="fill: none"/>
    </g>
    <image xlink:href="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAA/cAAAAiCAYAAAAanSnOAAABnElEQVR4nO3XQY7DIBAEwGT//9K95AnsNRsk0AQS01LVzcLYMBpj9f3x+G23Z+3/ZedlvLu7m/9y3U8ojhffX3xe52l8vtfZeG1trbr2xdq28n5m49X9FMdX3rexL77RG22xFuu9Nhsf77feW4P3n1b7T59hi+NHf9fTWu+uxWAt7zwvrPe2778FfQdfr+W1/8ed39LuM6T+P7t4PRf/T0vfRjtoLR+Yv7vW/ePXeqvvzZX1XHsGbK/t6b3XxutZOXdWz6zq/J/x3QAAAMDphHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAADhhHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAADhhHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAADhhHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAAC3bH/hZErSJ8dF+QAAAABJRU5ErkJggg==" id="override-heatmap-light-imagec216fb5160" transform="scale(1 -1) translate(0 -12.24)" x="103.68" y="-428.76" width="365.4" height="12.24"/>
+iVBORw0KGgoAAAANSUhEUgAAA/cAAAAhCAYAAACcCVtgAAABlklEQVR4nO3XQY7DIBAEwGT//9K95AnsNRsk0AQS01LVzcLYMBpj9f3x+G23Z+3/ZedlvLu7m/9y3U8ojhffX3xe52l8vtfZeG1trbr2xdq28n5m49X9FMdX3rexL77RG22xFuu9Nhsf77feW4P3n1b7T59hi+NHf9fTWu+uxWAt7zwvrPe2778FfQdfr+W1/8ed39LuM6T+P7t4PRf/T0vfRjtoLR+Yv7vW/ePXeqvvzZX1XHsGbK/t6b3XxutZOXdWz6zq/J/x3QAAAMDphHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAADhhHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAADhhHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAACCccA8AAADhhHsAAAAIJ9wDAABAOOEeAAAAwgn3AAAAEE64BwAAgHDCPQAAAIQT7gEAAOCW7Q+2jUrQMtIqNwAAAABJRU5ErkJggg==" id="override-heatmap-light-imagec2ef79fc52" transform="scale(1 -1) translate(0 -11.88)" x="103.68" y="-416.52" width="365.4" height="11.88"/>
    <g id="override-heatmap-light-matplotlib.axis_5">
     <g id="override-heatmap-light-xtick_5">
      <g id="override-heatmap-light-line2d_14"/>
      <g id="override-heatmap-light-text_52">
-      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="103.728287" y="451.126752" transform="rotate(-0 103.728287 451.126752)">0%</text>
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="103.728287" y="438.497221" transform="rotate(-0 103.728287 438.497221)">0%</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_6">
      <g id="override-heatmap-light-line2d_15"/>
      <g id="override-heatmap-light-text_53">
-      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="195.087522" y="451.126752" transform="rotate(-0 195.087522 451.126752)">25%</text>
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="195.087522" y="438.497221" transform="rotate(-0 195.087522 438.497221)">25%</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_7">
      <g id="override-heatmap-light-line2d_16"/>
      <g id="override-heatmap-light-text_54">
-      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="286.446758" y="451.126752" transform="rotate(-0 286.446758 451.126752)">50%</text>
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="286.446758" y="438.497221" transform="rotate(-0 286.446758 438.497221)">50%</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_8">
      <g id="override-heatmap-light-line2d_17"/>
      <g id="override-heatmap-light-text_55">
-      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="377.805993" y="451.126752" transform="rotate(-0 377.805993 451.126752)">75%</text>
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="377.805993" y="438.497221" transform="rotate(-0 377.805993 438.497221)">75%</text>
      </g>
     </g>
     <g id="override-heatmap-light-xtick_9">
      <g id="override-heatmap-light-line2d_18"/>
      <g id="override-heatmap-light-text_56">
-      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="469.165229" y="451.126752" transform="rotate(-0 469.165229 451.126752)">100%</text>
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="469.165229" y="438.497221" transform="rotate(-0 469.165229 438.497221)">100%</text>
      </g>
     </g>
     <g id="override-heatmap-light-text_57">
-     <text style="font-size: 9px;  text-anchor: middle; fill: #16181d" x="286.446758" y="466.437651" transform="rotate(-0 286.446758 466.437651)">How often the language change flipped the choice (saturated scenarios)</text>
+     <text style="font-size: 9px;  fill: #16181d" transform="translate(156.408008 454.303998)">How often the language change flipped the choice</text>
+     <text style="font-size: 9px;  fill: #16181d" transform="translate(229.554805 465.536772)">(saturated scenarios)</text>
     </g>
    </g>
    <g id="override-heatmap-light-matplotlib.axis_6"/>
    <g id="override-heatmap-light-LineCollection_1"/>
    <g id="override-heatmap-light-text_58">
-    <text style="font-size: 7.5px;  text-anchor: start; fill: #636773" x="103.728287" y="422.805144" transform="rotate(-0 103.728287 422.805144)">← never flipped</text>
+    <text style="font-size: 7.5px;  text-anchor: start; fill: #636773" x="103.728287" y="410.754064" transform="rotate(-0 103.728287 410.754064)">← never flipped</text>
    </g>
    <g id="override-heatmap-light-text_59">
-    <text style="font-size: 7.5px;  text-anchor: end; fill: #636773" x="469.165229" y="422.805144" transform="rotate(-0 469.165229 422.805144)">always flipped →</text>
+    <text style="font-size: 7.5px;  text-anchor: end; fill: #636773" x="469.165229" y="410.754064" transform="rotate(-0 469.165229 410.754064)">always flipped →</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="override-heatmap-light-p350f20c612">
-   <rect x="103.728287" y="14.698482" width="365.436942" height="76.675197"/>
+  <clipPath id="override-heatmap-light-p3effcacd19">
+   <rect x="103.728287" y="14.698482" width="365.436942" height="73.99718"/>
   </clipPath>
-  <clipPath id="override-heatmap-light-p2d8789d2ec">
-   <rect x="103.728287" y="112.503921" width="365.436942" height="268.363189"/>
+  <clipPath id="override-heatmap-light-p199eae8b1c">
+   <rect x="103.728287" y="109.825904" width="365.436942" height="258.99013"/>
   </clipPath>
  </defs>
 </svg>
