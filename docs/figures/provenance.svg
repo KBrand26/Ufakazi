@@ -1,0 +1,356 @@
+<svg class="fig fig-light" role="img" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 576 280.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="provenance-light-figure_1">
+  <g id="provenance-light-patch_1">
+   <path d="M 0 280.8 
+L 576 280.8 
+L 576 0 
+L 0 0 
+L 0 280.8 
+z
+" style="fill: none"/>
+  </g>
+  <g id="provenance-light-axes_1">
+   <g id="provenance-light-patch_2">
+    <path d="M 103.728287 211.739213 
+L 562.765229 211.739213 
+L 562.765229 3.00024 
+L 103.728287 3.00024 
+L 103.728287 211.739213 
+z
+" style="fill: none"/>
+   </g>
+   <g clip-path="url(#provenance-light-p75db82ca27)">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAABPsAAAJECAYAAABgqCGtAAASmElEQVR4nO3YbWorNwBA0bj76gILXUe36QdtWluyNDP5INDLOT9CcGSNrJEncG+///HXn2+329u/Hr+9//7+wm3+eduNfx45jbkt5hlef37P4wI/M9f4rv1nHF9c79c823/bslrx4m/Pry/uzctnvJ18/vP7Mq9ruvS0rsVevXyW1/uyvP6Fszfv53T5x5V2n324/nS95We8ba5xfvZeP8e4qP25mM7M7hzfzud5WcPBfn1o36fBw04efLcWn+5ze7+7h8PfxnfuvlvzPZzXdLT3Xznzn76PJ9/rlzVNbz4/W+tnxNlc+3u1ed4MezjdrYO5jtc0nYnD7+7xXPNuHp3F5ZnezHX0PN3OtTvTB3Md/c/4qWfTek2LuXbPn6c37dc0rWp7phfrX97XC+fn9nPPxKPn2DzXy5ndrmn8/T7MeJ9efPz1fh9H/v23xbh/Xr5vxs3XeB55ddzxtT895/D5xn0YRp7sw/3D46bP8C3XXsw5bNO4D+OUz7u3Pw/zWr57zvuF+7we9zT2Zdx3nZ3r92UcN13zac55lbs5X8ct5hyWfnxfXsZt5hyXs5/z6nPifnLuh096Yc7HdMfPnvW4D96zYann5/7T92K5bxf39+n6X93f73xWffr8Lua8X3g+XB33ei/X175/6f/f0Xfl6v15HXftmXVt3JX/3cdrunoGp31fref9/Ve+P/u9nM7B6XNi9z/8yl6O4x9v353h3fPobD2778vqOuNrvz29EwAAAAD4HxP7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACACLEPAAAAACLEPgAAAACIEPsAAAAAIELsAwAAAIAIsQ8AAAAAIsQ+AAAAAIgQ+wAAAAAgQuwDAAAAgAixDwAAAAAixD4AAAAAiBD7AAAAACBC7AMAAACAt4Zf+Yx9cgz6L0UAAAAASUVORK5CYII=" id="provenance-light-imagedbdff0743e" transform="scale(1 -1) translate(0 -208.8)" x="103.68" y="-2.88" width="459" height="208.8"/>
+   </g>
+   <g id="provenance-light-line2d_1">
+    <path d="M 333.246758 211.739213 
+L 333.246758 3.00024 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke-dasharray: 4,3; stroke-dashoffset: 0; stroke: #16181d"/>
+   </g>
+   <g id="provenance-light-line2d_2">
+    <path d="M 103.728287 51.854042 
+L 562.765229 51.854042 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #c6c6bd; stroke-linecap: square"/>
+   </g>
+   <g id="provenance-light-matplotlib.axis_1">
+    <g id="provenance-light-xtick_1">
+     <g id="provenance-light-line2d_3"/>
+     <g id="provenance-light-text_1">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="103.728287" y="221.697221" transform="rotate(-0 103.728287 221.697221)">0%</text>
+     </g>
+    </g>
+    <g id="provenance-light-xtick_2">
+     <g id="provenance-light-line2d_4"/>
+     <g id="provenance-light-text_2">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="218.487522" y="221.697221" transform="rotate(-0 218.487522 221.697221)">25%</text>
+     </g>
+    </g>
+    <g id="provenance-light-xtick_3">
+     <g id="provenance-light-line2d_5"/>
+     <g id="provenance-light-text_3">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="333.246758" y="221.697221" transform="rotate(-0 333.246758 221.697221)">50%</text>
+     </g>
+    </g>
+    <g id="provenance-light-xtick_4">
+     <g id="provenance-light-line2d_6"/>
+     <g id="provenance-light-text_4">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="448.005993" y="221.697221" transform="rotate(-0 448.005993 221.697221)">75%</text>
+     </g>
+    </g>
+    <g id="provenance-light-xtick_5">
+     <g id="provenance-light-line2d_7"/>
+     <g id="provenance-light-text_5">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #636773" x="562.765229" y="221.697221" transform="rotate(-0 562.765229 221.697221)">100%</text>
+     </g>
+    </g>
+    <g id="provenance-light-text_6">
+     <text style="font-size: 9px;  fill: #16181d" transform="translate(149.025195 263.503998)">How often the model chose the machine translation over the human one</text>
+     <text style="font-size: 9px;  fill: #16181d" transform="translate(97.551523 274.736772)">bars are 95% intervals  ·  † interval excludes 50%: Claude Sonnet 4.6: 46% (43% to 49%)</text>
+    </g>
+   </g>
+   <g id="provenance-light-matplotlib.axis_2">
+    <g id="provenance-light-ytick_1">
+     <g id="provenance-light-line2d_8"/>
+     <g id="provenance-light-text_7">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="21.785921" transform="rotate(-0 100.228287 21.785921)">Claude Sonnet 4.6 †</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_2">
+     <g id="provenance-light-line2d_9"/>
+     <g id="provenance-light-text_8">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="43.979909" transform="rotate(-0 100.228287 43.979909)">GPT-5.4</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_3">
+     <g id="provenance-light-line2d_10"/>
+     <g id="provenance-light-text_9">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="66.198468" transform="rotate(-0 100.228287 66.198468)">Qwen 3.7 Plus</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_4">
+     <g id="provenance-light-line2d_11"/>
+     <g id="provenance-light-text_10">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="88.404742" transform="rotate(-0 100.228287 88.404742)">Gemini 3.5 Flash</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_5">
+     <g id="provenance-light-line2d_12"/>
+     <g id="provenance-light-text_11">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="110.599063" transform="rotate(-0 100.228287 110.599063)">Grok 4.3</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_6">
+     <g id="provenance-light-line2d_13"/>
+     <g id="provenance-light-text_12">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="132.805004" transform="rotate(-0 100.228287 132.805004)">GPT-4o mini</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_7">
+     <g id="provenance-light-line2d_14"/>
+     <g id="provenance-light-text_13">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="155.011278" transform="rotate(-0 100.228287 155.011278)">Gemma 3 4B</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_8">
+     <g id="provenance-light-line2d_15"/>
+     <g id="provenance-light-text_14">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="177.217552" transform="rotate(-0 100.228287 177.217552)">Gemma 3 12B</text>
+     </g>
+    </g>
+    <g id="provenance-light-ytick_9">
+     <g id="provenance-light-line2d_16"/>
+     <g id="provenance-light-text_15">
+      <text style="font-size: 8.5px;  text-anchor: end; fill: #16181d" x="100.228287" y="199.423825" transform="rotate(-0 100.228287 199.423825)">Gemma 3 27B</text>
+     </g>
+    </g>
+   </g>
+   <g id="provenance-light-LineCollection_1">
+    <path d="M 301.114172 18.544632 
+L 327.508796 18.544632 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #00617c; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_2">
+    <path d="M 304.556949 40.750905 
+L 358.49379 40.750905 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #a9702a; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_3">
+    <path d="M 275.83845 62.957179 
+L 333.246758 62.957179 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #00617c; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_4">
+    <path d="M 267.33344 85.163453 
+L 346.616766 85.163453 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #00617c; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_5">
+    <path d="M 275.86714 107.369727 
+L 340.161002 107.369727 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #00617c; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_6">
+    <path d="M 303.395012 129.576 
+L 340.132312 129.576 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #00617c; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_7">
+    <path d="M 322.918427 151.782274 
+L 369.969713 151.782274 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #a9702a; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_8">
+    <path d="M 288.490656 173.988548 
+L 339.013409 173.988548 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #00617c; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-LineCollection_9">
+    <path d="M 322.918427 196.194822 
+L 407.840261 196.194822 
+" clip-path="url(#provenance-light-p75db82ca27)" style="fill: none; stroke: #a9702a; stroke-width: 2.6"/>
+   </g>
+   <g id="provenance-light-patch_3">
+    <path d="M 103.728287 211.739213 
+L 562.765229 211.739213 
+" style="fill: none; stroke: #c6c6bd; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="provenance-light-line2d_17">
+    <defs>
+     <path id="provenance-light-mb93482f42d" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #00617c; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-mb93482f42d" x="316.032872" y="18.544632" style="fill: #e2e7e5; stroke: #00617c; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_18">
+    <defs>
+     <path id="provenance-light-m00a53504a7" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #a9702a; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-m00a53504a7" x="335.541943" y="40.750905" style="fill: #efeee9; stroke: #a9702a; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_19">
+    <defs>
+     <path id="provenance-light-me951a90ded" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #00617c; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-me951a90ded" x="305.704541" y="62.957179" style="fill: #dbe3e2; stroke: #00617c; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_20">
+    <defs>
+     <path id="provenance-light-mad9860aa6f" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #00617c; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-mad9860aa6f" x="308.238692" y="85.163453" style="fill: #dde4e3; stroke: #00617c; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_21">
+    <defs>
+     <path id="provenance-light-m8e18ed82bb" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #00617c; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-m8e18ed82bb" x="310.294911" y="107.369727" style="fill: #dee5e4; stroke: #00617c; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_22">
+    <defs>
+     <path id="provenance-light-m839013e347" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #00617c; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-m839013e347" x="322.918427" y="129.576" style="fill: #e8ebe7; stroke: #00617c; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_23">
+    <defs>
+     <path id="provenance-light-meadf3a1f37" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #a9702a; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-meadf3a1f37" x="345.870274" y="151.782274" style="fill: #ece8e0; stroke: #a9702a; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_24">
+    <defs>
+     <path id="provenance-light-m14f42282f5" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #00617c; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-m14f42282f5" x="314.88528" y="173.988548" style="fill: #e1e7e5; stroke: #00617c; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-line2d_25">
+    <defs>
+     <path id="provenance-light-ma446a376a0" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #a9702a; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#provenance-light-p75db82ca27)">
+     <use xlink:href="#provenance-light-ma446a376a0" x="363.084159" y="196.194822" style="fill: #e7dfd2; stroke: #a9702a; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="provenance-light-text_16">
+    <text style="font-size: 7.5px;  text-anchor: start; fill: #636773" x="108.318656" y="237.289337" transform="rotate(-0 108.318656 237.289337)">← preferred the human translation</text>
+   </g>
+   <g id="provenance-light-text_17">
+    <text style="font-size: 7.5px;  text-anchor: end; fill: #636773" x="558.174859" y="237.289337" transform="rotate(-0 558.174859 237.289337)">preferred the machine translation →</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="provenance-light-p75db82ca27">
+   <rect x="103.728287" y="3.00024" width="459.036942" height="208.738973"/>
+  </clipPath>
+ </defs>
+</svg>

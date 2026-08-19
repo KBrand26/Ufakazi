@@ -1,0 +1,525 @@
+<svg class="fig fig-dark" role="img" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 482.4 471.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="heatmap-model-language-dark-figure_1">
+  <g id="heatmap-model-language-dark-patch_1">
+   <path d="M 0 471.6 
+L 482.4 471.6 
+L 482.4 0 
+L 0 0 
+L 0 471.6 
+z
+" style="fill: none"/>
+  </g>
+  <g id="heatmap-model-language-dark-axes_1">
+   <g id="heatmap-model-language-dark-patch_2">
+    <path d="M 103.728287 91.373422 
+L 469.165229 91.373422 
+L 469.165229 14.698482 
+L 103.728287 14.698482 
+L 103.728287 91.373422 
+z
+" style="fill: none"/>
+   </g>
+   <g id="heatmap-model-language-dark-QuadMesh_1">
+    <path d="M 103.728287 14.698482 
+L 195.087522 14.698482 
+L 195.087522 53.035952 
+L 103.728287 53.035952 
+L 103.728287 14.698482 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #2e2c2c; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 14.698482 
+L 286.446758 14.698482 
+L 286.446758 53.035952 
+L 195.087522 53.035952 
+L 195.087522 14.698482 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #2b2a2b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 14.698482 
+L 377.805993 14.698482 
+L 377.805993 53.035952 
+L 286.446758 53.035952 
+L 286.446758 14.698482 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #212c35; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 14.698482 
+L 469.165229 14.698482 
+L 469.165229 53.035952 
+L 377.805993 53.035952 
+L 377.805993 14.698482 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #20252d; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 53.035952 
+L 195.087522 53.035952 
+L 195.087522 91.373422 
+L 103.728287 91.373422 
+L 103.728287 53.035952 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #27282b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 53.035952 
+L 286.446758 53.035952 
+L 286.446758 91.373422 
+L 195.087522 91.373422 
+L 195.087522 53.035952 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #21242b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 53.035952 
+L 377.805993 53.035952 
+L 377.805993 91.373422 
+L 286.446758 91.373422 
+L 286.446758 53.035952 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #29292b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 53.035952 
+L 469.165229 53.035952 
+L 469.165229 91.373422 
+L 377.805993 91.373422 
+L 377.805993 53.035952 
+" clip-path="url(#heatmap-model-language-dark-p035799f021)" style="fill: #2c2a2b; stroke: #111318; stroke-width: 2"/>
+   </g>
+   <g id="heatmap-model-language-dark-matplotlib.axis_1"/>
+   <g id="heatmap-model-language-dark-matplotlib.axis_2">
+    <g id="heatmap-model-language-dark-ytick_1">
+     <g id="heatmap-model-language-dark-line2d_1"/>
+     <g id="heatmap-model-language-dark-text_1">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="37.489834" transform="rotate(-0 100.228287 37.489834)">Claude Sonnet 4.6</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_2">
+     <g id="heatmap-model-language-dark-line2d_2"/>
+     <g id="heatmap-model-language-dark-text_2">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="75.813574" transform="rotate(-0 100.228287 75.813574)">GPT-5.4</text>
+     </g>
+    </g>
+   </g>
+   <g id="heatmap-model-language-dark-text_3">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="36.464873" transform="rotate(-0 149.407905 36.464873)">57%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_4">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="36.464873" transform="rotate(-0 240.76714 36.464873)">55%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_5">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="36.464873" transform="rotate(-0 332.126376 36.464873)">43%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_6">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="36.464873" transform="rotate(-0 423.485611 36.464873)">49%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_7">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="74.802344" transform="rotate(-0 149.407905 74.802344)">53%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_8">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="74.802344" transform="rotate(-0 240.76714 74.802344)">51%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_9">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="74.802344" transform="rotate(-0 332.126376 74.802344)">54%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_10">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="74.802344" transform="rotate(-0 423.485611 74.802344)">56%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_11">
+    <text style="font-size: 7.5px;  text-anchor: start; fill: #969ba6" x="103.728287" y="8.698482" transform="rotate(-0 103.728287 8.698482)">NO SIGNIFICANT BIAS</text>
+   </g>
+  </g>
+  <g id="heatmap-model-language-dark-axes_2">
+   <g id="heatmap-model-language-dark-patch_3">
+    <path d="M 103.728287 380.865955 
+L 469.165229 380.865955 
+L 469.165229 112.503665 
+L 103.728287 112.503665 
+L 103.728287 380.865955 
+z
+" style="fill: none"/>
+   </g>
+   <g id="heatmap-model-language-dark-QuadMesh_2">
+    <path d="M 103.728287 112.503665 
+L 195.087522 112.503665 
+L 195.087522 150.841135 
+L 103.728287 150.841135 
+L 103.728287 112.503665 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #212f39; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 112.503665 
+L 286.446758 112.503665 
+L 286.446758 150.841135 
+L 195.087522 150.841135 
+L 195.087522 112.503665 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #203643; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 112.503665 
+L 377.805993 112.503665 
+L 377.805993 150.841135 
+L 286.446758 150.841135 
+L 286.446758 112.503665 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1f3d4c; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 112.503665 
+L 469.165229 112.503665 
+L 469.165229 150.841135 
+L 377.805993 150.841135 
+L 377.805993 112.503665 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1e4354; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 150.841135 
+L 195.087522 150.841135 
+L 195.087522 189.178605 
+L 103.728287 189.178605 
+L 103.728287 150.841135 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #14546b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 150.841135 
+L 286.446758 150.841135 
+L 286.446758 189.178605 
+L 195.087522 189.178605 
+L 195.087522 150.841135 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1b4a5d; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 150.841135 
+L 377.805993 150.841135 
+L 377.805993 189.178605 
+L 286.446758 189.178605 
+L 286.446758 150.841135 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1a4b5f; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 150.841135 
+L 469.165229 150.841135 
+L 469.165229 189.178605 
+L 377.805993 189.178605 
+L 377.805993 150.841135 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1f3d4b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 189.178605 
+L 195.087522 189.178605 
+L 195.087522 227.516075 
+L 103.728287 227.516075 
+L 103.728287 189.178605 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1d4456; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 189.178605 
+L 286.446758 189.178605 
+L 286.446758 227.516075 
+L 195.087522 227.516075 
+L 195.087522 189.178605 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1c485b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 189.178605 
+L 377.805993 189.178605 
+L 377.805993 227.516075 
+L 286.446758 227.516075 
+L 286.446758 189.178605 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #184f64; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 189.178605 
+L 469.165229 189.178605 
+L 469.165229 227.516075 
+L 377.805993 227.516075 
+L 377.805993 189.178605 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #194d62; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 227.516075 
+L 195.087522 227.516075 
+L 195.087522 265.853545 
+L 103.728287 265.853545 
+L 103.728287 227.516075 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #203c4b; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 227.516075 
+L 286.446758 227.516075 
+L 286.446758 265.853545 
+L 195.087522 265.853545 
+L 195.087522 227.516075 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1f404f; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 227.516075 
+L 377.805993 227.516075 
+L 377.805993 265.853545 
+L 286.446758 265.853545 
+L 286.446758 227.516075 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #0e5972; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 227.516075 
+L 469.165229 227.516075 
+L 469.165229 265.853545 
+L 377.805993 265.853545 
+L 377.805993 227.516075 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #075e78; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 265.853545 
+L 195.087522 265.853545 
+L 195.087522 304.191015 
+L 103.728287 304.191015 
+L 103.728287 265.853545 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1f4050; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 265.853545 
+L 286.446758 265.853545 
+L 286.446758 304.191015 
+L 195.087522 304.191015 
+L 195.087522 265.853545 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1f4151; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 265.853545 
+L 377.805993 265.853545 
+L 377.805993 304.191015 
+L 286.446758 304.191015 
+L 286.446758 265.853545 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #105870; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 265.853545 
+L 469.165229 265.853545 
+L 469.165229 304.191015 
+L 377.805993 304.191015 
+L 377.805993 265.853545 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #185065; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 304.191015 
+L 195.087522 304.191015 
+L 195.087522 342.528485 
+L 103.728287 342.528485 
+L 103.728287 304.191015 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1d4557; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 304.191015 
+L 286.446758 304.191015 
+L 286.446758 342.528485 
+L 195.087522 342.528485 
+L 195.087522 304.191015 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1d4557; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 304.191015 
+L 377.805993 304.191015 
+L 377.805993 342.528485 
+L 286.446758 342.528485 
+L 286.446758 304.191015 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #175166; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 304.191015 
+L 469.165229 304.191015 
+L 469.165229 342.528485 
+L 377.805993 342.528485 
+L 377.805993 304.191015 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #0f5971; stroke: #111318; stroke-width: 2"/>
+    <path d="M 103.728287 342.528485 
+L 195.087522 342.528485 
+L 195.087522 380.865955 
+L 103.728287 380.865955 
+L 103.728287 342.528485 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1f3f4f; stroke: #111318; stroke-width: 2"/>
+    <path d="M 195.087522 342.528485 
+L 286.446758 342.528485 
+L 286.446758 380.865955 
+L 195.087522 380.865955 
+L 195.087522 342.528485 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #1d4658; stroke: #111318; stroke-width: 2"/>
+    <path d="M 286.446758 342.528485 
+L 377.805993 342.528485 
+L 377.805993 380.865955 
+L 286.446758 380.865955 
+L 286.446758 342.528485 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #0f5971; stroke: #111318; stroke-width: 2"/>
+    <path d="M 377.805993 342.528485 
+L 469.165229 342.528485 
+L 469.165229 380.865955 
+L 377.805993 380.865955 
+L 377.805993 342.528485 
+" clip-path="url(#heatmap-model-language-dark-pb57846ff53)" style="fill: #085d77; stroke: #111318; stroke-width: 2"/>
+   </g>
+   <g id="heatmap-model-language-dark-matplotlib.axis_3">
+    <g id="heatmap-model-language-dark-xtick_1">
+     <g id="heatmap-model-language-dark-line2d_3"/>
+     <g id="heatmap-model-language-dark-text_12">
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(123.671069 392.535398)">Afrikaans</text>
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(129.390366 404.392215)">(human)</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_2">
+     <g id="heatmap-model-language-dark-line2d_4"/>
+     <g id="heatmap-model-language-dark-text_13">
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(215.030304 392.535398)">Afrikaans</text>
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(215.030304 404.392215)">(machine)</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_3">
+     <g id="heatmap-model-language-dark-line2d_5"/>
+     <g id="heatmap-model-language-dark-text_14">
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(312.108836 392.562117)">isiZulu</text>
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(306.38954 404.418934)">(machine)</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_4">
+     <g id="heatmap-model-language-dark-line2d_6"/>
+     <g id="heatmap-model-language-dark-text_15">
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(400.608424 392.535398)">isiXhosa</text>
+      <text style="font-size: 9.5px;  fill: #969ba6" transform="translate(397.748775 404.392215)">(machine)</text>
+     </g>
+    </g>
+   </g>
+   <g id="heatmap-model-language-dark-matplotlib.axis_4">
+    <g id="heatmap-model-language-dark-ytick_3">
+     <g id="heatmap-model-language-dark-line2d_7"/>
+     <g id="heatmap-model-language-dark-text_16">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="135.295017" transform="rotate(-0 100.228287 135.295017)">Qwen 3.7 Plus</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_4">
+     <g id="heatmap-model-language-dark-line2d_8"/>
+     <g id="heatmap-model-language-dark-text_17">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="173.632487" transform="rotate(-0 100.228287 173.632487)">Gemini 3.5 Flash</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_5">
+     <g id="heatmap-model-language-dark-line2d_9"/>
+     <g id="heatmap-model-language-dark-text_18">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="211.956598" transform="rotate(-0 100.228287 211.956598)">Grok 4.3</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_6">
+     <g id="heatmap-model-language-dark-line2d_10"/>
+     <g id="heatmap-model-language-dark-text_19">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="250.293696" transform="rotate(-0 100.228287 250.293696)">GPT-4o mini</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_7">
+     <g id="heatmap-model-language-dark-line2d_11"/>
+     <g id="heatmap-model-language-dark-text_20">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="288.631167" transform="rotate(-0 100.228287 288.631167)">Gemma 3 4B</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_8">
+     <g id="heatmap-model-language-dark-line2d_12"/>
+     <g id="heatmap-model-language-dark-text_21">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="326.968637" transform="rotate(-0 100.228287 326.968637)">Gemma 3 12B</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-ytick_9">
+     <g id="heatmap-model-language-dark-line2d_13"/>
+     <g id="heatmap-model-language-dark-text_22">
+      <text style="font-size: 9.5px;  text-anchor: end; fill: #e7e7e2" x="100.228287" y="365.306107" transform="rotate(-0 100.228287 365.306107)">Gemma 3 27B</text>
+     </g>
+    </g>
+   </g>
+   <g id="heatmap-model-language-dark-text_23">
+    <text style="font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="134.270056" transform="rotate(-0 149.407905 134.270056)">41%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_24">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="134.270056" transform="rotate(-0 240.76714 134.270056)">34%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_25">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="134.270056" transform="rotate(-0 332.126376 134.270056)">29%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_26">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="134.270056" transform="rotate(-0 423.485611 134.270056)">24%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_27">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="172.607526" transform="rotate(-0 149.407905 172.607526)">10%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_28">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="172.607526" transform="rotate(-0 240.76714 172.607526)">18%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_29">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="172.607526" transform="rotate(-0 332.126376 172.607526)">17%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_30">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="172.607526" transform="rotate(-0 423.485611 172.607526)">29%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_31">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="210.944996" transform="rotate(-0 149.407905 210.944996)">23%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_32">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="210.944996" transform="rotate(-0 240.76714 210.944996)">20%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_33">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="210.944996" transform="rotate(-0 332.126376 210.944996)">14%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_34">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="210.944996" transform="rotate(-0 423.485611 210.944996)">15%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_35">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="249.282466" transform="rotate(-0 149.407905 249.282466)">29%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_36">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="249.282466" transform="rotate(-0 240.76714 249.282466)">26%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_37">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="249.282466" transform="rotate(-0 332.126376 249.282466)">6%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_38">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="249.282466" transform="rotate(-0 423.485611 249.282466)">3%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_39">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="287.619936" transform="rotate(-0 149.407905 287.619936)">26%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_40">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="287.619936" transform="rotate(-0 240.76714 287.619936)">26%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_41">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="287.619936" transform="rotate(-0 332.126376 287.619936)">7%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_42">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="287.619936" transform="rotate(-0 423.485611 287.619936)">13%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_43">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="325.957406" transform="rotate(-0 149.407905 325.957406)">22%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_44">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="325.957406" transform="rotate(-0 240.76714 325.957406)">22%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_45">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="325.957406" transform="rotate(-0 332.126376 325.957406)">12%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_46">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="325.957406" transform="rotate(-0 423.485611 325.957406)">6%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_47">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="149.407905" y="364.294876" transform="rotate(-0 149.407905 364.294876)">27%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_48">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="240.76714" y="364.294876" transform="rotate(-0 240.76714 364.294876)">21%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_49">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="332.126376" y="364.294876" transform="rotate(-0 332.126376 364.294876)">6%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_50">
+    <text style="font-weight: 700; font-size: 10px;  text-anchor: middle; fill: #e7e7e2" x="423.485611" y="364.294876" transform="rotate(-0 423.485611 364.294876)">3%</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_51">
+    <text style="font-size: 7.5px;  text-anchor: start; fill: #969ba6" x="103.728287" y="106.503665" transform="rotate(-0 103.728287 106.503665)">BIASED TOWARDS ENGLISH</text>
+   </g>
+  </g>
+  <g id="heatmap-model-language-dark-axes_3">
+   <g id="heatmap-model-language-dark-patch_4">
+    <path d="M 103.728287 441.168744 
+L 469.165229 441.168744 
+L 469.165229 428.900754 
+L 103.728287 428.900754 
+L 103.728287 441.168744 
+z
+" style="fill: none"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAA/cAAAAiCAYAAAAanSnOAAACIUlEQVR4nO3Xa3LCIBQGUNKddh/dO53R+CiEQAzauTPn/KkRvEAg1m9J3z85pZSWtMqXy8f1aknX929/Hu1F/3t7Lj4/t371/q3OWj916zf6bX5+Hatq2p/bY+zb22NzO1p/tM69X6dOa4/K9lfH7+1hq/79g0VztZd76ytql+fs6NzP19lvb53To/fov9fRO2sbDdf59Orv1hgb4/QaTo4z+nz35zFpPdPH2Wv/xBh749yaz82jHmbWc/uuPUx/z976ov6/XL6oL0f6XK477aP9yva63zI2Xm/No+M16oz269+/4nticN6j4y1vOhefnvN+vzx1b+fVyQfP9na/5dBztt6Lk3vXHi9PPgNje9dvb/xuHb4PrezSmve553d5+vEzb22je5Mnn998cl75tT1J+eD92v89PD7v53nl12pVc8mNvdmu/7W5QgAAACAM4R4AAACCE+4BAAAgOOEeAAAAghPuAQAAIDjhHgAAAIIT7gEAACA44R4AAACCE+4BAAAgOOEeAAAAghPuAQAAIDjhHgAAAIIT7gEAACA44R4AAACCE+4BAAAgOOEeAAAAghPuAQAAIDjhHgAAAIIT7gEAACA44R4AAACCE+4BAAAgOOEeAAAAghPuAQAAIDjhHgAAAIIT7gEAACA44R4AAACCE+4BAAAgOOEeAAAAghPuAQAAIDjhHgAAAIIT7gEAACA44R4AAACCE+4BAAAgxfYLipmxPUlknQUAAAAASUVORK5CYII=" id="heatmap-model-language-dark-imagef92e39bde5" transform="scale(1 -1) translate(0 -12.24)" x="103.68" y="-428.76" width="365.4" height="12.24"/>
+   <g id="heatmap-model-language-dark-matplotlib.axis_5">
+    <g id="heatmap-model-language-dark-xtick_5">
+     <g id="heatmap-model-language-dark-line2d_14"/>
+     <g id="heatmap-model-language-dark-text_52">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #969ba6" x="103.728287" y="451.126752" transform="rotate(-0 103.728287 451.126752)">0%</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_6">
+     <g id="heatmap-model-language-dark-line2d_15"/>
+     <g id="heatmap-model-language-dark-text_53">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #969ba6" x="195.087522" y="451.126752" transform="rotate(-0 195.087522 451.126752)">25%</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_7">
+     <g id="heatmap-model-language-dark-line2d_16"/>
+     <g id="heatmap-model-language-dark-text_54">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #969ba6" x="286.446758" y="451.126752" transform="rotate(-0 286.446758 451.126752)">50%</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_8">
+     <g id="heatmap-model-language-dark-line2d_17"/>
+     <g id="heatmap-model-language-dark-text_55">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #969ba6" x="377.805993" y="451.126752" transform="rotate(-0 377.805993 451.126752)">75%</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-xtick_9">
+     <g id="heatmap-model-language-dark-line2d_18"/>
+     <g id="heatmap-model-language-dark-text_56">
+      <text style="font-size: 8.5px;  text-anchor: middle; fill: #969ba6" x="469.165229" y="451.126752" transform="rotate(-0 469.165229 451.126752)">100%</text>
+     </g>
+    </g>
+    <g id="heatmap-model-language-dark-text_57">
+     <text style="font-size: 9px;  text-anchor: middle; fill: #e7e7e2" x="286.446758" y="466.437651" transform="rotate(-0 286.446758 466.437651)">How often the model chose the non-English account (balanced scenarios)</text>
+    </g>
+   </g>
+   <g id="heatmap-model-language-dark-matplotlib.axis_6"/>
+   <g id="heatmap-model-language-dark-LineCollection_1"/>
+   <g id="heatmap-model-language-dark-text_58">
+    <text style="font-size: 7.5px;  text-anchor: start; fill: #969ba6" x="103.728287" y="422.805199" transform="rotate(-0 103.728287 422.805199)">← always chose English</text>
+   </g>
+   <g id="heatmap-model-language-dark-text_59">
+    <text style="font-size: 7.5px;  text-anchor: end; fill: #969ba6" x="469.165229" y="422.805199" transform="rotate(-0 469.165229 422.805199)">always chose the other language →</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="heatmap-model-language-dark-p035799f021">
+   <rect x="103.728287" y="14.698482" width="365.436942" height="76.67494"/>
+  </clipPath>
+  <clipPath id="heatmap-model-language-dark-pb57846ff53">
+   <rect x="103.728287" y="112.503665" width="365.436942" height="268.36229"/>
+  </clipPath>
+ </defs>
+</svg>

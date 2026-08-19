@@ -71,6 +71,40 @@ def length_summary(
     }
 
 
+def length_ratio_table(
+    targets: tuple[str, ...] = ("afr", "afr_mt", "zul_mt", "xho_mt"),
+    reference: str = DEFAULT_REFERENCE,
+    measure: str = "chars",
+) -> pd.DataFrame:
+    """Tidy per-testimony lengths: one row per (scenario, testimony, target language)
+    with the reference and target lengths and their ratio. Drives the blog's length
+    figure (a dot per testimony, mean per language) and its CSV; characters by default
+    because word counts understate the agglutinative Nguni languages."""
+    rows = []
+    for scenario in load_scenarios():
+        for testimony in scenario.testimonies:
+            tr = testimony.translations
+            if reference not in tr:
+                continue
+            ref_len = _length(tr[reference].text, measure)
+            for target in targets:
+                if target in tr and ref_len:
+                    tgt_len = _length(tr[target].text, measure)
+                    rows.append(
+                        {
+                            "scenario_id": scenario.scenario_id,
+                            "testimony_id": testimony.testimony_id,
+                            "reference": reference,
+                            "target": target,
+                            "measure": measure,
+                            f"len_{reference}": ref_len,
+                            "len_target": tgt_len,
+                            "ratio": tgt_len / ref_len,
+                        }
+                    )
+    return pd.DataFrame(rows)
+
+
 def with_lengths(
     df: pd.DataFrame, measure: str = "chars", lut: dict | None = None
 ) -> pd.DataFrame:
@@ -136,6 +170,30 @@ def length_bias_controls(
         "ci95": (lo, hi),
         "significant": not (lo <= 0.5 <= hi),
     }
+
+
+def length_bias_table(
+    df: pd.DataFrame, measure: str = "chars", n_boot: int = 2000, seed: int = 0
+) -> pd.DataFrame:
+    """Per-model `length_bias_controls`: one row per model with P(chose the longer
+    same-language testimony) and its scenario-bootstrap CI. The prose companion to the
+    length figure (the figure shows the stimuli, this shows the models)."""
+    rows = []
+    for model in sorted(df["model"].astype(str).unique()):
+        b = length_bias_controls(df[df["model"] == model], measure, n_boot, seed)
+        lo, hi = b["ci95"]
+        rows.append(
+            {
+                "model": model,
+                "measure": measure,
+                "n_control_trials": b["n"],
+                "p_chose_longer": b["p_chose_longer"],
+                "ci_lo": lo,
+                "ci_hi": hi,
+                "significant": bool(b.get("significant", False)),
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 def effect_vs_length(

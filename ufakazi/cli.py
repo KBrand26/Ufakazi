@@ -5,6 +5,7 @@ Subcommands:
   probe       - check whether a model parses the choice and returns logprobs
   analyze     - summarize logged trials (baselines, language effect, verbosity confound)
   rationales  - print the model's rationales for inspecting why it chose a language
+  rationale-appeals - per model, how often rationales cite language, by which side was chosen
 
 Model selection has three modes, by design: no `--model` runs the keyless mock; `--model`
 takes a registry key / `default` / a raw Inspect string for scripted, reproducible runs;
@@ -477,6 +478,89 @@ def rationales(
             f"order {row['metadata_position_order']}[/dim]"
         )
         console.print(f"  {row['rationale']}\n")
+
+
+@app.command(name="rationale-appeals")
+def rationale_appeals(
+    log_dir: str = typer.Option(DEFAULT_LOG_DIR, "--log-dir"),
+    all_runs: bool = typer.Option(
+        False,
+        "--all",
+        help="Pool every run per model (default: latest eval per model).",
+    ),
+    panel: bool = typer.Option(
+        False,
+        "--panel",
+        help="Use the final-panel pooling recipe (analysis/panel.py) instead of --log-dir.",
+    ),
+    reference: str = typer.Option("en", "--reference", help="Reference language."),
+    csv: str = typer.Option(
+        None, "--csv", help="Also write the per-model table to this CSV path."
+    ),
+) -> None:
+    """How often does the model's rationale appeal to language or translation, and does
+    that depend on which side it chose?
+
+    Per model: appeal rate when it chose the reference-language testimony vs when it chose
+    the other, and the gap (with a scenario-bootstrap CI). Tight tier is the reported
+    number; the loose tier (the paper's pattern) is shown alongside as a sensitivity check.
+    """
+    from ufakazi.analysis.panel import load_panel
+    from ufakazi.analysis.rationales import pooled_appeal_rate, rationale_appeal_table
+
+    if panel:
+        df = load_panel()
+    else:
+        df = load_trials(log_dir)
+        if not all_runs:
+            df = filter_latest_per_model(df)
+    if df.empty:
+        console.print("[yellow]No trials found.[/yellow]")
+        return
+
+    table = rationale_appeal_table(df, reference=reference)
+    grid = Table(
+        title=f"Language appeals in rationales (reference = {reference})",
+        show_lines=False,
+    )
+    grid.add_column("model", no_wrap=True)
+    grid.add_column(f"chose {reference}", justify="right")
+    grid.add_column("chose other", justify="right")
+    grid.add_column("gap [95% CI]", justify="right")
+    grid.add_column("loose tier", justify="right")
+    grid.add_column(f"P(chose {reference})", justify="right")
+    grid.add_column("n", justify="right")
+    for _, r in table.sort_values("appeal_gap", ascending=False).iterrows():
+        gap = f"{r['appeal_gap']:+.2f} [{r['appeal_gap_ci_lo']:+.2f}, {r['appeal_gap_ci_hi']:+.2f}]"
+        if r["appeal_gap_significant"]:
+            gap = f"[bold]{gap}[/bold]"
+        grid.add_row(
+            str(r["model"]).split("/")[-1],
+            f"{r['appeal_rate_ref']:.2f}",
+            f"{r['appeal_rate_other']:.2f}",
+            gap,
+            f"{r['mention_rate_ref']:.2f} / {r['mention_rate_other']:.2f}",
+            f"{r['p_chose_reference']:.2f}",
+            f"{int(r['n_chose_reference'])} / {int(r['n_chose_other'])}",
+        )
+    console.print(grid)
+    console.print(
+        "[dim]columns: share of rationales citing language when the model chose the "
+        f"{reference} side vs the other side (tight tier); gap = difference; loose tier "
+        "= same two rates under the paper's broader pattern; n = trials per side.[/dim]"
+    )
+    for tier in ("appeal", "mention"):
+        pooled = pooled_appeal_rate(df, reference=reference, tier=tier)
+        console.print(
+            f"pooled ({tier}): cited language in "
+            f"{pooled['n_cited_when_chose_reference']}/{pooled['n_chose_reference']} "
+            f"= [bold]{pooled['rate_ref']:.1%}[/bold] of trials choosing {reference}; "
+            f"{pooled['rate_other']:.1%} when choosing the other side "
+            f"[dim](n={pooled['n_chose_other']})[/dim]"
+        )
+    if csv:
+        table.to_csv(csv, index=False)
+        console.print(f"[green]wrote[/green] {csv}")
 
 
 @app.command()

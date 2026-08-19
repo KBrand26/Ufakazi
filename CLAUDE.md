@@ -53,12 +53,45 @@ one Inspect `Sample`. Module boundaries:
   recent eval (the per-model generalization of `filter_latest_eval`), and the tidy
   `language_effect_table` / `provenance_effect_table` / `control_table` emit one row per
   (model, ...) — these feed both `analyze` (which now loops per model) and the figures.
+  **Panel pooling trap:** the final panel logs (`results/logs_b1`) hold Gemini across two evals
+  (interrupted + resumed), so `filter_latest_per_model` silently drops most of Gemini there;
+  `panel.py`'s `load_panel()` is the one correct recipe (pool `logs_b1` per model, mock excluded,
+  plus 4o-mini's 10-epoch eval from `results/logs`) and reproduces the paper's Table 1 exactly.
+  `rationales.py` classifies each rationale for a **language appeal** (does it cite the language
+  or translation rather than the evidence?) with two pinned regex tiers: `LANGUAGE_APPEAL`
+  (tight, the reported number) and `LANGUAGE_MENTION` (loose, the paper's pattern, which also
+  fires on style talk like "loaded language"). Headline is the per-model **gap** = appeal rate
+  when the model chose the English side minus when it chose the other side (scenario-bootstrap
+  CI): ~0 for symmetric Claude, positive for biased models, negative/zero for a model that is
+  biased but does not say so (Gemma 3 4B), i.e. where rationale monitoring would miss it.
+  `rationale_appeal_table` is the tidy per-model table; `pooled_appeal_rate` is the paper's
+  single number (37.1% under the loose tier). Known misses/false positives are pinned in
+  `tests/test_rationales.py`; extend the pattern there, consciously.
 - **`figures.py`** — programmatic paper figures from the logs (`ufakazi figures`): the model-grouped
   forest plot, model x language heatmap, cross-linguistic gradient, human-vs-machine provenance,
   Gemma scale ladder (auto-skipped until those models are run), and control diagnostics. Vector
   **PDF** (for LaTeX `\includegraphics`) + **PNG** preview, plus the tidy tables as CSV and a
   `macros.tex` of `\newcommand`s so in-text numbers track the plots. Own clean style (no journal
   house-style dep); matplotlib + seaborn imported lazily so the rest of the CLI needs neither.
+- **`figures_web.py`** — the blog's figure pass (`uv run python -m ufakazi.figures_web`): same
+  tables, the page's palette (petrol = English, ochre = non-English), OKLab ramps, and two SVG
+  renders per figure (light + dark theme) plus a PNG, tokenised for inlining into
+  `docs/index.html`; also writes the tidy tables as CSV to `docs/figures/`. Reads the panel
+  via `load_panel()`. Five figures: the model x language heatmap, the override heatmap, the
+  human-vs-machine provenance dots, the **length strip** (Section 05's verbosity check: each
+  translated testimony's character length relative to its English original, one dot per
+  testimony, mean marked; data from `analysis/verbosity.py`'s `length_ratio_table`, with
+  `length_bias_table` as its prose companion, P(chose the longer account) inside the
+  same-language controls per model), and the rationale-appeal dumbbell. Blog figures are one
+  figure per point (no multi-panel), always on the page palette.
+- **`site.py`** — page assembly for `docs/index.html` (`uv run python -m ufakazi.site`, also run at
+  the end of `figures_web.main`): inlines the figure SVG pairs and generates the **Sources** list.
+  Citations in the post are linked claims, not markers: `<a class="src" href=... data-cite="who, title,
+  publisher, date">the claim</a>`; the build collects every `.src` link in document order, dedupes by
+  URL, and writes the numbered list between `<!-- sources -->` markers, failing if any `.src` lacks
+  `data-cite`. The paper/bibliography link is the Apart project page
+  (https://apartresearch.com/project/ufakazi-7yi3), not a PDF, until the paper is published.
+- **`docs/`** — the GitHub Pages blog post (`index.html`, self-contained; figures inlined as SVG).
 - **`results/`** — gitignored. Inspect writes `.eval` logs under `results/logs/`; `ufakazi figures`
   writes plots + tables under `results/figures/` (regenerated on demand, uploaded to Overleaf).
 
@@ -133,7 +166,9 @@ uv run ufakazi sweep -m batch2                # final Batch 2 (Grok, Qwen); pool
 uv run ufakazi probe claude                   # check a model parses + returns logprobs
 uv run ufakazi analyze                        # per-model: controls, balance split, main effect + override probe
 uv run ufakazi analyze --all                  # pool every run per model (additive epochs)
+uv run ufakazi rationale-appeals --panel      # per-model language-appeal rates by chosen side + gap
 uv run ufakazi figures                        # paper figures (PDF+PNG) + tables -> results/figures
+uv run python -m ufakazi.figures_web          # blog figures (PNG + light/dark SVG) + CSVs -> docs/figures
 uv run inspect view --log-dir results/logs    # browse raw outputs in the log viewer
 uv run pytest          # tests
 uv run ruff check      # lint
