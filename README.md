@@ -22,6 +22,8 @@ position constant, we render the same two testimonies into different languages a
 model's forced credibility choice. Counterbalancing cancels content and position bias structurally,
 so what remains is the **language main effect**.
 
+For a full breakdown of our work: https://kbrand26.github.io/Ufakazi/
+
 See [`DESIGN.md`](DESIGN.md) for the experimental design and [`CLAUDE.md`](CLAUDE.md) for
 architecture and conventions.
 
