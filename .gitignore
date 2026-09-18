@@ -221,6 +221,9 @@ __marimo__/
 # Claude Code worktrees (transient, created by the worktree tooling under .claude/)
 .claude/worktrees/
 
+# Investigation scripts
+investigation/
+
 # Experiment outputs and caches (never committed; keep the dir, not its contents)
 results/*
 !results/.gitkeep
